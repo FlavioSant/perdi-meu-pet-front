@@ -37,6 +37,24 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt-BR">
         <Head>
+          <meta
+            name="description"
+            content="O Perdi Meu Pet é um app para realizar buscas de animais 
+                    desaparecidos, encontrados ou em situação de adoção."
+          />
+          <meta name="theme-color" content="#FF6043" />
+
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+
           <link
             rel="shortcut icon"
             href="static/favicon.ico"

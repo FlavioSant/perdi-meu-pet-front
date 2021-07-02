@@ -1,9 +1,11 @@
 import { NextPage } from 'next';
 
-import { Greetings } from '../components/Greetings';
-
 const Home: NextPage = () => {
-  return <Greetings />;
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
 };
 
 export default Home;

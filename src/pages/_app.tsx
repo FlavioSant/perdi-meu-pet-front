@@ -9,7 +9,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
     <>
       <GlobalStyle />
       <Head>
-        <title>NextJS Starter</title>
+        <title>Perdi Meu Pet</title>
       </Head>
       <Component {...pageProps} />
     </>
