@@ -62,6 +62,14 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
   button {
     cursor: pointer;
   }
