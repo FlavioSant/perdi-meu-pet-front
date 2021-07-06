@@ -22,7 +22,7 @@ const Home: NextPage = () => {
             },
             {
               label: 'Nova Publicação',
-              path: '#',
+              path: '/newPublication',
             },
             {
               label: 'Buscar Publicação',
