@@ -15,7 +15,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
           <h2>{description}</h2>
         </Description>
       )}
-      {children}
+      <div>{children}</div>
     </Container>
   );
 };

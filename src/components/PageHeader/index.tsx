@@ -8,7 +8,7 @@ const PageHeader: React.FC = () => {
   return (
     <HeaderContainer>
       <Header>
-        <img src="logo.svg" alt="Perdi Meu Pet" />
+        <img src="logo.svg" alt="Perdi Meu Pet" title="Perdi Meu Pet" />
         <MenuNavBar
           items={[
             {
@@ -29,7 +29,7 @@ const PageHeader: React.FC = () => {
             },
           ]}
         />
-        <button type="button">
+        <button type="button" title="Entrar">
           <FiUser size={22} />
           Entrar
         </button>
