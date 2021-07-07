@@ -23,3 +23,21 @@ export const MapContainer = styled.div`
     width: 100%;
   }
 `;
+
+export const FormButtons = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+
+  button {
+    flex: initial;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 720px) {
+    button {
+      flex: 1;
+    }
+  }
+`;

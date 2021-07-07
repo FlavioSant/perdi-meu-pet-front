@@ -2,17 +2,13 @@ import styled, { css } from 'styled-components';
 
 interface InputContainerProps {
   isErrored: boolean;
-  isFilled: boolean;
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-
-  & + div {
-    margin-top: 1rem;
-  }
+  flex: 1;
 
   label {
     color: var(--text-secondary);
@@ -35,18 +31,8 @@ export const InputContainer = styled.div<InputContainerProps>`
         border-color: var(--red);
       `}
 
-    ${({ isFilled }) =>
-      isFilled &&
-      css`
-        border-color: var(--gray-200);
-      `}
-
     &:focus {
       border-color: var(--text-secondary);
     }
   }
-`;
-
-export const Error = styled.span`
-  color: var(--red);
 `;

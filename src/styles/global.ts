@@ -11,12 +11,16 @@ const GlobalStyle = createGlobalStyle`
     --text-secondary: #777777;
     --text-secondary-dark: #656565;
     --green-light: #F7FFF5;
+    --green-medium: #D8F2D2;
     --green: #3FB023;
     --blue-light: #E3F3FF;
+    --blue-medium: #C7E0FC;
     --blue: #3C83EE;
     --red-light: #FFF5F5;
+    --red-medium: #FFD7D7;
     --red: #FF4343;
     --orange-light: #FFF0E7;
+    --orange-medium: #FFD8CC;
     --orange: #FF6043;
     --white: #FFFFFF;
   }

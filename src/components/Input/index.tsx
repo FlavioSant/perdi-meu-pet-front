@@ -1,14 +1,8 @@
-import {
-  InputHTMLAttributes,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { InputHTMLAttributes, useEffect, useRef } from 'react';
 
 import { useField } from '@unform/core';
 
-import { InputContainer, Error } from './styles';
+import { InputContainer } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -20,13 +14,6 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
 
   const { defaultValue, fieldName, registerField, error } = useField(name);
 
-  const [isFilled, setIsFilled] = useState(false);
-
-  const handleInputBlur = useCallback(() => {
-    console.log('BLUR', !!inputRef.current?.value);
-    setIsFilled(!!inputRef.current?.value);
-  }, []);
-
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -36,17 +23,15 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <InputContainer isErrored={!!error} isFilled={isFilled}>
+    <InputContainer isErrored={!!error}>
       <label htmlFor={fieldName}>{label}</label>
       <input
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
-        onBlur={handleInputBlur}
         type="text"
         {...rest}
       />
-      {error && <Error>{error}</Error>}
     </InputContainer>
   );
 };
