@@ -13,6 +13,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { Input } from '../../components/Input';
 import { InputFile } from '../../components/InputFile';
+import { ImageRadioButton } from '../../components/ImageRadioButton';
 import { Select } from '../../components/Select';
 import { Textarea } from '../../components/Textarea';
 import { PreviewImages } from '../../components/PreviewImages';
@@ -26,11 +27,18 @@ interface PreviewImageProps {
   name: string;
 }
 
+// type PetSituation = 'desaparecido' | 'encontrado' | 'adocao'
+
 const NewPublication: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
 
+  // const [petSituation, setPetSituation] = useState<PetSituation>('desaparecido')
   const [files, setFiles] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<PreviewImageProps[]>([]);
+
+  // const handleImageRadioChange = useCallback(() => {
+  //   setPetSituation(petSituation === 'pf' ? 'pj' : 'pf');
+  // }, [petSituation]);
 
   const handleFileChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -107,6 +115,29 @@ const NewPublication: NextPage = () => {
         <p>Informe a situação do pet abaixo:</p>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
+          <ImageRadioButton
+            name="situacao"
+            options={[
+              {
+                id: 'desaparecido',
+                label: 'Desaparecido',
+                value: 'desaparecido',
+                imageURL: '/sad-dog.svg',
+              },
+              {
+                id: 'encontrado',
+                label: 'Encontrado',
+                value: 'encontrado',
+                imageURL: 'happy-animals.svg',
+              },
+              {
+                id: 'adocao',
+                label: 'Adoção',
+                value: 'adocao',
+                imageURL: '/adoption.svg',
+              },
+            ]}
+          />
           <FlexItems>
             <Select
               name="categoria"
