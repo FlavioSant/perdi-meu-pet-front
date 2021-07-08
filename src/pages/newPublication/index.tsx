@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { useCallback, useRef } from 'react';
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -12,14 +12,57 @@ import { PageContainer } from '../../components/PageContainer';
 import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { Input } from '../../components/Input';
+import { InputFile } from '../../components/InputFile';
 import { Select } from '../../components/Select';
+import { Textarea } from '../../components/Textarea';
+import { PreviewImages } from '../../components/PreviewImages';
 import { Button } from '../../components/Button';
 import { FlexItems } from '../../components/FlexItems';
 
-import { MapContainer, FormButtons } from './styles';
+import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
+
+interface PreviewImageProps {
+  url: string;
+  name: string;
+}
 
 const NewPublication: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
+
+  const [files, setFiles] = useState<File[]>([]);
+  const [previewImages, setPreviewImages] = useState<PreviewImageProps[]>([]);
+
+  const handleFileChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (!e.target.files) {
+        return;
+      }
+
+      if (e.target.files.length > 4) {
+        alert('Max 4 images!');
+        return;
+      }
+
+      const uploadedFiles = Array.from(e.target.files);
+
+      const parsedPreviewImages = uploadedFiles.map(file => ({
+        url: URL.createObjectURL(file),
+        name: file.name,
+      }));
+
+      setFiles(uploadedFiles);
+      setPreviewImages(parsedPreviewImages);
+    },
+    [files],
+  );
+
+  const removeFiles = useCallback(
+    (index: number) => {
+      setFiles(files.filter((_, i) => index !== i));
+      setPreviewImages(previewImages.filter((_, i) => index !== i));
+    },
+    [files, previewImages],
+  );
 
   const handleSubmit = useCallback(async (data: Record<string, any>) => {
     try {
@@ -118,12 +161,32 @@ const NewPublication: NextPage = () => {
             <Input name="cor" label="Cor" />
           </FlexItems>
 
-          <FlexItems>
+          <FlexItems hasMargin>
             <Input name="nomePet" label="Nome do Pet" />
-            <Button type="button">
-              <FiImage size={22} />
-              Adicione Imagens do Pet
-            </Button>
+            <InputFile
+              name="image"
+              accept="image/*"
+              description="Adicione Imagens do Pet"
+              icon={FiImage}
+              multiple
+              onChange={handleFileChange}
+            />
+          </FlexItems>
+
+          {previewImages.length > 0 && (
+            <PreviewImagesContainer>
+              {previewImages.map((image, index) => (
+                <PreviewImages
+                  key={index}
+                  image={image}
+                  onRemove={() => removeFiles(index)}
+                />
+              ))}
+            </PreviewImagesContainer>
+          )}
+
+          <FlexItems hasMargin>
+            <Textarea name="observacoes" label="Observacoes" />
           </FlexItems>
 
           <FormButtons>

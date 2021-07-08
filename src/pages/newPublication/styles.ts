@@ -24,6 +24,16 @@ export const MapContainer = styled.div`
   }
 `;
 
+export const PreviewImagesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+`;
+
 export const FormButtons = styled.footer`
   display: flex;
   justify-content: flex-end;

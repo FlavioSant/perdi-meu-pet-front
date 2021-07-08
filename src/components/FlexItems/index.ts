@@ -1,15 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const FlexItems = styled.div`
+interface FlexItemProps {
+  hasMargin?: boolean;
+}
+
+export const FlexItems = styled.div<FlexItemProps>`
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
 
-  & + div {
-    margin-top: 1rem;
-  }
+  ${({ hasMargin }) =>
+    hasMargin &&
+    css`
+      margin-top: 1rem;
+    `}
 
   @media (max-width: 720px) {
     flex-direction: column;

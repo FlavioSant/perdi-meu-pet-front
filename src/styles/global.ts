@@ -44,7 +44,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body, div#__next {
-    font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 100%;
   }
@@ -54,7 +53,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body, input, textarea, button {
-    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
   h1,
