@@ -33,7 +33,7 @@ const InputFile: React.FC<InputProps> = ({
 
   return (
     <InputFileContainer>
-      <label htmlFor={fieldName}>
+      <label htmlFor={fieldName} title={description}>
         {Icon && <Icon size={22} />}
         <input
           id={fieldName}

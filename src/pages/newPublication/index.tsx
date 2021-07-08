@@ -221,11 +221,11 @@ const NewPublication: NextPage = () => {
           </FlexItems>
 
           <FormButtons>
-            <Button type="button" styleType="red">
+            <Button type="button" styleType="red" title="Cancelar">
               <FiX size={22} />
               Cancelar
             </Button>
-            <Button type="submit" styleType="green">
+            <Button type="submit" styleType="green" title="Finalizar Cadastro">
               <FiCheck size={22} />
               Finalizar Cadastro
             </Button>

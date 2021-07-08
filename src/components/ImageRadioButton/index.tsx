@@ -54,7 +54,7 @@ const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
             value={option.value}
             {...rest}
           />
-          <label htmlFor={option.id}>
+          <label htmlFor={option.id} title={option.label}>
             <figure>
               <img src={option.imageURL} alt={option.label} />
             </figure>

@@ -13,11 +13,11 @@ const PageHeader: React.FC = () => {
           items={[
             {
               label: 'Inicio',
-              path: '#',
+              path: '/',
             },
             {
               label: 'Nova Publicação',
-              path: '#',
+              path: '/newPublication',
             },
             {
               label: 'Buscar Publicação',

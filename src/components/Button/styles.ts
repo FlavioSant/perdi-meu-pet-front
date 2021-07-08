@@ -58,4 +58,8 @@ export const ButtonContainer = styled.button<ButtonProps>`
   transition: background 0.2s;
 
   ${({ styleType }) => buttonTypeVariations[styleType]}
+
+  &:active {
+    transform: translate(1px, 1px);
+  }
 `;

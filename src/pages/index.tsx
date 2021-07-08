@@ -18,7 +18,7 @@ const Home: NextPage = () => {
           items={[
             {
               label: 'Inicio',
-              path: '#',
+              path: '/',
             },
             {
               label: 'Nova Publicação',
