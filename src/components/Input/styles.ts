@@ -2,9 +2,11 @@ import styled, { css } from 'styled-components';
 
 interface InputContainerProps {
   isErrored: boolean;
+  isFocused: boolean;
+  isFilled: boolean;
 }
 
-export const InputContainer = styled.div<InputContainerProps>`
+export const Container = styled.div<InputContainerProps>`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -15,14 +17,14 @@ export const InputContainer = styled.div<InputContainerProps>`
     font-weight: 500;
   }
 
-  input {
+  div {
+    display: flex;
+    align-items: center;
+    background: var(--white);
     border: 1px solid var(--gray-200);
     border-radius: 10px;
     color: var(--text-secondary);
-    font-size: 1rem;
-    height: 45px;
-    outline: 0;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     width: 100%;
 
     ${({ isErrored }) =>
@@ -31,8 +33,27 @@ export const InputContainer = styled.div<InputContainerProps>`
         border-color: var(--red);
       `}
 
-    &:focus {
-      border-color: var(--text-secondary);
+    ${({ isFilled }) =>
+      isFilled &&
+      css`
+        border-color: var(--gray-200);
+        color: var(--orange);
+      `}
+
+    ${({ isFocused }) =>
+      isFocused &&
+      css`
+        border-color: var(--text-secondary);
+      `}
+
+    input {
+      border: 0;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      height: 45px;
+      outline: 0;
+      padding: 0.5rem;
+      width: 100%;
     }
   }
 `;
