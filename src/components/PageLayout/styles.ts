@@ -10,6 +10,12 @@ export const LayoutContainer = styled.div`
     width: 100%;
   }
 
+  @media (max-width: 960px) {
+    main {
+      padding: 0 1rem;
+    }
+  }
+
   @media (max-width: 720px) {
     grid-template-rows: 160px 1fr 50px;
 

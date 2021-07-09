@@ -9,7 +9,7 @@ interface Image {
 
 interface PreviewImageProps {
   image: Image;
-  onRemove: () => void;
+  onRemove?: () => void;
 }
 
 const PreviewImages: React.FC<PreviewImageProps> = ({ image, onRemove }) => {
@@ -17,9 +17,11 @@ const PreviewImages: React.FC<PreviewImageProps> = ({ image, onRemove }) => {
     <PreviewImageContainer>
       <figure>
         <img src={image.url} alt={image.name} />
-        <button onClick={onRemove} type="button" title="Remover">
-          <FiTrash2 size={18} />
-        </button>
+        {onRemove && (
+          <button onClick={onRemove} type="button" title="Remover">
+            <FiTrash2 size={18} />
+          </button>
+        )}
       </figure>
     </PreviewImageContainer>
   );

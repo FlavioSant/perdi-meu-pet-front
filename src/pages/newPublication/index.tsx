@@ -27,18 +27,11 @@ interface PreviewImageProps {
   name: string;
 }
 
-// type PetSituation = 'desaparecido' | 'encontrado' | 'adocao'
-
 const NewPublication: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
 
-  // const [petSituation, setPetSituation] = useState<PetSituation>('desaparecido')
   const [files, setFiles] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<PreviewImageProps[]>([]);
-
-  // const handleImageRadioChange = useCallback(() => {
-  //   setPetSituation(petSituation === 'pf' ? 'pj' : 'pf');
-  // }, [petSituation]);
 
   const handleFileChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {

@@ -18,6 +18,7 @@ export const MapContainer = styled.div`
     border-top: 1px solid var(--gray-200);
     border-radius: 0 0 9px 9px;
     color: var(--text-primary);
+    font-weight: 500;
     padding: 0.7rem 0;
     text-align: center;
     width: 100%;
