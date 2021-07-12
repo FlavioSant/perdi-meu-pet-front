@@ -22,16 +22,13 @@ export const FieldsContainer = styled.div`
   background: var(--gray-transparent);
   border: 1px solid var(--text-primary);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   width: 25rem;
 
   form {
     display: flex;
     flex-direction: column;
-
-    button {
-      margin-top: 1.5rem;
-    }
+    gap: 1rem;
   }
 `;
 
@@ -49,6 +46,7 @@ export const Separator = styled.div`
     height: 1px;
     margin-right: 1rem;
   }
+
   &::after {
     content: '';
     flex: 1;

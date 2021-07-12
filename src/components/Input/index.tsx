@@ -13,7 +13,7 @@ import { Container } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  label: string;
+  label?: string;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
@@ -44,7 +44,7 @@ const Input: React.FC<InputProps> = ({ name, label, icon: Icon, ...rest }) => {
 
   return (
     <Container isErrored={!!error} isFocused={isFocused} isFilled={isFilled}>
-      <label htmlFor={fieldName}>{label}</label>
+      {label && <label htmlFor={fieldName}>{label}</label>}
       <div>
         <input
           id={fieldName}

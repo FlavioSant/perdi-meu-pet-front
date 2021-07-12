@@ -1,8 +1,7 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
 import { useCallback, useRef } from 'react';
 
-import { FiLock, FiMail } from 'react-icons/fi';
+import { FiLock, FiMail, FiUser } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
@@ -13,11 +12,10 @@ import { PageFooter } from '../../components/PageFooter';
 import {
   BackgroundContainer,
   FieldsContainer,
-  Separator,
   SignInContainer,
 } from '../../styles/auth';
 
-const SignIn: NextPage = () => {
+const SignUp: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback((data: any) => {
@@ -29,6 +27,7 @@ const SignIn: NextPage = () => {
       <BackgroundContainer>
         <FieldsContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
+            <Input name="nome" placeholder="Nome" icon={FiUser} />
             <Input
               name="email"
               placeholder="E-mail"
@@ -41,16 +40,10 @@ const SignIn: NextPage = () => {
               icon={FiLock}
               type="password"
             />
-            <Button type="submit" styleType="green" title="Acessar">
-              Acessar
+            <Button type="submit" title="Cadastrar">
+              Cadastrar
             </Button>
           </Form>
-
-          <Separator>ou</Separator>
-
-          <Link href="/signUp">
-            <Button type="button">Cadastre-se</Button>
-          </Link>
         </FieldsContainer>
       </BackgroundContainer>
       <PageFooter />
@@ -58,4 +51,4 @@ const SignIn: NextPage = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
