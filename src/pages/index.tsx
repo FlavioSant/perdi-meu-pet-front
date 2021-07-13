@@ -30,7 +30,7 @@ const Home: NextPage = () => {
             },
             {
               label: 'Minhas Publicações',
-              path: '#',
+              path: '/myPublications',
             },
           ]}
         />

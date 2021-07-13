@@ -86,7 +86,6 @@ const NewPublication: NextPage = () => {
           })
           .nullable()
           .required(),
-        cor: Yup.string().required(),
       });
 
       await schema.validate(data, {

@@ -33,7 +33,7 @@ const PageHeader: React.FC = () => {
             },
             {
               label: 'Minhas Publicações',
-              path: '#',
+              path: '/myPublications',
             },
           ]}
         />
