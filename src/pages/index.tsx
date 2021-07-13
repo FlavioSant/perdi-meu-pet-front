@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             },
             {
               label: 'Buscar Publicação',
-              path: '#',
+              path: '/findPublications',
             },
             {
               label: 'Minhas Publicações',

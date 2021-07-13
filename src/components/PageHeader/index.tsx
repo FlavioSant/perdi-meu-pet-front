@@ -29,7 +29,7 @@ const PageHeader: React.FC = () => {
             },
             {
               label: 'Buscar Publicação',
-              path: '#',
+              path: '/findPublications',
             },
             {
               label: 'Minhas Publicações',
