@@ -59,6 +59,7 @@ export const Header = styled.header`
   background: var(--gray-50);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   grid-area: nav;
+  z-index: 1000;
 
   button {
     display: flex;
