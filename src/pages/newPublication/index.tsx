@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
 
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
+import { LeafletMouseEvent } from 'leaflet';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -20,9 +21,9 @@ import { PreviewImages } from '../../components/PreviewImages';
 import { Button } from '../../components/Button';
 import { FlexItems } from '../../components/FlexItems';
 import { ClickableMap } from '../../components/Map/index';
+import Modal, { ModalHandles } from '../../components/Modal';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
-import { LeafletMouseEvent } from 'leaflet';
 
 interface Position {
   lat: number;
@@ -36,6 +37,7 @@ interface PreviewImageProps {
 
 const NewPublication: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
+  const modalRef = useRef<ModalHandles>(null);
 
   const [position, setPosition] = useState<Position>({ lat: 0, lng: 0 });
   const [files, setFiles] = useState<File[]>([]);
@@ -48,7 +50,7 @@ const NewPublication: NextPage = () => {
       }
 
       if (e.target.files.length > 4) {
-        alert('Max 4 images!');
+        modalRef.current.openModal();
         return;
       }
 
@@ -115,7 +117,10 @@ const NewPublication: NextPage = () => {
 
   return (
     <PageLayout>
+      <Modal ref={modalRef} title="Informação" message="No máximo 4 imagens." />
+
       <PageTitle title="Crie sua Publicação" />
+
       <PageContainer description="Dados do Pet">
         <MapContainer>
           <ClickableMap
