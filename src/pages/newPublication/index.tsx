@@ -19,8 +19,15 @@ import { Textarea } from '../../components/Textarea';
 import { PreviewImages } from '../../components/PreviewImages';
 import { Button } from '../../components/Button';
 import { FlexItems } from '../../components/FlexItems';
+import { ClickableMap } from '../../components/Map/index';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
+import { LeafletMouseEvent } from 'leaflet';
+
+interface Position {
+  lat: number;
+  lng: number;
+}
 
 interface PreviewImageProps {
   url: string;
@@ -30,6 +37,7 @@ interface PreviewImageProps {
 const NewPublication: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const [position, setPosition] = useState<Position>({ lat: 0, lng: 0 });
   const [files, setFiles] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<PreviewImageProps[]>([]);
 
@@ -63,6 +71,15 @@ const NewPublication: NextPage = () => {
       setPreviewImages(previewImages.filter((_, i) => index !== i));
     },
     [files, previewImages],
+  );
+
+  const handleMapClick = useCallback(
+    (event: LeafletMouseEvent) => {
+      const { lat, lng } = event.latlng;
+
+      setPosition({ lat, lng });
+    },
+    [position],
   );
 
   const handleSubmit = useCallback(async (data: Record<string, any>) => {
@@ -101,7 +118,11 @@ const NewPublication: NextPage = () => {
       <PageTitle title="Crie sua Publicação" />
       <PageContainer description="Dados do Pet">
         <MapContainer>
-          <div />
+          <ClickableMap
+            center={{ lat: -22.3273639, lng: -49.0735853 }}
+            position={position}
+            onMapClick={handleMapClick}
+          />
           <footer>Clique no mapa para adicionar a localização</footer>
         </MapContainer>
 

@@ -70,6 +70,8 @@ export const MapContainer = styled.div`
   flex-direction: column;
   border-radius: 10px;
   margin: 2.375rem 0;
+  width: 100%;
+  height: 450px;
 
   p {
     color: var(--text-primary);
@@ -77,12 +79,9 @@ export const MapContainer = styled.div`
     font-weight: 500;
   }
 
-  div {
+  .leaflet-container {
     border: 1px solid var(--gray-200);
     border-radius: 10px 10px 0 0;
-    margin-top: 0.5rem;
-    width: 100%;
-    height: 350px;
   }
 
   footer {
@@ -94,6 +93,16 @@ export const MapContainer = styled.div`
     padding: 0.7rem 0;
     text-align: center;
     width: 100%;
+
+    a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--text-secondary);
+      }
+    }
   }
 `;
 

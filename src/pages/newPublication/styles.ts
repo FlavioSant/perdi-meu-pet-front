@@ -8,10 +8,8 @@ export const MapContainer = styled.div`
   border: 1px solid var(--gray-200);
   border-radius: 10px;
   margin: 1rem 0;
-
-  div {
-    height: 350px;
-  }
+  width: 100%;
+  height: 450px;
 
   footer {
     background: var(--white);

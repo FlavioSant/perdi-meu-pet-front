@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { PublicationsMap } from '../../components/Map';
 import { PageContainer } from '../../components/PageContainer';
 
 import { PageLayout } from '../../components/PageLayout';
@@ -34,6 +35,13 @@ const fakeImages = [
   },
 ];
 
+const fakePublication = {
+  id: 1,
+  createdAt: '15/07/2021',
+  lat: -22.3205657,
+  lng: -49.0546002,
+};
+
 const PublicationDetail: NextPage = () => {
   return (
     <PageLayout>
@@ -67,8 +75,17 @@ const PublicationDetail: NextPage = () => {
 
         <MapContainer>
           <p>Última localização</p>
-          <div />
-          <footer>Ver rotas no google maps</footer>
+          <PublicationsMap
+            center={{ lat: fakePublication.lat, lng: fakePublication.lng }}
+            publications={[{ ...fakePublication, situation: 'desaparecido' }]}
+          />
+          <footer>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${fakePublication.lat},${fakePublication.lng}`}
+            >
+              Ver rotas no google maps
+            </a>
+          </footer>
         </MapContainer>
 
         <Title>Entre em Contato</Title>
@@ -76,7 +93,9 @@ const PublicationDetail: NextPage = () => {
         <AdvertiserInfo>
           <h2>Nome do Anúnciante</h2>
           <p>E-mail: exemplo@exemplo.com</p>
-          <a href="mailto:">Entre em Contato com o Anúnciante</a>
+          <a href="mailto:exemplo@exemplo.com?subject=Estou%20Entrando%20em%20Contato%20Atraves%20do%20Perdi%20Meu%20Pet">
+            Entre em Contato com o Anúnciante
+          </a>
         </AdvertiserInfo>
       </PageContainer>
     </PageLayout>

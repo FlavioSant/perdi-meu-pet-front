@@ -17,7 +17,7 @@ interface MapCoords {
 interface Publication {
   id: number;
   createdAt: string;
-  name: string;
+  name?: string;
   lat: number;
   lng: number;
   situation: 'desaparecido' | 'encontrado' | 'adocao';
@@ -25,20 +25,18 @@ interface Publication {
 
 interface PublicationsMapProps {
   center: MapCoords;
-  defaultZoom: number;
   publications?: Publication[];
 }
 
 const PublicationsMap: React.FC<PublicationsMapProps> = ({
   center,
-  defaultZoom,
   publications,
 }) => {
   return (
     <MapContainer>
       <Map
         center={center}
-        zoom={defaultZoom}
+        zoom={13}
         scrollWheelZoom
         style={{ width: '100%', height: '100%' }}
       >

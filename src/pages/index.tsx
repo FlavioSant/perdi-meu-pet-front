@@ -44,7 +44,6 @@ const Home: NextPage = () => {
       <MainContent>
         <PublicationsMap
           center={{ lat: -22.3145293, lng: -49.0659743 }}
-          defaultZoom={13}
           publications={[
             {
               id: 1,
