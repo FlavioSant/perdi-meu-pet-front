@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -8,6 +9,8 @@ import { PublicationsMap } from '../components/Map';
 import { Aside, Container, Header, MainContent } from '../styles/Home';
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
   return (
     <Container>
       <Aside>
@@ -36,7 +39,11 @@ const Home: NextPage = () => {
             },
           ]}
         />
-        <button type="button" title="Entrar">
+        <button
+          type="button"
+          title="Entrar"
+          onClick={() => router.push('/signIn')}
+        >
           <FiUser size={24} />
           Entrar
         </button>

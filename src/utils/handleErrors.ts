@@ -1,5 +1,6 @@
 import { FormHandles } from '@unform/core';
 import { ValidationError } from 'yup';
+import { errorToast } from './toast';
 
 interface Errors {
   [key: string]: string;
@@ -8,6 +9,7 @@ interface Errors {
 interface HandleErrors {
   err: any;
   formHandles: FormHandles;
+  description: string;
 }
 
 const getValidationErrors = (err: ValidationError): Errors => {
@@ -20,12 +22,18 @@ const getValidationErrors = (err: ValidationError): Errors => {
   return errors;
 };
 
-export const handleErrors = ({ err, formHandles }: HandleErrors): void => {
+export const handleErrors = ({
+  err,
+  formHandles,
+  description,
+}: HandleErrors): void => {
   if (err instanceof ValidationError) {
     const errors = getValidationErrors(err);
     formHandles.setErrors(errors);
     return;
   }
+
+  errorToast({ message: description });
 
   console.error({ err });
 };

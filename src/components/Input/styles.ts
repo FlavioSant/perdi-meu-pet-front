@@ -31,13 +31,14 @@ export const Container = styled.div<InputContainerProps>`
       isErrored &&
       css`
         border-color: var(--red);
+        color: var(--red);
       `}
 
     ${({ isFilled }) =>
       isFilled &&
       css`
         border-color: var(--gray-200);
-        color: var(--orange);
+        color: var(--green);
       `}
 
     ${({ isFocused }) =>
@@ -54,6 +55,20 @@ export const Container = styled.div<InputContainerProps>`
       outline: 0;
       padding: 0.5rem;
       width: 100%;
+
+      &:-webkit-autofill {
+        box-shadow: 0 0 0 30px white inset;
+      }
     }
   }
+`;
+
+export const ErrorText = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--red);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.275rem;
 `;

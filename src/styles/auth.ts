@@ -25,10 +25,16 @@ export const FieldsContainer = styled.div`
   padding: 1.5rem 1rem;
   width: 25rem;
 
+  h1 {
+    color: var(--text-primary);
+    text-align: center;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-top: 1rem;
   }
 `;
 
