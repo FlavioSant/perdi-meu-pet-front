@@ -6,11 +6,16 @@ import { useField } from '@unform/core';
 
 import { SelectContainer } from './styles';
 
+export interface SelectOption {
+  label: string;
+  value: string | number;
+}
+
 interface SelectProps extends Props<OptionTypeBase> {
   name: string;
   label: string;
   placeholder?: string;
-  options: Array<{ value: string | number; label: string }>;
+  options: SelectOption[];
 }
 
 const Select: NextPage<SelectProps> = ({
@@ -35,7 +40,8 @@ const Select: NextPage<SelectProps> = ({
         if (!ref.state.value) {
           return '';
         }
-        return ref.state.value;
+
+        return ref.state.value.value;
       },
       clearValue: ref => ref.select.setValue(''),
     });

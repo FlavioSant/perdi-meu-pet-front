@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
 
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
@@ -7,7 +8,11 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { api } from '../../services/api';
 import { handleErrors } from '../../utils/handleErrors';
+import { uploadAnexo } from '../../utils/uploadAnexos';
+import { parseNewPublication } from '../../utils/parseNewPublication';
+import { successToast } from '../../utils/toast';
 
 import { PageContainer } from '../../components/PageContainer';
 import { PageLayout } from '../../components/PageLayout';
@@ -35,9 +40,26 @@ interface PreviewImageProps {
   name: string;
 }
 
-const NewPublication: NextPage = () => {
+export interface NewPublicationData {
+  categoria: string;
+  cor: string;
+  nome: string;
+  observacoes: string;
+  porte: string;
+  sexo: string;
+  situacao: string;
+}
+
+interface NewPublicationProps {
+  user: any;
+}
+
+const NewPublication: NextPage<NewPublicationProps> = ({ user }) => {
+  const router = useRouter();
   const formRef = useRef<FormHandles>(null);
   const modalRef = useRef<ModalHandles>(null);
+
+  console.log('USER', user);
 
   const [position, setPosition] = useState<Position>({ lat: 0, lng: 0 });
   const [files, setFiles] = useState<File[]>([]);
@@ -84,36 +106,45 @@ const NewPublication: NextPage = () => {
     [position],
   );
 
-  const handleSubmit = useCallback(async (data: Record<string, any>) => {
-    try {
-      console.log(data);
+  const handleSubmit = useCallback(
+    async (data: NewPublicationData) => {
+      try {
+        formRef.current.setErrors({});
 
-      formRef.current.setErrors({});
+        const schema = Yup.object().shape({
+          categoria: Yup.string().required(),
+          porte: Yup.string().required(),
+        });
 
-      const schema = Yup.object().shape({
-        categoria: Yup.object()
-          .shape({
-            label: Yup.string(),
-            value: Yup.string(),
-          })
-          .nullable()
-          .required(),
-        porte: Yup.object()
-          .shape({
-            label: Yup.string(),
-            value: Yup.string(),
-          })
-          .nullable()
-          .required(),
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      handleErrors({ err, formHandles: formRef.current });
-    }
-  }, []);
+        const responses = await Promise.all(
+          files.map(file => uploadAnexo(api, file)),
+        );
+
+        const anexosIds = responses.map(({ anexoId }) => anexoId);
+
+        const parsedData = parseNewPublication(data, position, anexosIds);
+
+        console.log({ parsedData, data });
+
+        await api.post('publicacoes', parsedData);
+
+        successToast({ message: 'Publicação cadastrada com sucesso.' });
+
+        router.push('/');
+      } catch (err) {
+        handleErrors({
+          err,
+          formHandles: formRef.current,
+          description: 'Erro ao salvar publicação',
+        });
+      }
+    },
+    [files, position],
+  );
 
   return (
     <PageLayout>
@@ -195,7 +226,7 @@ const NewPublication: NextPage = () => {
               ]}
             />
             <Select
-              name="sexoAnimal"
+              name="sexo"
               label="Sexo do Animal"
               options={[
                 {
@@ -212,9 +243,9 @@ const NewPublication: NextPage = () => {
           </FlexItems>
 
           <FlexItems hasMargin>
-            <Input name="nomePet" label="Nome do Pet" />
+            <Input name="nome" label="Nome do Pet" />
             <InputFile
-              name="image"
+              name="images"
               accept="image/*"
               description="Adicione Imagens do Pet"
               icon={FiImage}
