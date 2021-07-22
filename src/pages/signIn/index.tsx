@@ -1,7 +1,5 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
 import { useCallback, useRef } from 'react';
 
 import { FiLock, FiMail } from 'react-icons/fi';
@@ -9,6 +7,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { useAuth } from '../../hooks/auth';
 import { handleErrors } from '../../utils/handleErrors';
 
 import { Input } from '../../components/Input';
@@ -21,16 +20,15 @@ import {
   Separator,
   SignInContainer,
 } from '../../styles/auth';
-import { api } from '../../services/api';
 
 interface SignInFormData {
   email: string;
-  password: string;
+  senha: string;
 }
 
 const SignIn: NextPage = () => {
-  const router = useRouter();
   const formRef = useRef<FormHandles>(null);
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
@@ -47,9 +45,7 @@ const SignIn: NextPage = () => {
         abortEarly: false,
       });
 
-      await api.post('sign-in', data);
-
-      router.push('/');
+      await signIn(data);
     } catch (err) {
       handleErrors({
         err,

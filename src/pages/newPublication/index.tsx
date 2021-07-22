@@ -1,6 +1,7 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { parseCookies } from 'nookies';
 
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 import { LeafletMouseEvent } from 'leaflet';
@@ -50,16 +51,10 @@ export interface NewPublicationData {
   situacao: string;
 }
 
-interface NewPublicationProps {
-  user: any;
-}
-
-const NewPublication: NextPage<NewPublicationProps> = ({ user }) => {
+const NewPublication: NextPage = () => {
   const router = useRouter();
   const formRef = useRef<FormHandles>(null);
   const modalRef = useRef<ModalHandles>(null);
-
-  console.log('USER', user);
 
   const [position, setPosition] = useState<Position>({ lat: 0, lng: 0 });
   const [files, setFiles] = useState<File[]>([]);
@@ -171,7 +166,7 @@ const NewPublication: NextPage<NewPublicationProps> = ({ user }) => {
               {
                 id: 'desaparecido',
                 label: 'Desaparecido',
-                value: 'desaparecido',
+                value: 'perdido',
                 imageURL: '/sad-dog.svg',
               },
               {
@@ -284,6 +279,23 @@ const NewPublication: NextPage<NewPublicationProps> = ({ user }) => {
       </PageContainer>
     </PageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/signIn',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default NewPublication;
