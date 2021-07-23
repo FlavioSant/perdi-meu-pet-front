@@ -9,10 +9,10 @@ interface Coords {
 export const parseNewPublication = (
   newPublication: NewPublicationData,
   coords: Coords,
-  anexosIds: string[],
+  anexosIds: string[] | undefined,
 ) => {
   let parsedNewPublication = {
-    tipo: newPublication.situacao,
+    situacao: newPublication.situacao,
     categoria: newPublication.categoria,
     porte: newPublication.porte,
     sexo: newPublication.sexo,

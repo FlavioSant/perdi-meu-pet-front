@@ -1,7 +1,8 @@
 import { Map, TileLayer } from 'react-leaflet';
-
 import { MapMarker } from '../MapMarker';
 import { MapPopup } from '../MapPopup';
+
+import { Publication } from '../../@types/publication';
 
 import { MapContainer } from './styles';
 
@@ -12,15 +13,6 @@ import 'leaflet-defaulticon-compatibility';
 interface MapCoords {
   lat: number;
   lng: number;
-}
-
-interface Publication {
-  id: number;
-  createdAt: string;
-  name?: string;
-  lat: number;
-  lng: number;
-  situation: 'desaparecido' | 'encontrado' | 'adocao';
 }
 
 interface PublicationsMapProps {
@@ -46,15 +38,18 @@ const PublicationsMap: React.FC<PublicationsMapProps> = ({
           publications.length > 0 &&
           publications.map(publication => (
             <MapMarker
-              key={publication.id}
-              position={{ lat: publication.lat, lng: publication.lng }}
+              key={publication.publicacaoId}
+              position={{
+                lat: publication.latitude,
+                lng: publication.longitude,
+              }}
             >
               <MapPopup
                 popupInfo={{
-                  name: publication.name,
-                  publicationId: publication.id,
-                  situation: publication.situation,
-                  createdAt: publication.createdAt,
+                  name: publication.nome || '',
+                  publicationId: publication.publicacaoId,
+                  situation: publication.situacao,
+                  createdAt: '',
                 }}
               />
             </MapMarker>

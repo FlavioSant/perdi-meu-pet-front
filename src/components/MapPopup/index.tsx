@@ -5,7 +5,7 @@ import { MapPopupInfo } from './styles';
 import { useCallback } from 'react';
 
 interface PopupInfo {
-  publicationId: number;
+  publicationId: string;
   name?: string;
   situation: string;
   createdAt: string;
@@ -16,7 +16,7 @@ interface MapPopupProps {
 }
 
 const MapPopup: React.FC<MapPopupProps> = ({ popupInfo }) => {
-  const handleClick = useCallback((publicationId: number) => {
+  const handleClick = useCallback((publicationId: string) => {
     alert(`ID: ${publicationId}`);
   }, []);
 

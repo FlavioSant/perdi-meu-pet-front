@@ -109,21 +109,24 @@ const NewPublication: NextPage = () => {
         const schema = Yup.object().shape({
           categoria: Yup.string().required(),
           porte: Yup.string().required(),
+          sexo: Yup.string().required(),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        const responses = await Promise.all(
-          files.map(file => uploadAnexo(api, file)),
-        );
+        let anexosIds = undefined;
 
-        const anexosIds = responses.map(({ anexoId }) => anexoId);
+        if (files.length > 0) {
+          const responses = await Promise.all(
+            files.map(file => uploadAnexo(api, file)),
+          );
+
+          anexosIds = responses.map(({ anexoId }) => anexoId);
+        }
 
         const parsedData = parseNewPublication(data, position, anexosIds);
-
-        console.log({ parsedData, data });
 
         await api.post('publicacoes', parsedData);
 
@@ -166,7 +169,7 @@ const NewPublication: NextPage = () => {
               {
                 id: 'desaparecido',
                 label: 'Desaparecido',
-                value: 'perdido',
+                value: 'desaparecido',
                 imageURL: '/sad-dog.svg',
               },
               {
@@ -231,6 +234,10 @@ const NewPublication: NextPage = () => {
                 {
                   label: 'Macho',
                   value: 'macho',
+                },
+                {
+                  label: 'Outros',
+                  value: 'outros',
                 },
               ]}
             />
