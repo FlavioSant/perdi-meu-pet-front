@@ -1,7 +1,12 @@
-import { NextPage } from 'next';
-import { PublicationsMap } from '../../components/Map';
-import { PageContainer } from '../../components/PageContainer';
+import { GetServerSideProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { parseCookies } from 'nookies';
+import { Publication } from '../../@types/publication';
+import { Button } from '../../components/Button';
 
+import { PublicationsMap } from '../../components/Map';
+import { NoPublication } from '../../components/NoPublication';
+import { PageContainer } from '../../components/PageContainer';
 import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
@@ -16,33 +21,30 @@ import {
   Title,
 } from './styles';
 
-const fakeImages = [
-  {
-    name: 'random1',
-    url: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'random2',
-    url: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'random3',
-    url: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'random4',
-    url: 'https://source.unsplash.com/random',
-  },
-];
+interface PublicationDetailProps {
+  publication: Publication;
+}
 
-const fakePublication = {
-  id: 1,
-  createdAt: '15/07/2021',
-  lat: -22.3205657,
-  lng: -49.0546002,
-};
+const PublicationDetail: NextPage<PublicationDetailProps> = ({
+  publication,
+}) => {
+  const router = useRouter();
 
-const PublicationDetail: NextPage = () => {
+  if (!publication) {
+    return (
+      <PageLayout>
+        <NoPublication title="Publicação não encontrada..." />
+        <Button
+          type="button"
+          onClick={() => router.back()}
+          style={{ margin: '2rem auto', width: 250 }}
+        >
+          Voltar
+        </Button>
+      </PageLayout>
+    );
+  }
+
   return (
     <PageLayout>
       <AlertMessage>
@@ -55,33 +57,31 @@ const PublicationDetail: NextPage = () => {
 
       <PageContainer>
         <PreviewImagesContainer>
-          {fakeImages.map((image, index) => (
-            <PreviewImages key={index} image={image} />
-          ))}
+          <PreviewImages image={{ name: '', url: '' }} />
         </PreviewImagesContainer>
 
-        <Title>Nome do Pet</Title>
+        {publication.nome && <Title>{publication.nome}</Title>}
 
         <InfoContainer>
           <SituationCard situation="adocao" />
           <article>
-            <h2>Porte: Médio - Sexo do Animal: Macho</h2>
-            <p>
-              Animal desapareceu em bauru no período da tarde, com uma coleira
-              branca.....
-            </p>
+            <h2>
+              Porte: {publication.porte} - Sexo do Animal:{' '}
+              {publication.sexo || ''}
+            </h2>
+            <p>{publication.observacoes || ''}</p>
           </article>
         </InfoContainer>
 
         <MapContainer>
           <p>Última localização</p>
           <PublicationsMap
-            center={{ lat: fakePublication.lat, lng: fakePublication.lng }}
-            publications={[{ ...fakePublication, situation: 'desaparecido' }]}
+            center={{ lat: publication.latitude, lng: publication.longitude }}
+            publications={[publication]}
           />
           <footer>
             <a
-              href={`https://www.google.com/maps/dir/?api=1&destination=${fakePublication.lat},${fakePublication.lng}`}
+              href={`https://www.google.com/maps/dir/?api=1&destination=${publication.latitude},${publication.longitude}`}
             >
               Ver rotas no google maps
             </a>
@@ -91,15 +91,34 @@ const PublicationDetail: NextPage = () => {
         <Title>Entre em Contato</Title>
 
         <AdvertiserInfo>
-          <h2>Nome do Anúnciante</h2>
-          <p>E-mail: exemplo@exemplo.com</p>
-          <a href="mailto:exemplo@exemplo.com?subject=Estou%20Entrando%20em%20Contato%20Atraves%20do%20Perdi%20Meu%20Pet">
+          <h2>{publication.usuario.nome}</h2>
+          <p>E-mail: {publication.usuario.email}</p>
+          <a
+            href={`mailto:${publication.usuario.email}?subject=Estou%20Entrando%20em%20Contato%20Atraves%20do%20Perdi%20Meu%20Pet`}
+          >
             Entre em Contato com o Anúnciante
           </a>
         </AdvertiserInfo>
       </PageContainer>
     </PageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/signIn',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default PublicationDetail;

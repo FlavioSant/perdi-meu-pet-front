@@ -127,7 +127,10 @@ const FindPublications: NextPage = () => {
           <div key={index}>publicação</div>
         ))
       ) : (
-        <NoPublication />
+        <NoPublication
+          title="Nenhuma publicação por aqui..."
+          description="Preencha os campos acima e clique em buscar publicações!"
+        />
       )}
     </PageLayout>
   );

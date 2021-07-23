@@ -1,8 +1,10 @@
+import { useCallback } from 'react';
+
 import { Popup } from 'react-leaflet';
 import { FiArrowRight } from 'react-icons/fi';
 
 import { MapPopupInfo } from './styles';
-import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 
 interface PopupInfo {
   publicationId: string;
@@ -16,8 +18,15 @@ interface MapPopupProps {
 }
 
 const MapPopup: React.FC<MapPopupProps> = ({ popupInfo }) => {
+  const router = useRouter();
+
   const handleClick = useCallback((publicationId: string) => {
-    alert(`ID: ${publicationId}`);
+    router.push({
+      pathname: '/publicationDetail',
+      query: {
+        publicationId,
+      },
+    });
   }, []);
 
   return (

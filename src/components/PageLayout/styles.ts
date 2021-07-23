@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const LayoutContainer = styled.div`
   display: grid;
   grid-template-rows: 80px 1fr 50px;
+  height: 100%;
 
   main {
     margin: 2rem auto;
