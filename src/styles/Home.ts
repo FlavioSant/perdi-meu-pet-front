@@ -61,6 +61,22 @@ export const Header = styled.header`
   grid-area: nav;
   z-index: 1000;
 
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    height: 100%;
+    padding: 0 1rem;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+
   button {
     display: flex;
     align-items: center;
@@ -86,6 +102,10 @@ export const Header = styled.header`
   @media (max-width: 1080px) {
     button {
       padding: 0 1.25rem;
+    }
+
+    div {
+      padding: 0 0.5rem;
     }
   }
 `;

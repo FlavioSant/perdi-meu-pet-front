@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { FiUser } from 'react-icons/fi';
+import { useAuth } from '../../hooks/auth';
 
 import { MenuNavBar } from '../MenuNavBar';
 
@@ -7,6 +8,7 @@ import { HeaderContainer, Header } from './styles';
 
 const PageHeader: React.FC = () => {
   const router = useRouter();
+  const { user, isAuthenticated } = useAuth();
 
   return (
     <HeaderContainer>
@@ -37,10 +39,12 @@ const PageHeader: React.FC = () => {
             },
           ]}
         />
-        <button type="button" title="Entrar">
-          <FiUser size={22} />
-          Entrar
-        </button>
+        {isAuthenticated && (
+          <div>
+            <FiUser size={22} />
+            <span>{user.nome}</span>
+          </div>
+        )}
       </Header>
     </HeaderContainer>
   );

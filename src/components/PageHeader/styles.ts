@@ -20,24 +20,16 @@ export const Header = styled.header`
     height: 70px;
   }
 
-  button {
+  div {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 0;
     color: var(--text-secondary);
     font-size: 1rem;
     font-weight: 600;
-    padding: 0.5rem;
-    transition: color 0.2s;
 
     svg {
       margin-right: 0.3rem;
-    }
-
-    &:hover {
-      color: var(--text-sedondary-dark);
     }
   }
 

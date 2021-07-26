@@ -34,7 +34,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { 'perdi-meu-pet': token } = parseCookies();
 
     if (token) {
-      console.log('EFFECT', token);
+      const parsedToken = token.split('.')[1];
+      setUser(JSON.parse(atob(parsedToken)));
     }
   }, []);
 

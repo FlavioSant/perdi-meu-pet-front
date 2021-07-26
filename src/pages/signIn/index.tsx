@@ -50,7 +50,7 @@ const SignIn: NextPage = () => {
       handleErrors({
         err,
         formHandles: formRef.current,
-        description: 'Erro ao fazer login.',
+        description: 'Não foi possível fazer login.',
       });
     }
   }, []);
