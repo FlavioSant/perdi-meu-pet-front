@@ -11,6 +11,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
 import { SituationCard } from '../../components/SituationCard';
+import { getAPIClient } from '../../services/apiClient';
 
 import {
   AdvertiserInfo,
@@ -29,6 +30,8 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
   publication,
 }) => {
   const router = useRouter();
+
+  console.log(publication);
 
   if (!publication) {
     return (
@@ -56,14 +59,24 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
       </AlertMessage>
 
       <PageContainer>
-        <PreviewImagesContainer>
-          <PreviewImages image={{ name: '', url: '' }} />
-        </PreviewImagesContainer>
+        {publication.anexos.length > 0 && (
+          <PreviewImagesContainer>
+            {publication.anexos.map(anexo => (
+              <PreviewImages
+                key={anexo}
+                image={{
+                  name: publication.nome || publication.categoria,
+                  url: `${process.env.API_URL}/anexos/${anexo}`,
+                }}
+              />
+            ))}
+          </PreviewImagesContainer>
+        )}
 
         {publication.nome && <Title>{publication.nome}</Title>}
 
         <InfoContainer>
-          <SituationCard situation="adocao" />
+          <SituationCard situation={publication.situacao} />
           <article>
             <h2>
               Porte: {publication.porte} - Sexo do Animal:{' '}
@@ -78,10 +91,14 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
           <PublicationsMap
             center={{ lat: publication.latitude, lng: publication.longitude }}
             publications={[publication]}
+            hasPopup={false}
+            hasRadius
           />
           <footer>
             <a
               href={`https://www.google.com/maps/dir/?api=1&destination=${publication.latitude},${publication.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Ver rotas no google maps
             </a>
@@ -116,9 +133,23 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     };
   }
 
-  return {
-    props: {},
-  };
+  const { publicationId } = ctx.query;
+
+  try {
+    const { data: publication } = await getAPIClient(ctx).get<Publication>(
+      `/publicacoes/${publicationId}`,
+    );
+
+    return {
+      props: {
+        publication,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {},
+    };
+  }
 };
 
 export default PublicationDetail;

@@ -13,7 +13,7 @@ import { api } from '../../services/api';
 import { handleErrors } from '../../utils/handleErrors';
 import { uploadAnexo } from '../../utils/uploadAnexos';
 import { parseNewPublication } from '../../utils/parseNewPublication';
-import { successToast } from '../../utils/toast';
+import { successToast, warnToast } from '../../utils/toast';
 
 import { PageContainer } from '../../components/PageContainer';
 import { PageLayout } from '../../components/PageLayout';
@@ -105,6 +105,21 @@ const NewPublication: NextPage = () => {
     async (data: NewPublicationData) => {
       try {
         formRef.current.setErrors({});
+
+        if (position.lat === 0) {
+          warnToast({
+            message:
+              'Adicione a localização no mapa para cadastrar a publicação.',
+          });
+          return;
+        }
+
+        if (!data.situacao) {
+          warnToast({
+            message: 'Informe a situação para cadastrar a publicação.',
+          });
+          return;
+        }
 
         const schema = Yup.object().shape({
           categoria: Yup.string().required(),

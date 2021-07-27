@@ -26,7 +26,7 @@ export const MapContainer = styled.div`
 export const PreviewImagesContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex: 1;
   flex-wrap: wrap;
   gap: 1rem;

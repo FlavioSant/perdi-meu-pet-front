@@ -9,6 +9,7 @@ import { MapContainer } from './styles';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
+import MapCircleRadius from '../MapCircleRadius';
 
 interface MapCoords {
   lat: number;
@@ -18,11 +19,15 @@ interface MapCoords {
 interface PublicationsMapProps {
   center: MapCoords;
   publications?: Publication[];
+  hasPopup: boolean;
+  hasRadius?: boolean;
 }
 
 const PublicationsMap: React.FC<PublicationsMapProps> = ({
   center,
   publications,
+  hasPopup,
+  hasRadius = false,
 }) => {
   return (
     <MapContainer>
@@ -44,15 +49,25 @@ const PublicationsMap: React.FC<PublicationsMapProps> = ({
                 lng: publication.longitude,
               }}
             >
-              <MapPopup
-                popupInfo={{
-                  publicationId: publication.publicacaoId,
-                  category: publication.categoria,
-                  name: publication.nome || '',
-                  situation: publication.situacao,
-                  createdAt: new Date(publication.createdAt).toLocaleString(),
-                }}
-              />
+              {hasRadius && (
+                <MapCircleRadius
+                  center={{
+                    lat: publication.latitude,
+                    lng: publication.longitude,
+                  }}
+                />
+              )}
+              {hasPopup && (
+                <MapPopup
+                  popupInfo={{
+                    publicationId: publication.publicacaoId,
+                    category: publication.categoria,
+                    name: publication.nome || '',
+                    situation: publication.situacao,
+                    createdAt: new Date(publication.createdAt).toLocaleString(),
+                  }}
+                />
+              )}
             </MapMarker>
           ))}
       </Map>

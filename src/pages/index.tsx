@@ -98,6 +98,7 @@ const Home: NextPage = () => {
         <PublicationsMap
           center={{ lat: -22.3145293, lng: -49.0659743 }}
           publications={publications}
+          hasPopup
         />
       </MainContent>
     </Container>

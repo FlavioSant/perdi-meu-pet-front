@@ -24,7 +24,7 @@ export const AlertMessage = styled.section`
 export const PreviewImagesContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex: 1;
   flex-wrap: wrap;
   gap: 1rem;
@@ -41,7 +41,7 @@ export const Title = styled.h1`
 
 export const InfoContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
   margin-top: 2rem;
 
