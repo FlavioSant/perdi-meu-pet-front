@@ -46,10 +46,11 @@ const PublicationsMap: React.FC<PublicationsMapProps> = ({
             >
               <MapPopup
                 popupInfo={{
-                  name: publication.nome || '',
                   publicationId: publication.publicacaoId,
+                  category: publication.categoria,
+                  name: publication.nome || '',
                   situation: publication.situacao,
-                  createdAt: '',
+                  createdAt: new Date(publication.createdAt).toLocaleString(),
                 }}
               />
             </MapMarker>

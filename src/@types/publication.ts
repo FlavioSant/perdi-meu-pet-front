@@ -1,6 +1,8 @@
 export interface Publication {
   anexos: string[];
   categoria: 'cachorro' | 'gato' | 'outros';
+  createdAt: string;
+  updatedAt: string;
   cor?: string;
   latitude: number;
   longitude: number;

@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 
 interface PopupInfo {
   publicationId: string;
+  category: string;
   name?: string;
   situation: string;
   createdAt: string;
@@ -39,6 +40,7 @@ const MapPopup: React.FC<MapPopupProps> = ({ popupInfo }) => {
       <MapPopupInfo>
         <article>
           {popupInfo.name && <h3>{popupInfo.name}</h3>}
+          <p>{popupInfo.category}</p>
           <p>{popupInfo.situation}</p>
           <span>{popupInfo.createdAt}</span>
         </article>

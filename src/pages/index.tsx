@@ -1,11 +1,13 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
+import { parseCookies } from 'nookies';
 
 import { Publication } from '../@types/publication';
 import { api } from '../services/api';
+import { useAuth } from '../hooks/auth';
 import { getCoords } from '../utils/getCoords';
 import { errorToast, warnToast } from '../utils/toast';
 
@@ -13,7 +15,6 @@ import { MenuNavBar } from '../components/MenuNavBar';
 import { PublicationsMap } from '../components/Map';
 
 import { Aside, Container, Header, MainContent } from '../styles/Home';
-import { useAuth } from '../hooks/auth';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -101,6 +102,23 @@ const Home: NextPage = () => {
       </MainContent>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/signIn',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Home;

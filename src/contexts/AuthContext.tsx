@@ -28,8 +28,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const isAuthenticated = !!user;
 
-  console.log('USER', user);
-
   useEffect(() => {
     const { 'perdi-meu-pet': token } = parseCookies();
 
