@@ -44,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body, div#__next {
+    overflow-y: auto;
     width: 100%;
     height: 100%;
   }

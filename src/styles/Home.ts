@@ -52,64 +52,6 @@ export const Aside = styled.aside`
   }
 `;
 
-export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--gray-50);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  grid-area: nav;
-  z-index: 1000;
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--orange);
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 600;
-    height: 100%;
-    padding: 0 1rem;
-
-    svg {
-      margin-right: 0.5rem;
-    }
-  }
-
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--orange);
-    border: 0;
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 600;
-    height: 100%;
-    padding: 0 2.5rem;
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-
-    svg {
-      margin-right: 0.5rem;
-    }
-  }
-
-  @media (max-width: 1080px) {
-    button {
-      padding: 0 1.25rem;
-    }
-
-    div {
-      padding: 0 0.5rem;
-    }
-  }
-`;
-
 export const MainContent = styled.main`
   grid-area: main;
 `;

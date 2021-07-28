@@ -6,9 +6,16 @@ export const NavBarContainer = styled.nav`
   justify-content: space-between;
   height: 100%;
   padding-left: 1rem;
+  z-index: 2000;
 
-  @media (max-width: 1080px) {
-    padding-left: 0.5rem;
+  @media (max-width: 720px) {
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    position: absolute;
+    top: 82px;
+    left: 0;
+    width: 100%;
+    height: initial;
   }
 `;
 
@@ -18,4 +25,9 @@ export const MenuList = styled.ul`
   justify-content: center;
   list-style: none;
   height: 100%;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    flex: 1;
+  }
 `;

@@ -4,6 +4,7 @@ export const LayoutContainer = styled.div`
   display: grid;
   grid-template-rows: 80px 1fr 50px;
   height: 100%;
+  overflow-y: auto;
 
   main {
     margin: 2rem auto;
@@ -18,7 +19,7 @@ export const LayoutContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    grid-template-rows: 160px 1fr 50px;
+    grid-template-rows: 80px 1fr 50px;
 
     main {
       margin: 1rem auto;

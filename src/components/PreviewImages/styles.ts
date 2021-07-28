@@ -32,5 +32,10 @@ export const PreviewImageContainer = styled.div`
         background: var(--red-medium);
       }
     }
+
+    @media (max-width: 720px) {
+      width: 10rem;
+      height: 8.25rem;
+    }
   }
 `;

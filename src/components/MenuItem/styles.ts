@@ -28,4 +28,20 @@ export const MenuItemContainer = styled.li`
       padding: 1.2rem 0.5rem;
     }
   }
+
+  @media (max-width: 720px) {
+    background: var(--gray-100);
+    width: 100%;
+
+    &:hover {
+      border: 0;
+      filter: brightness(0.95);
+    }
+
+    a {
+      border-bottom: 1px solid var(--gray-500);
+      text-align: center;
+      width: 100%;
+    }
+  }
 `;
