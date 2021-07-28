@@ -1,8 +1,8 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { parseCookies } from 'nookies';
 
+import { parseCookies } from 'nookies';
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 import { LeafletMouseEvent } from 'leaflet';
 import { Form } from '@unform/web';

@@ -90,14 +90,17 @@ export const MapContainer = styled.div`
     border-radius: 0 0 9px 9px;
     color: var(--text-primary);
     font-weight: 500;
-    padding: 0.7rem 0;
     text-align: center;
     width: 100%;
 
     a {
+      display: flex;
+      justify-content: center;
       color: var(--text-primary);
+      padding: 0.7rem 0;
       text-decoration: none;
       transition: color 0.2s;
+      width: 100%;
 
       &:hover {
         color: var(--text-secondary);

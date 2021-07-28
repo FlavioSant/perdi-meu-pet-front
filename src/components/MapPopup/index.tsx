@@ -1,10 +1,10 @@
+import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 import { Popup } from 'react-leaflet';
 import { FiArrowRight } from 'react-icons/fi';
 
 import { MapPopupInfo } from './styles';
-import { useRouter } from 'next/router';
 
 interface PopupInfo {
   publicationId: string;

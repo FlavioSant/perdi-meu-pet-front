@@ -1,10 +1,10 @@
 import { Map, TileLayer, ZoomControl } from 'react-leaflet';
-import { MapMarker } from '../MapMarker';
-import { MapPopup } from '../MapPopup';
 
 import { Publication } from '../../@types/publication';
 
-import MapCircleRadius from '../MapCircleRadius';
+import { MapMarker } from '../MapMarker';
+import { MapPopup } from '../MapPopup';
+import { MapCircleRadius } from '../MapCircleRadius';
 
 import { MapContainer } from './styles';
 

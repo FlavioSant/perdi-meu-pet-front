@@ -19,8 +19,6 @@ export const LayoutContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    grid-template-rows: 80px 1fr 50px;
-
     main {
       margin: 1rem auto;
     }

@@ -1,9 +1,8 @@
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 import { parseCookies, setCookie } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
-import { useEffect } from 'react';
 
 interface User {
   nome: string;
