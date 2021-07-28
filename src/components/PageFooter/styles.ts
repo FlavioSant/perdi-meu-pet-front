@@ -7,4 +7,5 @@ export const FooterContainer = styled.footer`
   background: var(--orange);
   color: var(--white);
   font-weight: 600;
+  text-align: center;
 `;

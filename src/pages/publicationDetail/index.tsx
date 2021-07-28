@@ -31,8 +31,6 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
 }) => {
   const router = useRouter();
 
-  console.log(publication);
-
   if (!publication) {
     return (
       <PageLayout>

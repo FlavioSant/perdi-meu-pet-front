@@ -1,4 +1,6 @@
+import { FindPublicationData } from '../pages/findPublications';
 import { NewPublicationData } from '../pages/newPublication';
+
 import { removeKeys } from './removeKeys';
 
 interface Coords {
@@ -34,4 +36,26 @@ export const parseNewPublication = (
   });
 
   return parsedNewPublication;
+};
+
+export const parseFindPublications = (
+  data: FindPublicationData,
+  coords: Coords,
+) => {
+  let parsedFindPublication = {
+    ...data,
+    latitude: coords.lat,
+    longitude: coords.lng,
+  };
+
+  Object.keys(parsedFindPublication).forEach(value => {
+    if (
+      parsedFindPublication[value] === undefined ||
+      parsedFindPublication[value] === ''
+    ) {
+      parsedFindPublication = removeKeys(parsedFindPublication, [value]);
+    }
+  });
+
+  return parsedFindPublication;
 };

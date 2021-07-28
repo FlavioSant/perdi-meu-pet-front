@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 
 import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
-import { MyPublicationCard } from '../../components/MyPublicationCard';
+import { MyPublicationCard } from '../../components/PublicationCard';
 
 interface MyPublicationProps {
   sexoAnimal?: 'femea' | 'macho';

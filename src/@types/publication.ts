@@ -10,7 +10,7 @@ export interface Publication {
   observacoes?: string;
   porte: 'pequeno' | 'medio' | 'grande';
   publicacaoId: string;
-  sexo?: 'femea' | 'macho';
+  sexo?: 'femea' | 'macho' | 'outros';
   situacao: 'desaparecido' | 'encontrado' | 'adocao';
   usuario: { nome: string; email: string };
 }
