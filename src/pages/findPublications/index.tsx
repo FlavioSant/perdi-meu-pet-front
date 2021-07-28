@@ -1,6 +1,7 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useRef, useState } from 'react';
 
+import { parseCookies } from 'nookies';
 import { FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -143,6 +144,23 @@ const FindPublications: NextPage = () => {
       )}
     </PageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/signIn',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default FindPublications;
