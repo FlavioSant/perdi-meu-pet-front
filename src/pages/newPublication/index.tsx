@@ -10,6 +10,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import { api } from '../../services/api';
+import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 import { handleErrors } from '../../utils/handleErrors';
 import { uploadAnexo } from '../../utils/uploadAnexos';
 import { parseNewPublication } from '../../utils/parseNewPublication';
@@ -178,83 +179,18 @@ const NewPublication: NextPage = () => {
         <p>Informe a situação do pet abaixo:</p>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <ImageRadioButton
-            name="situacao"
-            options={[
-              {
-                id: 'desaparecido',
-                label: 'Desaparecido',
-                value: 'desaparecido',
-                imageURL: '/sad-dog.svg',
-              },
-              {
-                id: 'encontrado',
-                label: 'Encontrado',
-                value: 'encontrado',
-                imageURL: 'happy-animals.svg',
-              },
-              {
-                id: 'adocao',
-                label: 'Adoção',
-                value: 'adocao',
-                imageURL: '/adoption.svg',
-              },
-            ]}
-          />
+          <ImageRadioButton name="situacao" options={radioButtonOptions} />
           <FlexItems>
             <Select
               name="categoria"
               label="Categoria"
-              options={[
-                {
-                  label: 'Cachorro',
-                  value: 'cachorro',
-                },
-                {
-                  label: 'Gato',
-                  value: 'gato',
-                },
-                {
-                  label: 'Outros',
-                  value: 'outros',
-                },
-              ]}
+              options={selectOptions.category}
             />
-            <Select
-              name="porte"
-              label="Porte"
-              options={[
-                {
-                  label: 'Pequeno',
-                  value: 'pequeno',
-                },
-                {
-                  label: 'Médio',
-                  value: 'medio',
-                },
-                {
-                  label: 'Grande',
-                  value: 'grande',
-                },
-              ]}
-            />
+            <Select name="porte" label="Porte" options={selectOptions.size} />
             <Select
               name="sexo"
               label="Sexo do Animal"
-              options={[
-                {
-                  label: 'Fêmea',
-                  value: 'femea',
-                },
-                {
-                  label: 'Macho',
-                  value: 'macho',
-                },
-                {
-                  label: 'Outros',
-                  value: 'outros',
-                },
-              ]}
+              options={selectOptions.sex}
             />
             <Input name="cor" label="Cor" />
           </FlexItems>
