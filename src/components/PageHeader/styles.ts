@@ -36,6 +36,7 @@ export const Header = styled.header<HeaderProps>`
     color: var(--text-secondary);
     font-size: 1rem;
     font-weight: 600;
+    margin-right: 0.3rem;
 
     svg {
       margin-right: 0.3rem;

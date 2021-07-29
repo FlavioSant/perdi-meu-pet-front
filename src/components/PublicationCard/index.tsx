@@ -21,11 +21,15 @@ interface CardData {
 interface PublicationCardProps {
   data: CardData;
   hasControls?: boolean;
+  onEditPublication?: () => void;
+  onDeletePublication?: () => void;
 }
 
-const MyPublicationCard: React.FC<PublicationCardProps> = ({
+const PublicationCard: React.FC<PublicationCardProps> = ({
   data,
   hasControls = false,
+  onEditPublication,
+  onDeletePublication,
 }) => {
   return (
     <PublicationCardContainer>
@@ -73,11 +77,23 @@ const MyPublicationCard: React.FC<PublicationCardProps> = ({
               {data.situacao === 'adocao' && 'Adotado'}
             </Button>
           )}
-          <Button type="button" styleType="blue" title="Editar Publicação">
+
+          <Button
+            type="button"
+            styleType="blue"
+            title="Editar Publicação"
+            onClick={onEditPublication}
+          >
             <FiEdit3 size={18} />
             Editar
           </Button>
-          <Button type="button" styleType="red" title="Excluir Publicação">
+
+          <Button
+            type="button"
+            styleType="red"
+            title="Excluir Publicação"
+            onClick={onDeletePublication}
+          >
             <FiTrash2 size={18} />
             Excluir
           </Button>
@@ -87,4 +103,4 @@ const MyPublicationCard: React.FC<PublicationCardProps> = ({
   );
 };
 
-export { MyPublicationCard };
+export { PublicationCard };

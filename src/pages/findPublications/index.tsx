@@ -25,7 +25,7 @@ import { Select } from '../../components/Select';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { NoPublication } from '../../components/NoPublication';
-import { MyPublicationCard } from '../../components/PublicationCard';
+import { PublicationCard } from '../../components/PublicationCard';
 
 export interface FindPublicationData {
   categoria: 'cachorro' | 'gato' | 'outros';
@@ -122,7 +122,7 @@ const FindPublications: NextPage = () => {
           <PageTitle title="Publicações Encontradas" />
 
           {publications.map((publication, index) => (
-            <MyPublicationCard
+            <PublicationCard
               key={index}
               data={{
                 categoria: publication.categoria,
