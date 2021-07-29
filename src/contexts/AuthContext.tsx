@@ -3,6 +3,7 @@ import { parseCookies, setCookie } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
+import { parseJwt } from '../utils/parseJwt';
 
 interface User {
   nome: string;
@@ -31,8 +32,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { 'perdi-meu-pet': token } = parseCookies();
 
     if (token) {
-      const parsedToken = token.split('.')[1];
-      setUser(JSON.parse(atob(parsedToken)));
+      setUser(parseJwt(token));
     }
   }, []);
 
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     setUser(usuario);
 
-    Router.push('/');
+    Router.replace('/');
   }, []);
 
   return (
