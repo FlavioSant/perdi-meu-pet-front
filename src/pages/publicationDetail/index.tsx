@@ -1,8 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
+
 import { Publication } from '../../@types/publication';
-import { Button } from '../../components/Button';
+import { getAPIClient } from '../../services/apiClient';
 
 import { PublicationsMap } from '../../components/Map';
 import { NoPublication } from '../../components/NoPublication';
@@ -11,7 +12,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
 import { SituationCard } from '../../components/SituationCard';
-import { getAPIClient } from '../../services/apiClient';
+import { Button } from '../../components/Button';
 
 import {
   AdvertiserInfo,

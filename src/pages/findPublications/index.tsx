@@ -42,6 +42,8 @@ const FindPublications: NextPage = () => {
 
   const handleSubmit = useCallback(async (formData: FindPublicationData) => {
     try {
+      formRef.current?.setErrors({});
+
       if (!formData.situacao) {
         warnToast({
           message: 'Informe a situação para buscar publicações.',
@@ -80,7 +82,7 @@ const FindPublications: NextPage = () => {
 
   return (
     <PageLayout>
-      <PageTitle title="Buscar Publicação" />
+      <PageTitle title="Buscar Publicações" />
       <PageContainer description="Dados do Pet">
         <Form ref={formRef} onSubmit={handleSubmit}>
           <p>Informe a situação do pet abaixo:</p>

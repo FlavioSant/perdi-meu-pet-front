@@ -1,14 +1,14 @@
 import { Map, TileLayer } from 'react-leaflet';
+import { LeafletMouseEvent } from 'leaflet';
 
 import { MapMarker } from '../MapMarker';
+import { MapCircleRadius } from '../MapCircleRadius';
 
 import { MapContainer } from './styles';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
-import { LeafletMouseEvent } from 'leaflet';
-import MapCircleRadius from '../MapCircleRadius';
 
 interface MapCoords {
   lat: number;

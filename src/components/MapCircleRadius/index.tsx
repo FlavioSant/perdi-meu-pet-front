@@ -23,4 +23,4 @@ const MapCircleRadius: NextPage<MapCircleProps> = ({ center }) => {
   );
 };
 
-export default MapCircleRadius;
+export { MapCircleRadius };
