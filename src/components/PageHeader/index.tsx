@@ -30,8 +30,8 @@ const PageHeader: React.FC = () => {
               path: '/',
             },
             {
-              label: 'Nova Publicação',
-              path: '/newPublication',
+              label: 'Criar Publicação',
+              path: '/createPublication',
             },
             {
               label: 'Buscar Publicação',

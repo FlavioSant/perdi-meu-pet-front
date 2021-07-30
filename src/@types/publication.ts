@@ -7,7 +7,7 @@ export type Sex = 'femea' | 'macho' | 'outros';
 export type Situation = 'desaparecido' | 'encontrado' | 'adocao';
 
 export interface Publication {
-  anexos: string[];
+  anexos?: string[];
   categoria: Category;
   createdAt: string;
   updatedAt: string;

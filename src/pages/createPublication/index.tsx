@@ -38,7 +38,7 @@ interface PreviewImageProps {
   name: string;
 }
 
-export interface NewPublicationData {
+export interface CreatePublicationData {
   categoria: string;
   cor: string;
   nome: string;
@@ -48,7 +48,7 @@ export interface NewPublicationData {
   situacao: string;
 }
 
-const NewPublication: NextPage = () => {
+const CreatePublication: NextPage = () => {
   const router = useRouter();
   const formRef = useRef<FormHandles>(null);
   const modalRef = useRef<ModalHandles>(null);
@@ -96,7 +96,7 @@ const NewPublication: NextPage = () => {
   );
 
   const handleSubmit = useCallback(
-    async (data: NewPublicationData) => {
+    async (data: CreatePublicationData) => {
       try {
         formRef.current.setErrors({});
 
@@ -249,4 +249,4 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   };
 };
 
-export default NewPublication;
+export default CreatePublication;

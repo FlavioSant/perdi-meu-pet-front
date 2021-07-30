@@ -1,22 +1,22 @@
 import { Position } from '../@types/position';
 import { FindPublicationData } from '../pages/findPublications';
-import { NewPublicationData } from '../pages/newPublication';
+import { CreatePublicationData } from '../pages/createPublication';
 
 import { removeKeys } from './removeKeys';
 
 export const parseNewPublication = (
-  newPublication: NewPublicationData,
+  createPublicationData: CreatePublicationData,
   position: Position,
   anexosIds: string[] | undefined,
 ) => {
   let parsedNewPublication = {
-    situacao: newPublication.situacao,
-    categoria: newPublication.categoria,
-    porte: newPublication.porte,
-    sexo: newPublication.sexo,
-    cor: newPublication.cor,
-    nome: newPublication.nome,
-    observacoes: newPublication.observacoes,
+    situacao: createPublicationData.situacao,
+    categoria: createPublicationData.categoria,
+    porte: createPublicationData.porte,
+    sexo: createPublicationData.sexo,
+    cor: createPublicationData.cor,
+    nome: createPublicationData.nome,
+    observacoes: createPublicationData.observacoes,
     latitude: position.lat,
     longitude: position.lng,
     anexos: anexosIds,
