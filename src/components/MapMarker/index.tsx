@@ -1,14 +1,10 @@
 import { Marker } from 'react-leaflet';
 
+import { Position } from '../../@types/position';
 import { mapMarker } from '../../utils/mapMarker';
 
-interface MapMarkerCoords {
-  lat: number;
-  lng: number;
-}
-
 interface MapMarkerProps {
-  position: MapMarkerCoords;
+  position: Position;
 }
 
 const MapMarker: React.FC<MapMarkerProps> = ({ position, children }) => {

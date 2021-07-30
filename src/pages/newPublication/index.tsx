@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { parseCookies } from 'nookies';
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
@@ -9,6 +9,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { Position } from '../../@types/position';
 import { api } from '../../services/api';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 import { handleErrors } from '../../utils/handleErrors';
@@ -31,11 +32,6 @@ import { ClickableMap } from '../../components/Map/index';
 import Modal, { ModalHandles } from '../../components/Modal';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
-
-interface Position {
-  lat: number;
-  lng: number;
-}
 
 interface PreviewImageProps {
   url: string;
@@ -62,17 +58,17 @@ const NewPublication: NextPage = () => {
   const [previewImages, setPreviewImages] = useState<PreviewImageProps[]>([]);
 
   const handleFileChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      if (!e.target.files) {
+    (fileList: FileList) => {
+      if (!fileList) {
         return;
       }
 
-      if (e.target.files.length > 4) {
+      if (fileList.length > 4) {
         modalRef.current.openModal();
         return;
       }
 
-      const uploadedFiles = Array.from(e.target.files);
+      const uploadedFiles = Array.from(fileList);
 
       const parsedPreviewImages = uploadedFiles.map(file => ({
         url: URL.createObjectURL(file),
@@ -85,13 +81,10 @@ const NewPublication: NextPage = () => {
     [files],
   );
 
-  const removeFiles = useCallback(
-    (index: number) => {
-      setFiles(files.filter((_, i) => index !== i));
-      setPreviewImages(previewImages.filter((_, i) => index !== i));
-    },
-    [files, previewImages],
-  );
+  const removeFiles = useCallback((index: number) => {
+    setFiles(state => state.filter((_, i) => index !== i));
+    setPreviewImages(state => state.filter((_, i) => index !== i));
+  }, []);
 
   const handleMapClick = useCallback(
     (event: LeafletMouseEvent) => {
@@ -203,7 +196,7 @@ const NewPublication: NextPage = () => {
               description="Adicione Imagens do Pet"
               icon={FiImage}
               multiple
-              onChange={handleFileChange}
+              onChange={e => handleFileChange(e.target.files)}
             />
           </FlexItems>
 

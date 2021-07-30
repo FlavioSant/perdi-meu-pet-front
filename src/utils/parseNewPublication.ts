@@ -1,16 +1,12 @@
+import { Position } from '../@types/position';
 import { FindPublicationData } from '../pages/findPublications';
 import { NewPublicationData } from '../pages/newPublication';
 
 import { removeKeys } from './removeKeys';
 
-interface Coords {
-  lat: number;
-  lng: number;
-}
-
 export const parseNewPublication = (
   newPublication: NewPublicationData,
-  coords: Coords,
+  position: Position,
   anexosIds: string[] | undefined,
 ) => {
   let parsedNewPublication = {
@@ -21,8 +17,8 @@ export const parseNewPublication = (
     cor: newPublication.cor,
     nome: newPublication.nome,
     observacoes: newPublication.observacoes,
-    latitude: coords.lat,
-    longitude: coords.lng,
+    latitude: position.lat,
+    longitude: position.lng,
     anexos: anexosIds,
   };
 
@@ -40,12 +36,12 @@ export const parseNewPublication = (
 
 export const parseFindPublications = (
   data: FindPublicationData,
-  coords: Coords,
+  position: Position,
 ) => {
   let parsedFindPublication = {
     ...data,
-    latitude: coords.lat,
-    longitude: coords.lng,
+    latitude: position.lat,
+    longitude: position.lng,
   };
 
   Object.keys(parsedFindPublication).forEach(value => {

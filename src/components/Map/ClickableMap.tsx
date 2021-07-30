@@ -1,6 +1,7 @@
 import { Map, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 
+import { Position } from '../../@types/position';
 import { MapMarker } from '../MapMarker';
 import { MapCircleRadius } from '../MapCircleRadius';
 
@@ -10,14 +11,9 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 
-interface MapCoords {
-  lat: number;
-  lng: number;
-}
-
 interface ClickableMapProps {
-  center: MapCoords;
-  position: MapCoords;
+  center: Position;
+  position: Position;
   onMapClick: (event: LeafletMouseEvent) => void;
 }
 

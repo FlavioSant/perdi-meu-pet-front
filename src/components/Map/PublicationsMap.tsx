@@ -2,6 +2,8 @@ import { Map, TileLayer, ZoomControl } from 'react-leaflet';
 
 import { Publication } from '../../@types/publication';
 
+import { Position } from '../../@types/position';
+
 import { MapMarker } from '../MapMarker';
 import { MapPopup } from '../MapPopup';
 import { MapCircleRadius } from '../MapCircleRadius';
@@ -12,13 +14,8 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 
-interface MapCoords {
-  lat: number;
-  lng: number;
-}
-
 interface PublicationsMapProps {
-  center: MapCoords;
+  center: Position;
   publications?: Publication[];
   hasPopup: boolean;
   hasRadius?: boolean;

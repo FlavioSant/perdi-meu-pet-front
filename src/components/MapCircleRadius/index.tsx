@@ -2,13 +2,10 @@ import { NextPage } from 'next';
 
 import { Circle } from 'react-leaflet';
 
-interface MapCoords {
-  lat: number;
-  lng: number;
-}
+import { Position } from '../../@types/position';
 
 interface MapCircleProps {
-  center: MapCoords;
+  center: Position;
 }
 
 const MapCircleRadius: NextPage<MapCircleProps> = ({ center }) => {
