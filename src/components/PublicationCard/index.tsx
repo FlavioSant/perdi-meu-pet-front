@@ -1,11 +1,8 @@
-import { FiCheck, FiEdit3, FiTrash2 } from 'react-icons/fi';
-
-import { Button } from '../Button';
-
+import { CardControls } from '../CardControls';
 import {
-  ButtonsContainer,
   InfoContainer,
   PublicationCardContainer,
+  ResolvedPublication,
 } from './styles';
 
 interface CardData {
@@ -13,26 +10,29 @@ interface CardData {
   createdAt: string;
   nome?: string;
   anexo?: string;
+  isResolvido: boolean;
   porte: 'pequeno' | 'medio' | 'grande';
   sexo: 'femea' | 'macho' | 'outros';
   situacao: 'desaparecido' | 'encontrado' | 'adocao';
 }
 
+interface CardControlsMethods {
+  onResolve: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
+}
+
 interface PublicationCardProps {
   data: CardData;
-  hasControls?: boolean;
-  onEditPublication?: () => void;
-  onDeletePublication?: () => void;
+  controlsMethods?: CardControlsMethods;
 }
 
 const PublicationCard: React.FC<PublicationCardProps> = ({
   data,
-  hasControls = false,
-  onEditPublication,
-  onDeletePublication,
+  controlsMethods,
 }) => {
   return (
-    <PublicationCardContainer>
+    <PublicationCardContainer isResolved={data.isResolvido}>
       <InfoContainer>
         {data.anexo && (
           <img
@@ -60,44 +60,27 @@ const PublicationCard: React.FC<PublicationCardProps> = ({
         </article>
       </InfoContainer>
 
-      {hasControls && (
-        <ButtonsContainer>
-          {data.situacao !== 'encontrado' && (
-            <Button
-              type="button"
-              styleType="green"
-              title={`Marcar Como ${
-                data.situacao === 'desaparecido'
-                  ? 'Encontrado'
-                  : data.situacao === 'adocao' && 'Adotado'
-              }`}
-            >
-              <FiCheck size={18} />
-              {data.situacao === 'desaparecido' && 'Encontrado'}
-              {data.situacao === 'adocao' && 'Adotado'}
-            </Button>
+      {data.isResolvido ? (
+        <ResolvedPublication>
+          <p>
+            {data.situacao === 'encontrado'
+              ? 'Resgatado'
+              : data.situacao === 'desaparecido'
+              ? 'Encontrado'
+              : 'Adotado'}
+          </p>
+        </ResolvedPublication>
+      ) : (
+        <>
+          {controlsMethods && (
+            <CardControls
+              situation={data.situacao}
+              onDelete={controlsMethods.onDelete}
+              onEdit={controlsMethods.onEdit}
+              onResolve={controlsMethods.onResolve}
+            />
           )}
-
-          <Button
-            type="button"
-            styleType="blue"
-            title="Editar Publicação"
-            onClick={onEditPublication}
-          >
-            <FiEdit3 size={18} />
-            Editar
-          </Button>
-
-          <Button
-            type="button"
-            styleType="red"
-            title="Excluir Publicação"
-            onClick={onDeletePublication}
-          >
-            <FiTrash2 size={18} />
-            Excluir
-          </Button>
-        </ButtonsContainer>
+        </>
       )}
     </PublicationCardContainer>
   );

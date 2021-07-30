@@ -129,6 +129,7 @@ const FindPublications: NextPage = () => {
               data={{
                 categoria: publication.categoria,
                 createdAt: new Date(publication.createdAt).toLocaleString(),
+                isResolvido: publication.isResolvido,
                 porte: publication.porte,
                 situacao: publication.situacao,
                 anexo: publication.anexos[0] || '',

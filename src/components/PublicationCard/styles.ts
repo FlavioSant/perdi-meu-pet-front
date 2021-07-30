@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const PublicationCardContainer = styled.div`
+interface PublicationContainerProps {
+  isResolved: boolean;
+}
+
+export const PublicationCardContainer = styled.div<PublicationContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,8 +12,15 @@ export const PublicationCardContainer = styled.div`
   box-shadow: 2px 6px 15px rgba(0, 0, 0, 0.15);
   border: 1px solid var(--gray-500);
   border-radius: 10px;
-  padding: 1rem;
   margin-top: 2rem;
+  padding: 1rem;
+
+  ${({ isResolved }) =>
+    isResolved &&
+    css`
+      border-color: var(--green);
+      background: var(--green-light);
+    `}
 
   @media (max-width: 720px) {
     flex-direction: column;
@@ -47,19 +58,23 @@ export const InfoContainer = styled.div`
   }
 `;
 
-export const ButtonsContainer = styled.div`
+export const ResolvedPublication = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 140px;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background: var(--green-medium);
+  border-radius: 5px;
+  color: var(--green);
+  padding: 1rem;
 
-  button {
-    padding: 0.5rem;
-    text-transform: capitalize;
+  p {
+    font-size: 1.15rem;
+    font-weight: bold;
   }
 
   @media (max-width: 720px) {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     width: 100%;
   }
 `;

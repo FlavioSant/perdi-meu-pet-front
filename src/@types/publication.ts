@@ -4,6 +4,7 @@ export interface Publication {
   createdAt: string;
   updatedAt: string;
   cor?: string;
+  isResolvido: boolean;
   latitude: number;
   longitude: number;
   nome?: string;

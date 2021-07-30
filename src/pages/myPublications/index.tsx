@@ -20,6 +20,21 @@ interface MyPublicationProps {
 const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
   const router = useRouter();
 
+  const resolvePublication = useCallback(async (publicationId: string) => {
+    try {
+      await getAPIClient().patch(`publicacoes/${publicationId}`, {
+        isResolvido: true,
+      });
+
+      successToast({ message: 'Publicação alterada com sucesso.' });
+
+      router.replace(router.asPath);
+    } catch (err) {
+      errorToast({ message: 'Não foi possível alterar publicação.' });
+      console.error({ err });
+    }
+  }, []);
+
   const deletePublication = useCallback(async (publicationId: string) => {
     try {
       await getAPIClient().delete(`publicacoes/${publicationId}`);
@@ -44,25 +59,26 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
   return (
     <PageLayout>
       <PageTitle title="Minhas publicaçãoes" />
-      {myPublications &&
-        myPublications.length > 0 &&
-        myPublications.map(publication => (
-          <PublicationCard
-            key={publication.publicacaoId}
-            hasControls
-            data={{
-              categoria: publication.categoria,
-              createdAt: new Date(publication.createdAt).toLocaleString(),
-              porte: publication.porte,
-              sexo: publication.sexo,
-              situacao: publication.situacao,
-              anexo: publication.anexos[0],
-            }}
-            onDeletePublication={() =>
-              deletePublication(publication.publicacaoId)
-            }
-          />
-        ))}
+      {myPublications.map(publication => (
+        <PublicationCard
+          key={publication.publicacaoId}
+          data={{
+            categoria: publication.categoria,
+            createdAt: new Date(publication.createdAt).toLocaleString(),
+            isResolvido: publication.isResolvido,
+            nome: publication.nome,
+            porte: publication.porte,
+            sexo: publication.sexo,
+            situacao: publication.situacao,
+            anexo: publication.anexos[0],
+          }}
+          controlsMethods={{
+            onResolve: () => resolvePublication(publication.publicacaoId),
+            onEdit: () => console.log('EDIT'),
+            onDelete: () => deletePublication(publication.publicacaoId),
+          }}
+        />
+      ))}
     </PageLayout>
   );
 };
