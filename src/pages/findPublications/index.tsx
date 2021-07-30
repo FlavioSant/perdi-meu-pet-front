@@ -7,7 +7,13 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import { Publication } from '../../@types/publication';
+import {
+  Category,
+  Publication,
+  Sex,
+  Situation,
+  Size,
+} from '../../@types/publication';
 
 import { getAPIClient } from '../../services/apiClient';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
@@ -28,12 +34,12 @@ import { NoPublication } from '../../components/NoPublication';
 import { PublicationCard } from '../../components/PublicationCard';
 
 export interface FindPublicationData {
-  categoria: 'cachorro' | 'gato' | 'outros';
+  categoria: Category;
   cor: string;
   nome?: string;
-  porte: 'pequeno' | 'medio' | 'grande';
-  sexo?: 'femea' | 'macho' | 'outros';
-  situacao: 'desaparecido' | 'encontrado' | 'adocao';
+  porte: Size;
+  sexo?: Sex;
+  situacao: Situation;
 }
 
 const FindPublications: NextPage = () => {

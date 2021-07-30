@@ -1,7 +1,9 @@
+import { Situation } from '../../@types/publication';
+
 import { SituationCardContainer } from './styles';
 
 interface SituationCardProps {
-  situation: 'desaparecido' | 'encontrado' | 'adocao';
+  situation: Situation;
 }
 
 const situationImgUrlTypes = {

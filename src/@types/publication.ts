@@ -1,6 +1,14 @@
+export type Category = 'cachorro' | 'gato' | 'outros';
+
+export type Size = 'pequeno' | 'medio' | 'grande';
+
+export type Sex = 'femea' | 'macho' | 'outros';
+
+export type Situation = 'desaparecido' | 'encontrado' | 'adocao';
+
 export interface Publication {
   anexos: string[];
-  categoria: 'cachorro' | 'gato' | 'outros';
+  categoria: Category;
   createdAt: string;
   updatedAt: string;
   cor?: string;
@@ -9,9 +17,9 @@ export interface Publication {
   longitude: number;
   nome?: string;
   observacoes?: string;
-  porte: 'pequeno' | 'medio' | 'grande';
+  porte: Size;
   publicacaoId: string;
-  sexo?: 'femea' | 'macho' | 'outros';
-  situacao: 'desaparecido' | 'encontrado' | 'adocao';
+  sexo?: Sex;
+  situacao: Situation;
   usuario: { nome: string; email: string };
 }

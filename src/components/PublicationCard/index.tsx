@@ -1,3 +1,5 @@
+import { Category, Sex, Situation, Size } from '../../@types/publication';
+
 import { CardControls } from '../CardControls';
 import {
   InfoContainer,
@@ -6,14 +8,14 @@ import {
 } from './styles';
 
 interface CardData {
-  categoria: 'cachorro' | 'gato' | 'outros';
+  categoria: Category;
   createdAt: string;
   nome?: string;
   anexo?: string;
   isResolvido: boolean;
-  porte: 'pequeno' | 'medio' | 'grande';
-  sexo: 'femea' | 'macho' | 'outros';
-  situacao: 'desaparecido' | 'encontrado' | 'adocao';
+  porte: Size;
+  sexo: Sex;
+  situacao: Situation;
 }
 
 interface CardControlsMethods {
