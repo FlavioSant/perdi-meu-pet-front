@@ -41,6 +41,20 @@ export const selectOptions = {
       value: 'outros',
     },
   ],
+  situation: [
+    {
+      label: 'Desaparecido',
+      value: 'desaparecido',
+    },
+    {
+      label: 'Encontrado',
+      value: 'encontrado',
+    },
+    {
+      label: 'Adoção',
+      value: 'adocao',
+    },
+  ],
 };
 
 export const radioButtonOptions = [

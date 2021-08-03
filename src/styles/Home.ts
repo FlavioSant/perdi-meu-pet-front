@@ -54,4 +54,5 @@ export const Aside = styled.aside`
 
 export const MainContent = styled.main`
   grid-area: main;
+  position: relative;
 `;

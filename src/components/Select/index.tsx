@@ -13,7 +13,7 @@ export interface SelectOption {
 
 interface SelectProps extends Props<OptionTypeBase> {
   name: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   options: SelectOption[];
 }

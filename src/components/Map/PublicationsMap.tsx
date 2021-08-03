@@ -36,7 +36,7 @@ const PublicationsMap: React.FC<PublicationsMapProps> = ({
         scrollWheelZoom
         style={{ width: '100%', height: '100%' }}
       >
-        <ZoomControl position="topright" />
+        <ZoomControl position="bottomright" />
         <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {publications &&
