@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
@@ -19,6 +19,7 @@ interface AuthContextData {
   isAuthenticated: boolean;
   user: User;
   signIn: (data: SignInData) => Promise<void>;
+  signOut: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -55,12 +56,19 @@ export const AuthProvider: React.FC = ({ children }) => {
     Router.replace('/');
   }, []);
 
+  const signOut = useCallback(() => {
+    destroyCookie(undefined, 'perdi-meu-pet');
+    setUser(null);
+    Router.replace('/signIn');
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         user,
         isAuthenticated,
         signIn,
+        signOut,
       }}
     >
       {children}

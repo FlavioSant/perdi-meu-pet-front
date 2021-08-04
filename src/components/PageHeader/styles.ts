@@ -64,3 +64,18 @@ export const MenuButton = styled.button`
     display: block;
   }
 `;
+
+export const UserInfo = styled.div`
+  button.signOutButton {
+    background: transparent;
+    border: 0;
+    color: var(--text-secondary);
+    font-size: 0;
+    margin-left: 1rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+`;

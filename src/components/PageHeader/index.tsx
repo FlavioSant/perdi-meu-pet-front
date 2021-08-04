@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { FiMenu, FiUser } from 'react-icons/fi';
+import { FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
 import { useAuth } from '../../hooks/auth';
 
 import { MenuNavBar } from '../MenuNavBar';
 
-import { HeaderContainer, Header, MenuButton } from './styles';
+import { HeaderContainer, Header, MenuButton, UserInfo } from './styles';
 
 const PageHeader: React.FC = () => {
   const router = useRouter();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -45,10 +45,18 @@ const PageHeader: React.FC = () => {
         />
 
         {isAuthenticated && (
-          <div>
+          <UserInfo>
             <FiUser size={22} />
             <span>{user.nome}</span>
-          </div>
+            <button
+              type="button"
+              className="signOutButton"
+              title="Sair"
+              onClick={signOut}
+            >
+              <FiLogOut size={22} />
+            </button>
+          </UserInfo>
         )}
 
         <MenuButton type="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
