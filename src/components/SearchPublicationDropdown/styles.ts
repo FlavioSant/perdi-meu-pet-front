@@ -41,16 +41,15 @@ export const SearchDropdownContainer = styled.div<SearchDropdownContainerProps>`
   }
 
   @media (max-width: 720px) {
-    top: -163px;
+    top: -270px;
 
     form {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 0.5rem;
 
       button {
-        grid-column: 2;
         place-self: end;
-        width: 100%;
+        width: 30%;
       }
     }
   }

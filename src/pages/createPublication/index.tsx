@@ -217,7 +217,12 @@ const CreatePublication: NextPage = () => {
           </FlexItems>
 
           <FormButtons>
-            <Button type="button" styleType="red" title="Cancelar">
+            <Button
+              type="button"
+              styleType="red"
+              title="Cancelar"
+              onClick={() => router.push('/')}
+            >
               <FiX size={22} />
               Cancelar
             </Button>

@@ -12,6 +12,7 @@ export const BackgroundContainer = styled.main`
   justify-content: center;
   background: url('/sign-in-background.jpg') no-repeat center;
   background-size: cover;
+  position: relative;
   width: 100%;
   height: 100%;
 `;
