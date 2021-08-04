@@ -20,7 +20,7 @@ import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 import { handleErrors } from '../../utils/handleErrors';
 import { warnToast } from '../../utils/toast';
 import { getCoords } from '../../utils/getCoords';
-import { parseFindPublications } from '../../utils/parseNewPublication';
+import { parseFindPublications } from '../../utils/parsePublications';
 
 import { PageLayout } from '../../components/PageLayout';
 import { PageContainer } from '../../components/PageContainer';

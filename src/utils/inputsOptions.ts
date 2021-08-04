@@ -1,3 +1,13 @@
+export const getOption = (value: string, items: any[]) => {
+  const item = items.find(item => item.value === value);
+
+  if (!item) {
+    return '';
+  }
+
+  return item;
+};
+
 export const selectOptions = {
   category: [
     {

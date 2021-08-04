@@ -14,7 +14,7 @@ import { api } from '../../services/api';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 import { handleErrors } from '../../utils/handleErrors';
 import { uploadAnexo } from '../../utils/uploadAnexos';
-import { parseNewPublication } from '../../utils/parseNewPublication';
+import { parseNewPublication } from '../../utils/parsePublications';
 import { successToast, warnToast } from '../../utils/toast';
 
 import { PageContainer } from '../../components/PageContainer';

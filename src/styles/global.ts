@@ -78,6 +78,51 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .react-modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2500;
+  }
+
+  .react-modal-content {
+    background: var(--gray-100);
+    border-radius: 0.25rem;
+    max-width: 960px;
+    max-height: 85%;
+    padding: 2.5rem;
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+
+    @media(max-width: 720px) {
+      max-width: 400px;
+      padding: 1rem;
+    }
+  }
+
+  .react-modal-close {
+    background: transparent;
+    border: 0;
+    color: var(--orange);
+    font-size: 0;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    transition: color .2s;
+
+    &:hover {
+      color: var(--red);
+    }
+  }
 `;
 
 export default GlobalStyle;

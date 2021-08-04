@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { parseCookies } from 'nookies';
 
@@ -12,6 +12,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
 import { PublicationCard } from '../../components/PublicationCard';
 import { NoPublication } from '../../components/NoPublication';
+import { ModalEditPublication } from '../../components/ModalEditPublication';
 
 interface MyPublicationProps {
   myPublications: Publication[];
@@ -19,6 +20,28 @@ interface MyPublicationProps {
 
 const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
   const router = useRouter();
+  const [selectedPublication, setSelectedPublication] =
+    useState<Publication | null>(null);
+
+  const [isModalEditPublicationOpen, setIsModalEditPublicationOpen] =
+    useState(false);
+
+  const handleOpenModalEditPublication = useCallback(
+    (publication: Publication) => {
+      setSelectedPublication(publication);
+      setIsModalEditPublicationOpen(true);
+    },
+    [],
+  );
+
+  const handleCloseModalEditPublication = useCallback((isRefresh: boolean) => {
+    setSelectedPublication(null);
+    setIsModalEditPublicationOpen(false);
+
+    if (isRefresh) {
+      router.replace(router.asPath);
+    }
+  }, []);
 
   const resolvePublication = useCallback(async (publicationId: string) => {
     try {
@@ -58,7 +81,14 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
 
   return (
     <PageLayout>
+      <ModalEditPublication
+        isOpen={isModalEditPublicationOpen}
+        publication={selectedPublication}
+        onRequestClose={isRefresh => handleCloseModalEditPublication(isRefresh)}
+      />
+
       <PageTitle title="Minhas publicaçãoes" />
+
       {myPublications.map(publication => (
         <PublicationCard
           key={publication.publicacaoId}
@@ -74,7 +104,7 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
           }}
           controlsMethods={{
             onResolve: () => resolvePublication(publication.publicacaoId),
-            onEdit: () => console.log('EDIT'),
+            onEdit: () => handleOpenModalEditPublication(publication),
             onDelete: () => deletePublication(publication.publicacaoId),
           }}
         />
