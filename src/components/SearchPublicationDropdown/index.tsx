@@ -11,7 +11,6 @@ import { Select } from '../Select';
 import { Button } from '../Button';
 
 import { SearchDropdownContainer } from './styles';
-import { useEffect } from 'react';
 
 interface SubmitData {
   categoria: Category;
@@ -21,13 +20,11 @@ interface SubmitData {
 }
 
 interface SearchPublicationDropdownProps {
-  isReset: boolean;
   onSubmit: (formData: SubmitData, formRef: FormHandles) => void;
   onReset: () => void;
 }
 
 const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps> = ({
-  isReset,
   onSubmit,
   onReset,
 }) => {
@@ -43,25 +40,10 @@ const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps> = ({
     setIsDrop(false);
   }, []);
 
-  useEffect(() => {
-    if (!isDrop) {
-      formRef.current.setErrors({});
-      formRef.current.reset();
-    }
-  }, [isDrop]);
-
-  const handleClick = useCallback(() => {
-    if (!formRef.current) {
-      return;
-    }
-
-    if (isReset) {
-      onReset();
-      formRef.current.reset();
-    } else {
-      onSubmit(formRef.current.getData() as SubmitData, formRef.current);
-    }
-  }, [isReset]);
+  const handleReset = useCallback(() => {
+    formRef.current.reset();
+    onReset();
+  }, [formRef.current]);
 
   return (
     <SearchDropdownContainer isDrop={isDrop}>
@@ -82,8 +64,18 @@ const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps> = ({
           placeholder="Sexo do Animal"
           options={selectOptions.sex}
         />
-        <Button type="button" title="Pesquisar" onClick={handleClick}>
-          {isReset ? <FiX size={22} /> : <FiSearch size={22} />}
+        <Button
+          type="button"
+          title="Pesquisar"
+          onClick={() =>
+            onSubmit(formRef.current.getData() as SubmitData, formRef.current)
+          }
+          styleType="green"
+        >
+          <FiSearch size={22} />
+        </Button>
+        <Button type="button" title="Limpar" onClick={handleReset}>
+          <FiX size={22} />
         </Button>
       </Form>
 

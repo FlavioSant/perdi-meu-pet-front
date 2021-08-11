@@ -8,7 +8,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import { api } from '../../services/api';
-import { handleErrors } from '../../utils/handleErrors';
+import { handleErrors } from '../../functions/handleErrors';
 import { successToast } from '../../utils/toast';
 
 import { Input } from '../../components/Input';
@@ -82,10 +82,17 @@ const SignUp: NextPage = () => {
               icon={FiLock}
               type="password"
             />
-            <Button type="submit" title="Cadastrar">
+            <Button type="submit" title="Cadastrar" styleType="green">
               Cadastrar
             </Button>
           </Form>
+          <Button
+            type="button"
+            style={{ marginTop: '1rem' }}
+            onClick={() => router.push('/')}
+          >
+            Voltar ao Inicio
+          </Button>
         </FieldsContainer>
       </BackgroundContainer>
       <PageFooter />

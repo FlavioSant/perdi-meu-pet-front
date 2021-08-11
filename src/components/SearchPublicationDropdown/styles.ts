@@ -21,7 +21,7 @@ export const SearchDropdownContainer = styled.div<SearchDropdownContainerProps>`
 
   form {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 3rem;
+    grid-template-columns: repeat(4, 1fr) 3rem 3rem;
     background: var(--gray-100);
     border: 1px solid var(--gray-500);
     border-radius: 8px 8px 8px 0;
@@ -46,12 +46,6 @@ export const SearchDropdownContainer = styled.div<SearchDropdownContainerProps>`
     form {
       grid-template-columns: 1fr 1fr;
       gap: 0.5rem;
-
-      button {
-        grid-column: 2;
-        place-self: end;
-        width: 100%;
-      }
     }
   }
 `;

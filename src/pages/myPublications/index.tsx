@@ -1,12 +1,11 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-
-import { parseCookies } from 'nookies';
 
 import { Publication } from '../../@types/publication';
 import { getAPIClient } from '../../services/apiClient';
 import { errorToast, successToast } from '../../utils/toast';
+import { handleServerSide } from '../../functions/handleServerSide';
 
 import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
@@ -113,19 +112,8 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/signIn',
-        permanent: false,
-      },
-    };
-  }
-
-  try {
+export const getServerSideProps = handleServerSide({
+  handler: async ctx => {
     const { data } = await getAPIClient(ctx).get<Publication[]>(
       'minhas-publicacoes',
     );
@@ -135,13 +123,12 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         myPublications: data,
       },
     };
-  } catch (err) {
-    return {
-      props: {
-        myPublications: [],
-      },
-    };
-  }
-};
+  },
+  onError: async () => ({
+    props: {
+      myPublications: [],
+    },
+  }),
+});
 
 export default MyPublication;

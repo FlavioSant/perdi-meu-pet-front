@@ -56,3 +56,23 @@ export const MainContent = styled.main`
   grid-area: main;
   position: relative;
 `;
+
+export const Register = styled.div`
+  background: var(--orange-light);
+  border: 1px solid var(--orange);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: var(--orange);
+  min-width: 320px;
+  padding: 0.375rem 1rem;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+
+  a {
+    color: var(--orange);
+    font-weight: bold;
+  }
+`;

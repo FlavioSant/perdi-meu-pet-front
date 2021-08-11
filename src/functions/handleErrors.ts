@@ -1,6 +1,6 @@
 import { FormHandles } from '@unform/core';
 import { ValidationError } from 'yup';
-import { errorToast } from './toast';
+import { errorToast } from '../utils/toast';
 
 interface Errors {
   [key: string]: string;

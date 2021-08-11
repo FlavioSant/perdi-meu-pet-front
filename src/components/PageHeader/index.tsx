@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
+import { FiLogIn, FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
 import { useAuth } from '../../hooks/auth';
+import { Button } from '../Button';
 
 import { MenuNavBar } from '../MenuNavBar';
 
@@ -44,7 +45,7 @@ const PageHeader: React.FC = () => {
           ]}
         />
 
-        {isAuthenticated && (
+        {isAuthenticated ? (
           <UserInfo>
             <FiUser size={22} />
             <span>{user.nome}</span>
@@ -57,6 +58,14 @@ const PageHeader: React.FC = () => {
               <FiLogOut size={22} />
             </button>
           </UserInfo>
+        ) : (
+          <Button
+            type="button"
+            onClick={() => router.push('/signIn')}
+            style={{ maxWidth: '180px' }}
+          >
+            Entrar <FiLogIn size={22} />
+          </Button>
         )}
 
         <MenuButton type="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>

@@ -1,9 +1,9 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { parseCookies } from 'nookies';
 
 import { Publication } from '../../@types/publication';
 import { getAPIClient } from '../../services/apiClient';
+import { handleServerSide } from '../../functions/handleServerSide';
 
 import { PublicationsMap } from '../../components/Map';
 import { NoPublication } from '../../components/NoPublication';
@@ -120,21 +120,10 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
+export const getServerSideProps = handleServerSide({
+  handler: async ctx => {
+    const { publicationId } = ctx.query;
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/signIn',
-        permanent: false,
-      },
-    };
-  }
-
-  const { publicationId } = ctx.query;
-
-  try {
     const { data: publication } = await getAPIClient(ctx).get<Publication>(
       `/publicacoes/${publicationId}`,
     );
@@ -144,11 +133,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         publication,
       },
     };
-  } catch (err) {
-    return {
-      props: {},
-    };
-  }
-};
+  },
+});
 
 export default PublicationDetail;

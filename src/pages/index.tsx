@@ -1,8 +1,8 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
 import { FormHandles } from '@unform/core';
-import { parseCookies } from 'nookies';
 import * as Yup from 'yup';
 
 import {
@@ -12,18 +12,20 @@ import {
   Situation,
   Size,
 } from '../@types/publication';
+
+import { useAuth } from '../hooks/auth';
 import { api } from '../services/api';
 import { getAPIClient } from '../services/apiClient';
-import { getCoords } from '../utils/getCoords';
+import { getCoords } from '../functions/getCoords';
 import { errorToast, warnToast } from '../utils/toast';
-import { handleErrors } from '../utils/handleErrors';
+import { handleErrors } from '../functions/handleErrors';
 import { removeKeys } from '../utils/removeKeys';
 
 import { PublicationsMap } from '../components/Map';
 import { PageHeader } from '../components/PageHeader';
 import { SearchPublicationDropdown } from '../components/SearchPublicationDropdown';
 
-import { Aside, Container, MainContent } from '../styles/Home';
+import { Aside, Container, MainContent, Register } from '../styles/Home';
 
 interface SubmitData {
   categoria: Category;
@@ -33,17 +35,23 @@ interface SubmitData {
 }
 
 const Home: NextPage = () => {
-  const [isReset, setIsReset] = useState(false);
+  const { isAuthenticated } = useAuth();
   const [publications, setPublications] = useState<Publication[]>([]);
+  const [searchedPublications, setSearchedPublications] = useState<
+    Publication[]
+  >([]);
 
   const getPublications = useCallback(async () => {
     try {
       const { latitude, longitude } = await getCoords();
 
-      const { data } = await api.post('search', { latitude, longitude });
+      const { data } = await api.post<Publication[]>('search', {
+        latitude,
+        longitude,
+      });
 
       setPublications(data);
-      setIsReset(false);
+      setSearchedPublications(data);
     } catch (err) {
       if (err instanceof GeolocationPositionError) {
         warnToast({
@@ -60,7 +68,7 @@ const Home: NextPage = () => {
 
       console.error({ err });
     }
-  }, [isReset]);
+  }, []);
 
   useEffect(() => {
     getPublications();
@@ -89,14 +97,16 @@ const Home: NextPage = () => {
           parsedData = removeKeys(formData, ['sexo']);
         }
 
-        const { data } = await getAPIClient().post('search-filter', {
-          latitude,
-          longitude,
-          ...parsedData,
-        });
+        const { data } = await getAPIClient().post<Publication[]>(
+          'search-filter',
+          {
+            latitude,
+            longitude,
+            ...parsedData,
+          },
+        );
 
-        setPublications(data);
-        setIsReset(true);
+        setSearchedPublications(data);
       } catch (err) {
         handleErrors({
           err,
@@ -105,7 +115,7 @@ const Home: NextPage = () => {
         });
       }
     },
-    [isReset],
+    [],
   );
 
   return (
@@ -119,36 +129,28 @@ const Home: NextPage = () => {
       <PageHeader />
 
       <MainContent>
-        <SearchPublicationDropdown
-          isReset={isReset}
-          onSubmit={(formData, formRef) => handleSubmit(formData, formRef)}
-          onReset={getPublications}
-        />
+        {isAuthenticated ? (
+          <SearchPublicationDropdown
+            onSubmit={(formData, formRef) => handleSubmit(formData, formRef)}
+            onReset={() => setSearchedPublications(publications)}
+          />
+        ) : (
+          <Register>
+            <Link href="/signIn">
+              <a>Cadastre-se</a>
+            </Link>{' '}
+            para gerenciar publicações.
+          </Register>
+        )}
+
         <PublicationsMap
           center={{ lat: -22.3145293, lng: -49.0659743 }}
-          publications={publications}
+          publications={searchedPublications}
           hasPopup
         />
       </MainContent>
     </Container>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/signIn',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 };
 
 export default Home;

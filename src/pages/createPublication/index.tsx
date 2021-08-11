@@ -1,8 +1,7 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useRef, useState } from 'react';
 
-import { parseCookies } from 'nookies';
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 import { LeafletMouseEvent } from 'leaflet';
 import { Form } from '@unform/web';
@@ -12,10 +11,11 @@ import * as Yup from 'yup';
 import { Position } from '../../@types/position';
 import { api } from '../../services/api';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
-import { handleErrors } from '../../utils/handleErrors';
 import { uploadAnexo } from '../../utils/uploadAnexos';
-import { parseNewPublication } from '../../utils/parsePublications';
 import { successToast, warnToast } from '../../utils/toast';
+import { handleErrors } from '../../functions/handleErrors';
+import { parseNewPublication } from '../../functions/parsePublications';
+import { handleServerSide } from '../../functions/handleServerSide';
 
 import { PageContainer } from '../../components/PageContainer';
 import { PageLayout } from '../../components/PageLayout';
@@ -232,21 +232,10 @@ const CreatePublication: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/signIn',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
+export const getServerSideProps = handleServerSide({
+  handler: async () => ({
     props: {},
-  };
-};
+  }),
+});
 
 export default CreatePublication;

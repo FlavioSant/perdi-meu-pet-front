@@ -12,7 +12,7 @@ import {
   radioButtonOptions,
   selectOptions,
 } from '../../utils/inputsOptions';
-import { handleErrors } from '../../utils/handleErrors';
+import { handleErrors } from '../../functions/handleErrors';
 import { successToast, warnToast } from '../../utils/toast';
 import { removeKeys } from '../../utils/removeKeys';
 import { getAPIClient } from '../../services/apiClient';

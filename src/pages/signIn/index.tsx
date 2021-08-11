@@ -8,7 +8,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import { useAuth } from '../../hooks/auth';
-import { handleErrors } from '../../utils/handleErrors';
+import { handleErrors } from '../../functions/handleErrors';
 
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -73,7 +73,7 @@ const SignIn: NextPage = () => {
               icon={FiLock}
               type="password"
             />
-            <Button type="submit" styleType="green" title="Acessar">
+            <Button type="submit" title="Acessar">
               Acessar
             </Button>
           </Form>
@@ -81,7 +81,9 @@ const SignIn: NextPage = () => {
           <Separator>ou</Separator>
 
           <Link href="/signUp">
-            <Button type="button">Cadastre-se</Button>
+            <Button type="button" styleType="green">
+              Cadastre-se
+            </Button>
           </Link>
         </FieldsContainer>
       </BackgroundContainer>

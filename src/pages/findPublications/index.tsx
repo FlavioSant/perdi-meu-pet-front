@@ -1,7 +1,6 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useCallback, useRef, useState } from 'react';
 
-import { parseCookies } from 'nookies';
 import { FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -17,10 +16,11 @@ import {
 
 import { getAPIClient } from '../../services/apiClient';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
-import { handleErrors } from '../../utils/handleErrors';
 import { warnToast } from '../../utils/toast';
-import { getCoords } from '../../utils/getCoords';
-import { parseFindPublications } from '../../utils/parsePublications';
+import { handleErrors } from '../../functions/handleErrors';
+import { getCoords } from '../../functions/getCoords';
+import { parseFindPublications } from '../../functions/parsePublications';
+import { handleServerSide } from '../../functions/handleServerSide';
 
 import { PageLayout } from '../../components/PageLayout';
 import { PageContainer } from '../../components/PageContainer';
@@ -155,21 +155,10 @@ const FindPublications: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const { ['perdi-meu-pet']: token } = parseCookies(ctx);
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/signIn',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
+export const getServerSideProps = handleServerSide({
+  handler: async () => ({
     props: {},
-  };
-};
+  }),
+});
 
 export default FindPublications;

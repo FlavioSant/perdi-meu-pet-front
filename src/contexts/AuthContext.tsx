@@ -3,7 +3,7 @@ import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
-import { parseJwt } from '../utils/parseJwt';
+import { parseJwt } from '../functions/parseJwt';
 
 interface User {
   nome: string;
@@ -59,7 +59,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signOut = useCallback(() => {
     destroyCookie(undefined, 'perdi-meu-pet');
     setUser(null);
-    Router.replace('/signIn');
+    Router.replace('/');
   }, []);
 
   return (
