@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useCallback, useRef } from 'react';
 
 import { FiLock, FiMail, FiUser } from 'react-icons/fi';
@@ -18,6 +19,7 @@ import { PageFooter } from '../../components/PageFooter';
 import {
   BackgroundContainer,
   FieldsContainer,
+  Separator,
   SignInContainer,
 } from '../../styles/auth';
 
@@ -93,6 +95,14 @@ const SignUp: NextPage = () => {
           >
             Voltar ao Inicio
           </Button>
+
+          <Separator>ou</Separator>
+
+          <Link href="/signIn">
+            <Button type="button" styleType="green">
+              Fazer Login
+            </Button>
+          </Link>
         </FieldsContainer>
       </BackgroundContainer>
       <PageFooter />
