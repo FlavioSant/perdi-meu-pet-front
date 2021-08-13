@@ -56,14 +56,14 @@ const Home: NextPage = () => {
       if (err instanceof GeolocationPositionError) {
         warnToast({
           message: 'Não foi possível obter a localização.',
-          options: { position: 'bottom-center' },
+          options: { position: 'top-right' },
         });
         return;
       }
 
       errorToast({
         message: 'Erro ao buscar publcações.',
-        options: { position: 'bottom-center' },
+        options: { position: 'top-right' },
       });
 
       console.error({ err });

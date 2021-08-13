@@ -17,7 +17,7 @@ export const warnToast = ({ message, options }: ToastProps) =>
   toast.warn(message, {
     ...options,
     style: {
-      background: '##f5ad11',
+      background: '#f5ad11',
     },
   });
 
