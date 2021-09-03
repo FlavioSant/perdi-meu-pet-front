@@ -119,26 +119,20 @@ export const AdvertiserInfo = styled.article`
 
   p {
     color: var(--text-secondary);
-  }
+    font-weight: bold;
 
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    background: var(--green-light);
-    border: 1px solid var(--green);
-    border-radius: 5px;
-    color: var(--green);
-    font-weight: 600;
-    margin-top: 1rem;
-    padding: 0.3rem;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+      transition: filter 0.2s;
 
-    &:hover {
-      background: var(--green-medium);
-      transform: scale(1.01);
+      &:hover {
+        filter: brightness(0.85);
+      }
     }
   }
 `;

@@ -32,6 +32,7 @@ import { ClickableMap } from '../../components/Map/index';
 import Modal, { ModalHandles } from '../../components/Modal';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
+import { InputMask } from '../../components/InputMask';
 
 interface PreviewImageProps {
   url: string;
@@ -40,6 +41,7 @@ interface PreviewImageProps {
 
 export interface CreatePublicationData {
   categoria: string;
+  celular: string;
   cor: string;
   nome: string;
   observacoes: string;
@@ -185,20 +187,22 @@ const CreatePublication: NextPage = () => {
               label="Sexo do Animal"
               options={selectOptions.sex}
             />
-            <Input name="cor" label="Cor" />
           </FlexItems>
 
           <FlexItems hasMargin>
+            <Input name="cor" label="Cor" />
+            <InputMask name="celular" label="Celular" mask="(99) 99999-9999" />
             <Input name="nome" label="Nome do Pet" />
-            <InputFile
-              name="images"
-              accept="image/*"
-              description="Adicione Imagens do Pet"
-              icon={FiImage}
-              multiple
-              onChange={e => handleFileChange(e.target.files)}
-            />
           </FlexItems>
+          <br />
+          <InputFile
+            name="images"
+            accept="image/*"
+            description="Adicione Imagens do Pet"
+            icon={FiImage}
+            multiple
+            onChange={e => handleFileChange(e.target.files)}
+          />
 
           {previewImages.length > 0 && (
             <PreviewImagesContainer>

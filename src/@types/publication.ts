@@ -12,6 +12,7 @@ export interface Publication {
   createdAt: string;
   updatedAt: string;
   cor?: string;
+  celular?: string;
   isResolvido: boolean;
   latitude: number;
   longitude: number;

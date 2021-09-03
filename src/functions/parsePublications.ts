@@ -12,6 +12,7 @@ export const parseNewPublication = (
   let parsedNewPublication = {
     situacao: createPublicationData.situacao,
     categoria: createPublicationData.categoria,
+    celular: createPublicationData.celular,
     porte: createPublicationData.porte,
     sexo: createPublicationData.sexo,
     cor: createPublicationData.cor,
