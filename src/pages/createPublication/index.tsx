@@ -2,37 +2,38 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useRef, useState } from 'react';
 
-import { FiCheck, FiImage, FiX } from 'react-icons/fi';
-import { LeafletMouseEvent } from 'leaflet';
+import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
+import { LeafletMouseEvent } from 'leaflet';
+import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 
-import { Position } from '../../@types/position';
 import { api } from '../../services/api';
-import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
+import { auth } from '../../middleware/auth';
+import { Position } from '../../types/position';
 import { uploadAnexo } from '../../utils/uploadAnexos';
 import { successToast, warnToast } from '../../utils/toast';
 import { handleErrors } from '../../functions/handleErrors';
+import { serverSideHandler } from '../../functions/serverSideHandler';
 import { parseNewPublication } from '../../functions/parsePublications';
-import { handleServerSide } from '../../functions/handleServerSide';
+import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 
-import { PageContainer } from '../../components/PageContainer';
-import { PageLayout } from '../../components/PageLayout';
-import { PageTitle } from '../../components/PageTitle';
 import { Input } from '../../components/Input';
-import { InputFile } from '../../components/InputFile';
-import { ImageRadioButton } from '../../components/ImageRadioButton';
 import { Select } from '../../components/Select';
-import { Textarea } from '../../components/Textarea';
-import { PreviewImages } from '../../components/PreviewImages';
 import { Button } from '../../components/Button';
+import { Textarea } from '../../components/Textarea';
+import { PageTitle } from '../../components/PageTitle';
+import { InputFile } from '../../components/InputFile';
 import { FlexItems } from '../../components/FlexItems';
+import { InputMask } from '../../components/InputMask';
+import { PageLayout } from '../../components/PageLayout';
 import { ClickableMap } from '../../components/Map/index';
 import Modal, { ModalHandles } from '../../components/Modal';
+import { PageContainer } from '../../components/PageContainer';
+import { PreviewImages } from '../../components/PreviewImages';
+import { ImageRadioButton } from '../../components/ImageRadioButton';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
-import { InputMask } from '../../components/InputMask';
 
 interface PreviewImageProps {
   url: string;
@@ -241,10 +242,8 @@ const CreatePublication: NextPage = () => {
   );
 };
 
-export const getServerSideProps = handleServerSide({
-  handler: async () => ({
-    props: {},
-  }),
-});
+export const getServerSideProps = serverSideHandler(auth(), async () => ({
+  props: {},
+}));
 
 export default CreatePublication;

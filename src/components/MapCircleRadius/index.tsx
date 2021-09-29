@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 
 import { Circle } from 'react-leaflet';
 
-import { Position } from '../../@types/position';
+import { Position } from '../../types/position';
 
 interface MapCircleProps {
   center: Position;

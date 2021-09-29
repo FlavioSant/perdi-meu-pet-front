@@ -1,4 +1,4 @@
-import { Position } from '../@types/position';
+import { Position } from '../types/position';
 import { FindPublicationData } from '../pages/findPublications';
 import { CreatePublicationData } from '../pages/createPublication';
 

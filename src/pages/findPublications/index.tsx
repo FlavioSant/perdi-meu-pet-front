@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 import { useCallback, useRef, useState } from 'react';
 
-import { FiSearch } from 'react-icons/fi';
-import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { Form } from '@unform/web';
+import { FiSearch } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
 
 import {
   Category,
@@ -12,26 +12,27 @@ import {
   Sex,
   Situation,
   Size,
-} from '../../@types/publication';
+} from '../../types/publication';
 
-import { getAPIClient } from '../../services/apiClient';
-import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
+import { auth } from '../../middleware/auth';
 import { warnToast } from '../../utils/toast';
-import { handleErrors } from '../../functions/handleErrors';
 import { getCoords } from '../../functions/getCoords';
+import { getAPIClient } from '../../services/apiClient';
+import { handleErrors } from '../../functions/handleErrors';
+import { serverSideHandler } from '../../functions/serverSideHandler';
 import { parseFindPublications } from '../../functions/parsePublications';
-import { handleServerSide } from '../../functions/handleServerSide';
+import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 
+import { Input } from '../../components/Input';
+import { Select } from '../../components/Select';
+import { Button } from '../../components/Button';
+import { PageTitle } from '../../components/PageTitle';
+import { FlexItems } from '../../components/FlexItems';
 import { PageLayout } from '../../components/PageLayout';
 import { PageContainer } from '../../components/PageContainer';
-import { PageTitle } from '../../components/PageTitle';
-import { ImageRadioButton } from '../../components/ImageRadioButton';
-import { FlexItems } from '../../components/FlexItems';
-import { Select } from '../../components/Select';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
 import { NoPublication } from '../../components/NoPublication';
 import { PublicationCard } from '../../components/PublicationCard';
+import { ImageRadioButton } from '../../components/ImageRadioButton';
 
 export interface FindPublicationData {
   categoria: Category;
@@ -156,10 +157,8 @@ const FindPublications: NextPage = () => {
   );
 };
 
-export const getServerSideProps = handleServerSide({
-  handler: async () => ({
-    props: {},
-  }),
-});
+export const getServerSideProps = serverSideHandler(auth(), async () => ({
+  props: {},
+}));
 
 export default FindPublications;

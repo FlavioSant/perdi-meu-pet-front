@@ -1,20 +1,23 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
+import { FiMail } from 'react-icons/fi';
 import { ImWhatsapp } from 'react-icons/im';
 
-import { Publication } from '../../@types/publication';
+import { Publication } from '../../types/publication';
+import { auth } from '../../middleware/auth';
 import { getAPIClient } from '../../services/apiClient';
-import { handleServerSide } from '../../functions/handleServerSide';
+import { serverSideHandler } from '../../functions/serverSideHandler';
 
+import { Button } from '../../components/Button';
+import { PageTitle } from '../../components/PageTitle';
 import { PublicationsMap } from '../../components/Map';
+import { FlexItems } from '../../components/FlexItems';
+import { PageLayout } from '../../components/PageLayout';
 import { NoPublication } from '../../components/NoPublication';
 import { PageContainer } from '../../components/PageContainer';
-import { PageLayout } from '../../components/PageLayout';
-import { PageTitle } from '../../components/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
 import { SituationCard } from '../../components/SituationCard';
-import { Button } from '../../components/Button';
 
 import {
   AdvertiserInfo,
@@ -24,8 +27,6 @@ import {
   PreviewImagesContainer,
   Title,
 } from './styles';
-import { FiMail } from 'react-icons/fi';
-import { FlexItems } from '../../components/FlexItems';
 
 interface PublicationDetailProps {
   publication: Publication;
@@ -150,20 +151,18 @@ const PublicationDetail: NextPage<PublicationDetailProps> = ({
   );
 };
 
-export const getServerSideProps = handleServerSide({
-  handler: async ctx => {
-    const { publicationId } = ctx.query;
+export const getServerSideProps = serverSideHandler(auth(), async ctx => {
+  const { publicationId } = ctx.query;
 
-    const { data: publication } = await getAPIClient(ctx).get<Publication>(
-      `/publicacoes/${publicationId}`,
-    );
+  const { data: publication } = await getAPIClient(ctx).get(
+    `/publicacoes/${publicationId}`,
+  );
 
-    return {
-      props: {
-        publication,
-      },
-    };
-  },
+  return {
+    props: {
+      publication,
+    },
+  };
 });
 
 export default PublicationDetail;

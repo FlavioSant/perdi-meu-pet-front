@@ -1,6 +1,6 @@
 import { Marker } from 'react-leaflet';
 
-import { Position } from '../../@types/position';
+import { Position } from '../../types/position';
 import { mapMarker } from '../../utils/mapMarker';
 
 interface MapMarkerProps {

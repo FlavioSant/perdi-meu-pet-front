@@ -1,7 +1,7 @@
 import { Map, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 
-import { Position } from '../../@types/position';
+import { Position } from '../../types/position';
 import { MapMarker } from '../MapMarker';
 import { MapCircleRadius } from '../MapCircleRadius';
 

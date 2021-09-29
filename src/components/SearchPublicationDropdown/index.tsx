@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiSearch, FiX, FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
-import { Category, Sex, Situation, Size } from '../../@types/publication';
+import { Category, Sex, Situation, Size } from '../../types/publication';
 import { selectOptions } from '../../utils/inputsOptions';
 
 import { Select } from '../Select';

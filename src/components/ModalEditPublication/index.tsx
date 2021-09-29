@@ -6,7 +6,7 @@ import { FormHandles } from '@unform/core';
 import { FiCheck, FiX } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import { Publication } from '../../@types/publication';
+import { Publication } from '../../types/publication';
 import {
   getOption,
   radioButtonOptions,

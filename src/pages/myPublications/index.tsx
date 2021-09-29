@@ -2,15 +2,16 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
-import { Publication } from '../../@types/publication';
+import { auth } from '../../middleware/auth';
+import { Publication } from '../../types/publication';
 import { getAPIClient } from '../../services/apiClient';
 import { errorToast, successToast } from '../../utils/toast';
-import { handleServerSide } from '../../functions/handleServerSide';
+import { serverSideHandler } from '../../functions/serverSideHandler';
 
-import { PageLayout } from '../../components/PageLayout';
 import { PageTitle } from '../../components/PageTitle';
-import { PublicationCard } from '../../components/PublicationCard';
+import { PageLayout } from '../../components/PageLayout';
 import { NoPublication } from '../../components/NoPublication';
+import { PublicationCard } from '../../components/PublicationCard';
 import { ModalEditPublication } from '../../components/ModalEditPublication';
 
 interface MyPublicationProps {
@@ -112,23 +113,16 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
   );
 };
 
-export const getServerSideProps = handleServerSide({
-  handler: async ctx => {
-    const { data } = await getAPIClient(ctx).get<Publication[]>(
-      'minhas-publicacoes',
-    );
+export const getServerSideProps = serverSideHandler(auth(), async ctx => {
+  const { data } = await getAPIClient(ctx).get<Publication[]>(
+    'minhas-publicacoes',
+  );
 
-    return {
-      props: {
-        myPublications: data,
-      },
-    };
-  },
-  onError: async () => ({
+  return {
     props: {
-      myPublications: [],
+      myPublications: data,
     },
-  }),
+  };
 });
 
 export default MyPublication;

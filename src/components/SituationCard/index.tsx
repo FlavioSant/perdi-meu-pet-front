@@ -1,4 +1,4 @@
-import { Situation } from '../../@types/publication';
+import { Situation } from '../../types/publication';
 
 import { SituationCardContainer } from './styles';
 

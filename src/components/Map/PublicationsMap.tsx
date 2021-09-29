@@ -1,8 +1,8 @@
 import { Map, TileLayer, ZoomControl } from 'react-leaflet';
 
-import { Publication } from '../../@types/publication';
+import { Publication } from '../../types/publication';
 
-import { Position } from '../../@types/position';
+import { Position } from '../../types/position';
 
 import { MapMarker } from '../MapMarker';
 import { MapPopup } from '../MapPopup';

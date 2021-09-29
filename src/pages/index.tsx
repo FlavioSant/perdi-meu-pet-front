@@ -11,7 +11,7 @@ import {
   Sex,
   Situation,
   Size,
-} from '../@types/publication';
+} from '../types/publication';
 
 import { useAuth } from '../hooks/auth';
 import { api } from '../services/api';
@@ -136,7 +136,7 @@ const Home: NextPage = () => {
           />
         ) : (
           <Register>
-            <Link href="/signIn">
+            <Link href="/signUp">
               <a>Cadastre-se</a>
             </Link>{' '}
             para gerenciar publicações.

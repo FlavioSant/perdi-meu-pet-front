@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FiEye } from 'react-icons/fi';
 
-import { Category, Sex, Situation, Size } from '../../@types/publication';
+import { Category, Sex, Situation, Size } from '../../types/publication';
 
 import { CardControls } from '../CardControls';
 import {
