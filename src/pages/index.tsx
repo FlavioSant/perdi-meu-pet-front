@@ -62,7 +62,7 @@ const Home: NextPage = () => {
       }
 
       errorToast({
-        message: 'Erro ao buscar publcações.',
+        message: 'Erro ao buscar publicações.',
         options: { position: 'top-right' },
       });
 

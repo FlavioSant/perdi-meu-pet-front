@@ -133,6 +133,7 @@ const FindPublications: NextPage = () => {
             <PublicationCard
               key={index}
               data={{
+                publicacaoId: publication.publicacaoId,
                 categoria: publication.categoria,
                 createdAt: new Date(publication.createdAt).toLocaleString(),
                 isResolvido: publication.isResolvido,

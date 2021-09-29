@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { FiEye } from 'react-icons/fi';
+
 import { Category, Sex, Situation, Size } from '../../@types/publication';
 
 import { CardControls } from '../CardControls';
@@ -8,6 +11,7 @@ import {
 } from './styles';
 
 interface CardData {
+  publicacaoId?: string;
   categoria: Category;
   createdAt: string;
   nome?: string;
@@ -61,6 +65,15 @@ const PublicationCard: React.FC<PublicationCardProps> = ({
           </p>
         </article>
       </InfoContainer>
+
+      {data.publicacaoId && (
+        <Link href={`/publicationDetail?publicationId=${data.publicacaoId}`}>
+          <a title="Clique para ver detalhes da publicação">
+            <FiEye size={22} />
+            Ver Detalhes
+          </a>
+        </Link>
+      )}
 
       {data.isResolvido ? (
         <ResolvedPublication>
