@@ -1,5 +1,4 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useCallback, useRef, useState } from 'react';
 
 import * as Yup from 'yup';
@@ -7,42 +6,43 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { LeafletMouseEvent } from 'leaflet';
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
-import { CreatePublicationData } from '../../types/pages/createPublication';
 
-import { api } from '../../services/api';
-import { auth } from '../../middleware/auth';
-import { Position } from '../../types/position';
-import { uploadAnexo } from '../../utils/uploadAnexos';
-import { successToast, warnToast } from '../../utils/toast';
-import { handleErrors } from '../../functions/handleErrors';
-import { serverSideHandler } from '../../functions/serverSideHandler';
-import { parseNewPublication } from '../../functions/parsePublications';
-import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
+import { Position } from '../../../../types/position';
+import { CreatePublicationData } from '../../../../types/pages/createPublication';
 
-import { Input } from '../../components/Forms/Input';
-import { Select } from '../../components/Forms/Select';
-import { Button } from '../../components/Forms/Button';
-import { FlexItems } from '../../components/FlexItems';
-import { ClickableMap } from '../../components/Map/index';
-import { Textarea } from '../../components/Forms/Textarea';
-import { InputFile } from '../../components/Forms/InputFile';
-import { InputMask } from '../../components/Forms/InputMask';
-import { PageTitle } from '../../components/Layout/PageTitle';
-import { PreviewImages } from '../../components/PreviewImages';
-import { PageLayout } from '../../components/Layout/PageLayout';
-import { PageContainer } from '../../components/Layout/PageContainer';
-import { ImageRadioButton } from '../../components/Forms/ImageRadioButton';
-import ModalInfo, { ModalInfoHandles } from '../../components/Modais/ModalInfo';
+import {
+  radioButtonOptions,
+  selectOptions,
+} from '../../../../utils/inputsOptions';
+import { api } from '../../../../services/api';
+import { uploadAnexo } from '../../../../utils/uploadAnexos';
+import { successToast, warnToast } from '../../../../utils/toast';
+import { handleErrors } from '../../../../functions/handleErrors';
+import { parseNewPublication } from '../../../../functions/parsePublications';
 
-import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
+import { ClickableMap } from '../../../Map';
+import { Input } from '../../../Forms/Input';
+import { Button } from '../../../Forms/Button';
+import { FlexItems } from '../../../FlexItems';
+import { Select } from '../../../Forms/Select';
+import { Textarea } from '../../../Forms/Textarea';
+import { InputFile } from '../../../Forms/InputFile';
+import { InputMask } from '../../../Forms/InputMask';
+import { PageTitle } from '../../../Layout/PageTitle';
+import { PreviewImages } from '../../../PreviewImages';
+import { PageLayout } from '../../../Layout/PageLayout';
+import { PageContainer } from '../../../Layout/PageContainer';
+import { ImageRadioButton } from '../../../Forms/ImageRadioButton';
+import ModalInfo, { ModalInfoHandles } from '../../../Modais/ModalInfo';
+
+import { FormButtons, MapContainer, PreviewImagesContainer } from './styles';
 
 interface PreviewImageProps {
   url: string;
   name: string;
 }
 
-const CreatePublication: NextPage = () => {
-  const router = useRouter();
+export const PublicationView: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const modalRef = useRef<ModalInfoHandles>(null);
 
@@ -134,7 +134,7 @@ const CreatePublication: NextPage = () => {
 
         successToast({ message: 'Publicação cadastrada com sucesso.' });
 
-        router.push('/');
+        Router.push('/');
       } catch (err) {
         handleErrors({
           err,
@@ -220,7 +220,7 @@ const CreatePublication: NextPage = () => {
               type="button"
               background="red"
               title="Cancelar"
-              onClick={() => router.push('/')}
+              onClick={() => Router.push('/')}
             >
               <FiX size={22} />
               Cancelar
@@ -235,9 +235,3 @@ const CreatePublication: NextPage = () => {
     </PageLayout>
   );
 };
-
-export const getServerSideProps = serverSideHandler(auth(), async () => ({
-  props: {},
-}));
-
-export default CreatePublication;

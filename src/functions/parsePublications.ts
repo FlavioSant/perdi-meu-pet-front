@@ -1,8 +1,8 @@
 import { Position } from '../types/position';
 import { FindPublicationData } from '../pages/findPublications';
-import { CreatePublicationData } from '../pages/createPublication';
 
 import { removeKeys } from '../utils/removeKeys';
+import { CreatePublicationData } from '../types/pages/createPublication';
 
 export const parseNewPublication = (
   createPublicationData: CreatePublicationData,

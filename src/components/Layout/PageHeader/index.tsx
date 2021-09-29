@@ -31,7 +31,7 @@ export const PageHeader: React.FC = () => {
             },
             {
               label: 'Criar Publicação',
-              path: '/createPublication',
+              path: '/publication/new',
             },
             {
               label: 'Buscar Publicação',
