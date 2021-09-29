@@ -7,33 +7,33 @@ import { FormHandles } from '@unform/core';
 import { LeafletMouseEvent } from 'leaflet';
 import { FiCheck, FiImage, FiX } from 'react-icons/fi';
 
-import { Position } from '../../../../types/position';
-import { CreatePublicationData } from '../../../../types/pages/createPublication';
+import { Position } from '../../../types/position';
+import { CreatePublicationData } from '../../../types/pages/createPublication';
 
 import {
   radioButtonOptions,
   selectOptions,
-} from '../../../../utils/inputsOptions';
-import { api } from '../../../../services/api';
-import { uploadAnexo } from '../../../../utils/uploadAnexos';
-import { successToast, warnToast } from '../../../../utils/toast';
-import { handleErrors } from '../../../../functions/handleErrors';
-import { parseNewPublication } from '../../../../functions/parsePublications';
+} from '../../../utils/inputsOptions';
+import { api } from '../../../services/api';
+import { uploadAnexo } from '../../../utils/uploadAnexos';
+import { successToast, warnToast } from '../../../utils/toast';
+import { handleErrors } from '../../../functions/handleErrors';
+import { parseNewPublication } from '../../../functions/parsePublications';
 
-import { ClickableMap } from '../../../Map';
-import { Input } from '../../../Forms/Input';
-import { Button } from '../../../Forms/Button';
-import { FlexItems } from '../../../FlexItems';
-import { Select } from '../../../Forms/Select';
-import { Textarea } from '../../../Forms/Textarea';
-import { InputFile } from '../../../Forms/InputFile';
-import { InputMask } from '../../../Forms/InputMask';
-import { PageTitle } from '../../../Layout/PageTitle';
-import { PreviewImages } from '../../../PreviewImages';
-import { PageLayout } from '../../../Layout/PageLayout';
-import { PageContainer } from '../../../Layout/PageContainer';
-import { ImageRadioButton } from '../../../Forms/ImageRadioButton';
-import ModalInfo, { ModalInfoHandles } from '../../../Modais/ModalInfo';
+import { ClickableMap } from '../../Map';
+import { Input } from '../../Forms/Input';
+import { Button } from '../../Forms/Button';
+import { FlexItems } from '../../FlexItems';
+import { Select } from '../../Forms/Select';
+import { Textarea } from '../../Forms/Textarea';
+import { InputFile } from '../../Forms/InputFile';
+import { InputMask } from '../../Forms/InputMask';
+import { PageTitle } from '../../Layout/PageTitle';
+import { PreviewImages } from '../../PreviewImages';
+import { PageLayout } from '../../Layout/PageLayout';
+import { PageContainer } from '../../Layout/PageContainer';
+import { ImageRadioButton } from '../../Forms/ImageRadioButton';
+import ModalInfo, { ModalInfoHandles } from '../../Modais/ModalInfo';
 
 import { FormButtons, MapContainer, PreviewImagesContainer } from './styles';
 
@@ -42,7 +42,7 @@ interface PreviewImageProps {
   name: string;
 }
 
-export const PublicationView: React.FC = () => {
+export const NewPublicationView: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const modalRef = useRef<ModalInfoHandles>(null);
 
