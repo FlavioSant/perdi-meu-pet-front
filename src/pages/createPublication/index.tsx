@@ -26,7 +26,7 @@ import { ClickableMap } from '../../components/Map/index';
 import { Textarea } from '../../components/Forms/Textarea';
 import { InputFile } from '../../components/Forms/InputFile';
 import { InputMask } from '../../components/Forms/InputMask';
-import Modal, { ModalHandles } from '../../components/Modal';
+import ModalInfo, { ModalInfoHandles } from '../../components/Modais/ModalInfo';
 import { PageTitle } from '../../components/Layout/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
 import { PageLayout } from '../../components/Layout/PageLayout';
@@ -54,7 +54,7 @@ export interface CreatePublicationData {
 const CreatePublication: NextPage = () => {
   const router = useRouter();
   const formRef = useRef<FormHandles>(null);
-  const modalRef = useRef<ModalHandles>(null);
+  const modalRef = useRef<ModalInfoHandles>(null);
 
   const [position, setPosition] = useState<Position>({ lat: 0, lng: 0 });
   const [files, setFiles] = useState<File[]>([]);
@@ -158,7 +158,11 @@ const CreatePublication: NextPage = () => {
 
   return (
     <PageLayout>
-      <Modal ref={modalRef} title="Informação" message="No máximo 4 imagens." />
+      <ModalInfo
+        ref={modalRef}
+        title="Informação"
+        message="No máximo 4 imagens."
+      />
 
       <PageTitle title="Crie sua Publicação" />
 

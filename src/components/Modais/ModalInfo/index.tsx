@@ -3,19 +3,19 @@ import { FiInfo } from 'react-icons/fi';
 
 import { ModalContainer, ModalFrame } from './styles';
 
-interface ModalProps {
+interface ModalInfoProps {
   title: string;
   message: string;
 }
 
-export interface ModalHandles {
+export interface ModalInfoHandles {
   openModal: () => void;
 }
 
-const Modal: React.ForwardRefRenderFunction<ModalHandles, ModalProps> = (
-  { title, message },
-  ref,
-) => {
+const ModalInfo: React.ForwardRefRenderFunction<
+  ModalInfoHandles,
+  ModalInfoProps
+> = ({ title, message }, ref) => {
   const [visible, setVisible] = useState(false);
 
   const openModal = useCallback(() => {
@@ -48,4 +48,4 @@ const Modal: React.ForwardRefRenderFunction<ModalHandles, ModalProps> = (
   );
 };
 
-export default forwardRef(Modal);
+export default forwardRef(ModalInfo);

@@ -1,19 +1,13 @@
-import { ButtonHTMLAttributes } from 'react';
-
+import { ButtonProps } from '../../../types/components/button';
 import { ButtonContainer } from './styles';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  styleType?: 'blue' | 'green' | 'orange' | 'red';
-  type: 'button' | 'submit' | 'reset';
-}
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  styleType,
+  background,
   type,
   ...rest
 }) => (
-  <ButtonContainer type={type} styleType={styleType || 'orange'} {...rest}>
+  <ButtonContainer type={type} background={background || 'orange'} {...rest}>
     {children}
   </ButtonContainer>
 );

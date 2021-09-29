@@ -12,7 +12,7 @@ import { PageTitle } from '../../components/Layout/PageTitle';
 import { NoPublication } from '../../components/NoPublication';
 import { PageLayout } from '../../components/Layout/PageLayout';
 import { PublicationCard } from '../../components/Cards/PublicationCard';
-import { ModalEditPublication } from '../../components/ModalEditPublication';
+import { ModalEditPublication } from '../../components/Modais/ModalEditPublication';
 
 interface MyPublicationProps {
   myPublications: Publication[];
