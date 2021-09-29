@@ -1,20 +1,20 @@
+import Link from 'next/link';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useCallback, useRef } from 'react';
 
-import { FiLock, FiMail, FiUser } from 'react-icons/fi';
+import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
+import { FiLock, FiMail, FiUser } from 'react-icons/fi';
 
 import { api } from '../../services/api';
-import { handleErrors } from '../../functions/handleErrors';
 import { successToast } from '../../utils/toast';
+import { handleErrors } from '../../functions/handleErrors';
 
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { PageFooter } from '../../components/PageFooter';
+import { Input } from '../../components/Forms/Input';
+import { Button } from '../../components/Forms/Button';
+import { PageFooter } from '../../components/Layout/PageFooter';
 
 import {
   BackgroundContainer,

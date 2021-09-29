@@ -23,16 +23,16 @@ import { serverSideHandler } from '../../functions/serverSideHandler';
 import { parseFindPublications } from '../../functions/parsePublications';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 
-import { Input } from '../../components/Input';
-import { Select } from '../../components/Select';
-import { Button } from '../../components/Button';
-import { PageTitle } from '../../components/PageTitle';
+import { Input } from '../../components/Forms/Input';
+import { Select } from '../../components/Forms/Select';
+import { Button } from '../../components/Forms/Button';
 import { FlexItems } from '../../components/FlexItems';
-import { PageLayout } from '../../components/PageLayout';
-import { PageContainer } from '../../components/PageContainer';
+import { PageTitle } from '../../components/Layout/PageTitle';
 import { NoPublication } from '../../components/NoPublication';
-import { PublicationCard } from '../../components/PublicationCard';
-import { ImageRadioButton } from '../../components/ImageRadioButton';
+import { PageLayout } from '../../components/Layout/PageLayout';
+import { PageContainer } from '../../components/Layout/PageContainer';
+import { PublicationCard } from '../../components/Cards/PublicationCard';
+import { ImageRadioButton } from '../../components/Forms/ImageRadioButton';
 
 export interface FindPublicationData {
   categoria: Category;

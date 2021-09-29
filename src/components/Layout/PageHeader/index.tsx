@@ -1,16 +1,15 @@
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useState } from 'react';
 
+import { useAuth } from '../../../hooks/auth';
+import { Button } from '../../Forms/Button';
 import { FiLogIn, FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
-import { useAuth } from '../../hooks/auth';
-import { Button } from '../Button';
 
-import { MenuNavBar } from '../MenuNavBar';
+import { MenuNavBar } from '../../Menu/MenuNavBar';
 
 import { HeaderContainer, Header, MenuButton, UserInfo } from './styles';
 
-const PageHeader: React.FC = () => {
-  const router = useRouter();
+export const PageHeader: React.FC = () => {
   const { user, isAuthenticated, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,7 +20,7 @@ const PageHeader: React.FC = () => {
           src="logo.svg"
           alt="Perdi Meu Pet"
           title="Perdi Meu Pet"
-          onClick={() => router.push('/')}
+          onClick={() => Router.push('/')}
         />
 
         <MenuNavBar
@@ -61,7 +60,7 @@ const PageHeader: React.FC = () => {
         ) : (
           <Button
             type="button"
-            onClick={() => router.push('/signIn')}
+            onClick={() => Router.push('/signIn')}
             style={{ maxWidth: '180px' }}
           >
             Entrar <FiLogIn size={22} />
@@ -75,5 +74,3 @@ const PageHeader: React.FC = () => {
     </HeaderContainer>
   );
 };
-
-export { PageHeader };

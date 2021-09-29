@@ -17,12 +17,12 @@ import { successToast, warnToast } from '../../utils/toast';
 import { removeKeys } from '../../utils/removeKeys';
 import { getAPIClient } from '../../services/apiClient';
 
-import { Button } from '../Button';
-import { ImageRadioButton } from '../ImageRadioButton';
+import { Button } from '../Forms/Button';
+import { ImageRadioButton } from '../Forms/ImageRadioButton';
 import { FlexItems } from '../FlexItems';
-import { Select } from '../Select';
-import { Input } from '../Input';
-import { Textarea } from '../Textarea';
+import { Select } from '../Forms/Select';
+import { Input } from '../Forms/Input';
+import { Textarea } from '../Forms/Textarea';
 
 import { FormButtons } from './styles';
 

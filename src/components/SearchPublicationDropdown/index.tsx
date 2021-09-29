@@ -7,8 +7,8 @@ import { FiSearch, FiX, FiChevronUp, FiChevronDown } from 'react-icons/fi';
 import { Category, Sex, Situation, Size } from '../../types/publication';
 import { selectOptions } from '../../utils/inputsOptions';
 
-import { Select } from '../Select';
-import { Button } from '../Button';
+import { Select } from '../Forms/Select';
+import { Button } from '../Forms/Button';
 
 import { SearchDropdownContainer } from './styles';
 
@@ -24,72 +24,72 @@ interface SearchPublicationDropdownProps {
   onReset: () => void;
 }
 
-const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps> = ({
-  onSubmit,
-  onReset,
-}) => {
-  const formRef = useRef<FormHandles>(null);
+export const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps> =
+  ({ onSubmit, onReset }) => {
+    const formRef = useRef<FormHandles>(null);
 
-  const [isDrop, setIsDrop] = useState(false);
+    const [isDrop, setIsDrop] = useState(false);
 
-  const dropSearch = useCallback(() => {
-    setIsDrop(true);
-  }, []);
+    const dropSearch = useCallback(() => {
+      setIsDrop(true);
+    }, []);
 
-  const hideSearch = useCallback(() => {
-    setIsDrop(false);
-  }, []);
+    const hideSearch = useCallback(() => {
+      setIsDrop(false);
+    }, []);
 
-  const handleReset = useCallback(() => {
-    formRef.current.reset();
-    onReset();
-  }, [formRef.current]);
+    const handleReset = useCallback(() => {
+      formRef.current.reset();
+      onReset();
+    }, [formRef.current]);
 
-  return (
-    <SearchDropdownContainer isDrop={isDrop}>
-      <Form ref={formRef} onSubmit={(e: FormEvent) => e.preventDefault()}>
-        <Select
-          name="situacao"
-          placeholder="Situação"
-          options={selectOptions.situation}
-        />
-        <Select name="porte" placeholder="Porte" options={selectOptions.size} />
-        <Select
-          name="categoria"
-          placeholder="Categoria"
-          options={selectOptions.category}
-        />
-        <Select
-          name="sexo"
-          placeholder="Sexo do Animal"
-          options={selectOptions.sex}
-        />
-        <Button
-          type="button"
-          title="Pesquisar"
-          onClick={() =>
-            onSubmit(formRef.current.getData() as SubmitData, formRef.current)
-          }
-          styleType="green"
-        >
-          <FiSearch size={22} />
-        </Button>
-        <Button type="button" title="Limpar" onClick={handleReset}>
-          <FiX size={22} />
-        </Button>
-      </Form>
+    return (
+      <SearchDropdownContainer isDrop={isDrop}>
+        <Form ref={formRef} onSubmit={(e: FormEvent) => e.preventDefault()}>
+          <Select
+            name="situacao"
+            placeholder="Situação"
+            options={selectOptions.situation}
+          />
+          <Select
+            name="porte"
+            placeholder="Porte"
+            options={selectOptions.size}
+          />
+          <Select
+            name="categoria"
+            placeholder="Categoria"
+            options={selectOptions.category}
+          />
+          <Select
+            name="sexo"
+            placeholder="Sexo do Animal"
+            options={selectOptions.sex}
+          />
+          <Button
+            type="button"
+            title="Pesquisar"
+            onClick={() =>
+              onSubmit(formRef.current.getData() as SubmitData, formRef.current)
+            }
+            styleType="green"
+          >
+            <FiSearch size={22} />
+          </Button>
+          <Button type="button" title="Limpar" onClick={handleReset}>
+            <FiX size={22} />
+          </Button>
+        </Form>
 
-      {isDrop ? (
-        <Button className="dropButton" type="button" onClick={hideSearch}>
-          Esconder <FiChevronUp size={22} />
-        </Button>
-      ) : (
-        <Button className="dropButton" type="button" onClick={dropSearch}>
-          Busca Rápida <FiChevronDown size={22} />
-        </Button>
-      )}
-    </SearchDropdownContainer>
-  );
-};
-
-export { SearchPublicationDropdown };
+        {isDrop ? (
+          <Button className="dropButton" type="button" onClick={hideSearch}>
+            Esconder <FiChevronUp size={22} />
+          </Button>
+        ) : (
+          <Button className="dropButton" type="button" onClick={dropSearch}>
+            Busca Rápida <FiChevronDown size={22} />
+          </Button>
+        )}
+      </SearchDropdownContainer>
+    );
+  };

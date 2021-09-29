@@ -22,7 +22,7 @@ import { handleErrors } from '../functions/handleErrors';
 import { removeKeys } from '../utils/removeKeys';
 
 import { PublicationsMap } from '../components/Map';
-import { PageHeader } from '../components/PageHeader';
+import { PageHeader } from '../components/Layout/PageHeader';
 import { SearchPublicationDropdown } from '../components/SearchPublicationDropdown';
 
 import { Aside, Container, MainContent, Register } from '../styles/Home';

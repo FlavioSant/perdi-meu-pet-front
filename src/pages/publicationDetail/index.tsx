@@ -9,15 +9,15 @@ import { auth } from '../../middleware/auth';
 import { getAPIClient } from '../../services/apiClient';
 import { serverSideHandler } from '../../functions/serverSideHandler';
 
-import { Button } from '../../components/Button';
-import { PageTitle } from '../../components/PageTitle';
+import { Button } from '../../components/Forms/Button';
 import { PublicationsMap } from '../../components/Map';
 import { FlexItems } from '../../components/FlexItems';
-import { PageLayout } from '../../components/PageLayout';
+import { PageTitle } from '../../components/Layout/PageTitle';
 import { NoPublication } from '../../components/NoPublication';
-import { PageContainer } from '../../components/PageContainer';
 import { PreviewImages } from '../../components/PreviewImages';
-import { SituationCard } from '../../components/SituationCard';
+import { PageLayout } from '../../components/Layout/PageLayout';
+import { SituationCard } from '../../components/Cards/SituationCard';
+import { PageContainer } from '../../components/Layout/PageContainer';
 
 import {
   AdvertiserInfo,

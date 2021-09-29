@@ -18,20 +18,20 @@ import { serverSideHandler } from '../../functions/serverSideHandler';
 import { parseNewPublication } from '../../functions/parsePublications';
 import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
 
-import { Input } from '../../components/Input';
-import { Select } from '../../components/Select';
-import { Button } from '../../components/Button';
-import { Textarea } from '../../components/Textarea';
-import { PageTitle } from '../../components/PageTitle';
-import { InputFile } from '../../components/InputFile';
+import { Input } from '../../components/Forms/Input';
+import { Select } from '../../components/Forms/Select';
+import { Button } from '../../components/Forms/Button';
 import { FlexItems } from '../../components/FlexItems';
-import { InputMask } from '../../components/InputMask';
-import { PageLayout } from '../../components/PageLayout';
 import { ClickableMap } from '../../components/Map/index';
+import { Textarea } from '../../components/Forms/Textarea';
+import { InputFile } from '../../components/Forms/InputFile';
+import { InputMask } from '../../components/Forms/InputMask';
 import Modal, { ModalHandles } from '../../components/Modal';
-import { PageContainer } from '../../components/PageContainer';
+import { PageTitle } from '../../components/Layout/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
-import { ImageRadioButton } from '../../components/ImageRadioButton';
+import { PageLayout } from '../../components/Layout/PageLayout';
+import { PageContainer } from '../../components/Layout/PageContainer';
+import { ImageRadioButton } from '../../components/Forms/ImageRadioButton';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
 

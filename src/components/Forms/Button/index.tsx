@@ -7,17 +7,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type: 'button' | 'submit' | 'reset';
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   styleType,
   type,
   ...rest
-}) => {
-  return (
-    <ButtonContainer type={type} styleType={styleType || 'orange'} {...rest}>
-      {children}
-    </ButtonContainer>
-  );
-};
-
-export { Button };
+}) => (
+  <ButtonContainer type={type} styleType={styleType || 'orange'} {...rest}>
+    {children}
+  </ButtonContainer>
+);

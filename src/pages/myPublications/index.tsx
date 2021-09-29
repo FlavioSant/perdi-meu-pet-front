@@ -8,10 +8,10 @@ import { getAPIClient } from '../../services/apiClient';
 import { errorToast, successToast } from '../../utils/toast';
 import { serverSideHandler } from '../../functions/serverSideHandler';
 
-import { PageTitle } from '../../components/PageTitle';
-import { PageLayout } from '../../components/PageLayout';
+import { PageTitle } from '../../components/Layout/PageTitle';
 import { NoPublication } from '../../components/NoPublication';
-import { PublicationCard } from '../../components/PublicationCard';
+import { PageLayout } from '../../components/Layout/PageLayout';
+import { PublicationCard } from '../../components/Cards/PublicationCard';
 import { ModalEditPublication } from '../../components/ModalEditPublication';
 
 interface MyPublicationProps {

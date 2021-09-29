@@ -12,19 +12,18 @@ interface PreviewImageProps {
   onRemove?: () => void;
 }
 
-const PreviewImages: React.FC<PreviewImageProps> = ({ image, onRemove }) => {
-  return (
-    <PreviewImageContainer>
-      <figure>
-        <img src={image.url} alt={image.name} />
-        {onRemove && (
-          <button onClick={onRemove} type="button" title="Remover">
-            <FiTrash2 size={18} />
-          </button>
-        )}
-      </figure>
-    </PreviewImageContainer>
-  );
-};
-
-export { PreviewImages };
+export const PreviewImages: React.FC<PreviewImageProps> = ({
+  image,
+  onRemove,
+}) => (
+  <PreviewImageContainer>
+    <figure>
+      <img src={image.url} alt={image.name} />
+      {onRemove && (
+        <button onClick={onRemove} type="button" title="Remover">
+          <FiTrash2 size={18} />
+        </button>
+      )}
+    </figure>
+  </PreviewImageContainer>
+);

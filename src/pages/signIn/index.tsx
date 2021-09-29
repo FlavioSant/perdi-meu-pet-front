@@ -1,18 +1,18 @@
-import { NextPage } from 'next';
 import Link from 'next/link';
+import { NextPage } from 'next';
 import { useCallback, useRef } from 'react';
 
-import { FiLock, FiMail } from 'react-icons/fi';
+import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
+import { FiLock, FiMail } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 import { handleErrors } from '../../functions/handleErrors';
 
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { PageFooter } from '../../components/PageFooter';
+import { Input } from '../../components/Forms/Input';
+import { Button } from '../../components/Forms/Button';
+import { PageFooter } from '../../components/Layout/PageFooter';
 
 import {
   BackgroundContainer,
