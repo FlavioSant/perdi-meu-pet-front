@@ -20,7 +20,7 @@ export const CardControls: React.FC<CardControlsProps> = ({
   <ControlsContainer>
     <Button
       type="button"
-      styleType="green"
+      background="green"
       onClick={onResolve}
       title={`Marcar Como ${
         situation === 'desaparecido'
@@ -40,7 +40,7 @@ export const CardControls: React.FC<CardControlsProps> = ({
 
     <Button
       type="button"
-      styleType="blue"
+      background="blue"
       title="Editar Publicação"
       onClick={onEdit}
     >
@@ -50,7 +50,7 @@ export const CardControls: React.FC<CardControlsProps> = ({
 
     <Button
       type="button"
-      styleType="red"
+      background="red"
       title="Excluir Publicação"
       onClick={onDelete}
     >

@@ -8,7 +8,7 @@ export const NavBarContainer = styled.nav`
   padding-left: 1rem;
   z-index: 2000;
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
     padding: 0;
     position: absolute;
@@ -26,7 +26,7 @@ export const MenuList = styled.ul`
   list-style: none;
   height: 100%;
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     flex: 1;
   }

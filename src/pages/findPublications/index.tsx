@@ -116,7 +116,7 @@ const FindPublications: NextPage = () => {
 
           <Button
             type="submit"
-            styleType="green"
+            background="green"
             title="Buscar Publicações"
             style={{ padding: '1rem', marginTop: '2rem', width: '100%' }}
           >

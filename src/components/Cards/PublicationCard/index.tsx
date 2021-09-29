@@ -1,9 +1,10 @@
-import Link from 'next/link';
 import { FiEye } from 'react-icons/fi';
 
 import { Category, Sex, Situation, Size } from '../../../types/publication';
 
 import { CardControls } from '../CardControls';
+import { ActionLink } from '../../Utilities/ActionLink';
+
 import {
   InfoContainer,
   PublicationCardContainer,
@@ -66,12 +67,11 @@ export const PublicationCard: React.FC<PublicationCardProps> = ({
     </InfoContainer>
 
     {data.publicacaoId && (
-      <Link href={`/publicationDetail?publicationId=${data.publicacaoId}`}>
-        <a title="Clique para ver detalhes da publicação">
-          <FiEye size={22} />
-          Ver Detalhes
-        </a>
-      </Link>
+      <ActionLink
+        href={`/publicationDetail?publicationId=${data.publicacaoId}`}
+        label=" Ver Detalhes"
+        icon={FiEye}
+      />
     )}
 
     {data.isResolvido ? (

@@ -24,6 +24,7 @@ export const Header = styled.header<HeaderProps>`
   position: relative;
 
   img {
+    display: none;
     cursor: pointer;
     width: 100px;
     height: 70px;
@@ -43,8 +44,12 @@ export const Header = styled.header<HeaderProps>`
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     padding: 0 0.3rem;
+
+    img {
+      display: initial;
+    }
 
     nav {
       display: ${({ isMenuOpen }) => (isMenuOpen ? 'flex' : 'none')};
@@ -60,7 +65,7 @@ export const MenuButton = styled.button`
   font-size: 0;
   padding: 0.3rem;
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     display: block;
   }
 `;

@@ -26,12 +26,12 @@ import { ClickableMap } from '../../components/Map/index';
 import { Textarea } from '../../components/Forms/Textarea';
 import { InputFile } from '../../components/Forms/InputFile';
 import { InputMask } from '../../components/Forms/InputMask';
-import ModalInfo, { ModalInfoHandles } from '../../components/Modais/ModalInfo';
 import { PageTitle } from '../../components/Layout/PageTitle';
 import { PreviewImages } from '../../components/PreviewImages';
 import { PageLayout } from '../../components/Layout/PageLayout';
 import { PageContainer } from '../../components/Layout/PageContainer';
 import { ImageRadioButton } from '../../components/Forms/ImageRadioButton';
+import ModalInfo, { ModalInfoHandles } from '../../components/Modais/ModalInfo';
 
 import { MapContainer, FormButtons, PreviewImagesContainer } from './styles';
 
@@ -228,14 +228,14 @@ const CreatePublication: NextPage = () => {
           <FormButtons>
             <Button
               type="button"
-              styleType="red"
+              background="red"
               title="Cancelar"
               onClick={() => router.push('/')}
             >
               <FiX size={22} />
               Cancelar
             </Button>
-            <Button type="submit" styleType="green" title="Finalizar Cadastro">
+            <Button type="submit" background="green" title="Finalizar Cadastro">
               <FiCheck size={22} />
               Finalizar Cadastro
             </Button>

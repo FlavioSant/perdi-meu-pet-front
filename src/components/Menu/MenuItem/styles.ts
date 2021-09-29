@@ -29,7 +29,7 @@ export const MenuItemContainer = styled.li`
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     background: var(--gray-100);
     width: 100%;
 

@@ -2,10 +2,10 @@ import Router from 'next/router';
 import { useState } from 'react';
 
 import { useAuth } from '../../../hooks/auth';
-import { Button } from '../../Forms/Button';
 import { FiLogIn, FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
 
 import { MenuNavBar } from '../../Menu/MenuNavBar';
+import { ActionLink } from '../../Utilities/ActionLink';
 
 import { HeaderContainer, Header, MenuButton, UserInfo } from './styles';
 
@@ -58,13 +58,12 @@ export const PageHeader: React.FC = () => {
             </button>
           </UserInfo>
         ) : (
-          <Button
-            type="button"
-            onClick={() => Router.push('/signIn')}
-            style={{ maxWidth: '180px' }}
-          >
-            Entrar <FiLogIn size={22} />
-          </Button>
+          <ActionLink
+            href="/signIn"
+            label="Entrar"
+            icon={FiLogIn}
+            width="160px"
+          />
         )}
 
         <MenuButton type="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
