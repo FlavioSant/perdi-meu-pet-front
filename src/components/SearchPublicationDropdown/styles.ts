@@ -41,7 +41,7 @@ export const SearchDropdownContainer = styled.div<SearchDropdownContainerProps>`
   }
 
   @media (max-width: 720px) {
-    top: -270px;
+    top: -320px;
 
     form {
       grid-template-columns: 1fr;
