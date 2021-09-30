@@ -4,11 +4,11 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiSearch, FiX, FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
-import { Category, Sex, Situation, Size } from '../../types/publication';
-import { selectOptions } from '../../utils/inputsOptions';
+import { Category, Sex, Situation, Size } from '../../../types/publication';
+import { selectOptions } from '../../../utils/inputsOptions';
 
-import { Select } from '../Forms/Select';
-import { Button } from '../Forms/Button';
+import { Select } from '../../Forms/Select';
+import { Button } from '../../Forms/Button';
 
 import { SearchDropdownContainer } from './styles';
 
@@ -69,10 +69,10 @@ export const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps>
           <Button
             type="button"
             title="Pesquisar"
+            background="green"
             onClick={() =>
               onSubmit(formRef.current.getData() as SubmitData, formRef.current)
             }
-            styleType="green"
           >
             <FiSearch size={22} />
           </Button>

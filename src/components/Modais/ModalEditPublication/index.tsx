@@ -19,7 +19,7 @@ import { getAPIClient } from '../../../services/apiClient';
 
 import { Button } from '../../Forms/Button';
 import { ImageRadioButton } from '../../Forms/ImageRadioButton';
-import { FlexItems } from '../../FlexItems';
+import { FlexItems } from '../../Utilities/FlexItems';
 import { Select } from '../../Forms/Select';
 import { Input } from '../../Forms/Input';
 import { Textarea } from '../../Forms/Textarea';
@@ -161,14 +161,14 @@ const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
         <FormButtons>
           <Button
             type="button"
-            styleType="red"
+            background="red"
             title="Cancelar"
             onClick={() => onRequestClose(false)}
           >
             <FiX size={22} />
             Cancelar
           </Button>
-          <Button type="submit" styleType="green" title="Finalizar Cadastro">
+          <Button type="submit" background="green" title="Finalizar Cadastro">
             <FiCheck size={22} />
             Finalizar Cadastro
           </Button>

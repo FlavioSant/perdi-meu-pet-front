@@ -4,12 +4,12 @@ import { ImWhatsapp } from 'react-icons/im';
 import { Publication } from '../../../types/publication';
 
 import { PublicationsMap } from '../../Map';
-import { FlexItems } from '../../FlexItems';
 import { PageTitle } from '../../Layout/PageTitle';
-import { PreviewImages } from '../../PreviewImages';
 import { PageLayout } from '../../Layout/PageLayout';
+import { FlexItems } from '../../Utilities/FlexItems';
 import { SituationCard } from '../../Cards/SituationCard';
 import { PageContainer } from '../../Layout/PageContainer';
+import { PreviewImages } from '../../Utilities/PreviewImages';
 
 import {
   AdvertiserInfo,
