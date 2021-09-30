@@ -1,6 +1,6 @@
-import { Position } from '../@types/position';
-import { FindPublicationData } from '../pages/findPublications';
-import { CreatePublicationData } from '../pages/createPublication';
+import { Position } from '../types/position';
+import { CreatePublicationData } from '../types/pages/createPublication';
+import { SearchPublicationData } from '../types/pages/searchPublication';
 
 import { removeKeys } from '../utils/removeKeys';
 
@@ -36,7 +36,7 @@ export const parseNewPublication = (
 };
 
 export const parseFindPublications = (
-  data: FindPublicationData,
+  data: SearchPublicationData,
   position: Position,
 ) => {
   let parsedFindPublication = {

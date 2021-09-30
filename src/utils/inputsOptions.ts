@@ -78,7 +78,7 @@ export const radioButtonOptions = [
     id: 'encontrado',
     label: 'Encontrado',
     value: 'encontrado',
-    imageURL: 'happy-animals.svg',
+    imageURL: '/happy-animals.svg',
   },
   {
     id: 'adocao',
