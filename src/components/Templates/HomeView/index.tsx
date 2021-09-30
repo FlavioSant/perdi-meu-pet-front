@@ -12,7 +12,6 @@ import {
   Size,
 } from '../../../types/publication';
 
-import { api } from '../../../services/api';
 import { useAuth } from '../../../hooks/auth';
 import { removeKeys } from '../../../utils/removeKeys';
 import { getCoords } from '../../../functions/getCoords';
@@ -44,7 +43,7 @@ export const HomeView: React.FC = () => {
     try {
       const { latitude, longitude } = await getCoords();
 
-      const { data } = await api.post<Publication[]>('search', {
+      const { data } = await getAPIClient().post<Publication[]>('search', {
         latitude,
         longitude,
       });

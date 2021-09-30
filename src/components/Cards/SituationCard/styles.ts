@@ -27,10 +27,5 @@ export const SituationCardContainer = styled.div`
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
-
-    img {
-      width: 80%;
-      height: 80%;
-    }
   }
 `;

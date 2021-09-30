@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { Situation } from '../../../types/publication';
 
 import { SituationCardContainer } from './styles';
@@ -15,7 +17,12 @@ const situationImgUrlTypes = {
 export const SituationCard: React.FC<SituationCardProps> = ({ situation }) => (
   <SituationCardContainer>
     <figure>
-      <img src={situationImgUrlTypes[situation]} alt={situation} />
+      <Image
+        src={situationImgUrlTypes[situation]}
+        alt={situation}
+        width={70}
+        height={70}
+      />
     </figure>
     <span>{situation === 'adocao' ? 'adoção' : situation}</span>
   </SituationCardContainer>

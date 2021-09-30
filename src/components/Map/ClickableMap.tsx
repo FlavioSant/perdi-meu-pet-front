@@ -17,7 +17,7 @@ interface ClickableMapProps {
   onMapClick: (event: LeafletMouseEvent) => void;
 }
 
-export const ClickableMap: React.FC<ClickableMapProps> = ({
+const ClickableMap: React.FC<ClickableMapProps> = ({
   center,
   position,
   onMapClick,

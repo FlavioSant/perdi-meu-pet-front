@@ -12,7 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const InputFile: React.FC<InputProps> = ({
+export const InputFile: React.FC<InputProps> = ({
   accept,
   name,
   description,
@@ -48,5 +48,3 @@ const InputFile: React.FC<InputProps> = ({
     </InputFileContainer>
   );
 };
-
-export { InputFile };
