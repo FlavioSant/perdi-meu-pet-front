@@ -23,11 +23,9 @@ export const Header = styled.header<HeaderProps>`
   height: 100%;
   position: relative;
 
-  img {
+  figure {
     display: none;
     cursor: pointer;
-    width: 100px;
-    height: 70px;
   }
 
   div {
@@ -47,7 +45,7 @@ export const Header = styled.header<HeaderProps>`
   @media (max-width: 768px) {
     padding: 0 0.3rem;
 
-    img {
+    figure {
       display: initial;
     }
 
