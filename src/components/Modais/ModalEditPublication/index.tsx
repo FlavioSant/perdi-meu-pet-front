@@ -168,9 +168,9 @@ const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
             <FiX size={22} />
             Cancelar
           </Button>
-          <Button type="submit" background="green" title="Finalizar Cadastro">
+          <Button type="submit" background="green" title="Salvar Alterações">
             <FiCheck size={22} />
-            Finalizar Cadastro
+            Salvar Alterações
           </Button>
         </FormButtons>
       </Form>
