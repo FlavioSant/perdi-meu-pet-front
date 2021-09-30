@@ -68,7 +68,7 @@ export const PublicationCard: React.FC<PublicationCardProps> = ({
 
     {data.publicacaoId && (
       <ActionLink
-        href={`/publicationDetail?publicationId=${data.publicacaoId}`}
+        href={`/publication/${data.publicacaoId}`}
         label=" Ver Detalhes"
         icon={FiEye}
       />

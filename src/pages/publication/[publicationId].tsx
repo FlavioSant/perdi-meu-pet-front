@@ -1,14 +1,12 @@
-import Router from 'next/router';
 import { NextPage } from 'next';
 
 import { auth } from '../../middleware/auth';
 import { Publication } from '../../types/publication';
 import { getAPIClient } from '../../services/apiClient';
+import { NoPublication } from '../../components/NoPublication';
+import { PageLayout } from '../../components/Layout/PageLayout';
 import { serverSideHandler } from '../../functions/serverSideHandler';
 import { PublicationDetailView } from '../../components/Templates/PublicationDetailView';
-import { PageLayout } from '../../components/Layout/PageLayout';
-import { Button } from '../../components/Forms/Button';
-import { NoPublication } from '../../components/NoPublication';
 
 interface PublicationDetailProps {
   publication: Publication;
@@ -17,14 +15,7 @@ interface PublicationDetailProps {
 const PublicationDetail: NextPage<PublicationDetailProps> = ({ publication }) =>
   !publication ? (
     <PageLayout>
-      <NoPublication title="Publicação não encontrada..." />
-      <Button
-        type="button"
-        onClick={() => Router.back()}
-        style={{ margin: '2rem auto', width: 250 }}
-      >
-        Voltar
-      </Button>
+      <NoPublication title="Publicação não encontrada..." hasGoBack />
     </PageLayout>
   ) : (
     <PublicationDetailView publication={publication} />

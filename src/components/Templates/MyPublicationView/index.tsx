@@ -1,25 +1,23 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useCallback, useState } from 'react';
 
-import { auth } from '../../middleware/auth';
-import { Publication } from '../../types/publication';
-import { getAPIClient } from '../../services/apiClient';
-import { errorToast, successToast } from '../../utils/toast';
-import { serverSideHandler } from '../../functions/serverSideHandler';
+import { Publication } from '../../../types/publication';
 
-import { PageTitle } from '../../components/Layout/PageTitle';
-import { NoPublication } from '../../components/NoPublication';
-import { PageLayout } from '../../components/Layout/PageLayout';
-import { PublicationCard } from '../../components/Cards/PublicationCard';
-import { ModalEditPublication } from '../../components/Modais/ModalEditPublication';
+import { getAPIClient } from '../../../services/apiClient';
+import { errorToast, successToast } from '../../../utils/toast';
 
-interface MyPublicationProps {
-  myPublications: Publication[];
+import { PageTitle } from '../../Layout/PageTitle';
+import { PageLayout } from '../../Layout/PageLayout';
+import { PublicationCard } from '../../Cards/PublicationCard';
+import { ModalEditPublication } from '../../Modais/ModalEditPublication';
+
+interface MyPublicationViewProps {
+  publications: Publication[];
 }
 
-const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
-  const router = useRouter();
+export const MyPublicationView: React.FC<MyPublicationViewProps> = ({
+  publications,
+}) => {
   const [selectedPublication, setSelectedPublication] =
     useState<Publication | null>(null);
 
@@ -39,7 +37,7 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
     setIsModalEditPublicationOpen(false);
 
     if (isRefresh) {
-      router.replace(router.asPath);
+      Router.replace(Router.asPath);
     }
   }, []);
 
@@ -51,7 +49,7 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
 
       successToast({ message: 'Publicação alterada com sucesso.' });
 
-      router.replace(router.asPath);
+      Router.replace(Router.asPath);
     } catch (err) {
       errorToast({ message: 'Não foi possível alterar publicação.' });
       console.error({ err });
@@ -64,32 +62,24 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
 
       successToast({ message: 'Publicação excluída com sucesso.' });
 
-      router.replace(router.asPath);
+      Router.replace(Router.asPath);
     } catch (err) {
       errorToast({ message: 'Não foi possível remover a publicação.' });
       console.error({ err });
     }
   }, []);
 
-  if (!myPublications || myPublications.length === 0) {
-    return (
-      <PageLayout>
-        <NoPublication title="Nenhuma publicação encontrada." />
-      </PageLayout>
-    );
-  }
-
   return (
     <PageLayout>
       <ModalEditPublication
         isOpen={isModalEditPublicationOpen}
         publication={selectedPublication}
-        onRequestClose={isRefresh => handleCloseModalEditPublication(isRefresh)}
+        onRequestClose={handleCloseModalEditPublication}
       />
 
       <PageTitle title="Minhas publicaçãoes" />
 
-      {myPublications.map(publication => (
+      {publications.map(publication => (
         <PublicationCard
           key={publication.publicacaoId}
           data={{
@@ -112,17 +102,3 @@ const MyPublication: NextPage<MyPublicationProps> = ({ myPublications }) => {
     </PageLayout>
   );
 };
-
-export const getServerSideProps = serverSideHandler(auth(), async ctx => {
-  const { data } = await getAPIClient(ctx).get<Publication[]>(
-    'minhas-publicacoes',
-  );
-
-  return {
-    props: {
-      myPublications: data,
-    },
-  };
-});
-
-export default MyPublication;

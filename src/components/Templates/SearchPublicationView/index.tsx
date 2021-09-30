@@ -1,53 +1,38 @@
-import { NextPage } from 'next';
 import { useCallback, useRef, useState } from 'react';
+
+import { Publication } from '../../../types/publication';
+import { SearchPublicationData } from '../../../types/pages/searchPublication';
 
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
+import {
+  radioButtonOptions,
+  selectOptions,
+} from '../../../utils/inputsOptions';
 import { FiSearch } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
+import { warnToast } from '../../../utils/toast';
+import { getCoords } from '../../../functions/getCoords';
+import { getAPIClient } from '../../../services/apiClient';
+import { handleErrors } from '../../../functions/handleErrors';
+import { parseFindPublications } from '../../../functions/parsePublications';
 
-import {
-  Category,
-  Publication,
-  Sex,
-  Situation,
-  Size,
-} from '../../types/publication';
+import { Input } from '../../Forms/Input';
+import { Select } from '../../Forms/Select';
+import { FlexItems } from '../../FlexItems';
+import { Button } from '../../Forms/Button';
+import { PageTitle } from '../../Layout/PageTitle';
+import { NoPublication } from '../../NoPublication';
+import { PageLayout } from '../../Layout/PageLayout';
+import { PageContainer } from '../../Layout/PageContainer';
+import { PublicationCard } from '../../Cards/PublicationCard';
+import { ImageRadioButton } from '../../Forms/ImageRadioButton';
 
-import { auth } from '../../middleware/auth';
-import { warnToast } from '../../utils/toast';
-import { getCoords } from '../../functions/getCoords';
-import { getAPIClient } from '../../services/apiClient';
-import { handleErrors } from '../../functions/handleErrors';
-import { serverSideHandler } from '../../functions/serverSideHandler';
-import { parseFindPublications } from '../../functions/parsePublications';
-import { radioButtonOptions, selectOptions } from '../../utils/inputsOptions';
-
-import { Input } from '../../components/Forms/Input';
-import { Select } from '../../components/Forms/Select';
-import { Button } from '../../components/Forms/Button';
-import { FlexItems } from '../../components/FlexItems';
-import { PageTitle } from '../../components/Layout/PageTitle';
-import { NoPublication } from '../../components/NoPublication';
-import { PageLayout } from '../../components/Layout/PageLayout';
-import { PageContainer } from '../../components/Layout/PageContainer';
-import { PublicationCard } from '../../components/Cards/PublicationCard';
-import { ImageRadioButton } from '../../components/Forms/ImageRadioButton';
-
-export interface FindPublicationData {
-  categoria: Category;
-  cor: string;
-  nome?: string;
-  porte: Size;
-  sexo?: Sex;
-  situacao: Situation;
-}
-
-const FindPublications: NextPage = () => {
+export const SearchPublicationView: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [publications, setPublications] = useState<Publication[]>([]);
 
-  const handleSubmit = useCallback(async (formData: FindPublicationData) => {
+  const handleSubmit = useCallback(async (formData: SearchPublicationData) => {
     try {
       formRef.current?.setErrors({});
 
@@ -118,7 +103,9 @@ const FindPublications: NextPage = () => {
             type="submit"
             background="green"
             title="Buscar Publicações"
-            style={{ padding: '1rem', marginTop: '2rem', width: '100%' }}
+            marginTop="2rem"
+            width="100%"
+            style={{ padding: '1rem' }}
           >
             <FiSearch size={18} />
             Buscar Publicações
@@ -156,9 +143,3 @@ const FindPublications: NextPage = () => {
     </PageLayout>
   );
 };
-
-export const getServerSideProps = serverSideHandler(auth(), async () => ({
-  props: {},
-}));
-
-export default FindPublications;

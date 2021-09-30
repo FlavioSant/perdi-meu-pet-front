@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAuth } from '../../../hooks/auth';
 import { FiLogIn, FiLogOut, FiMenu, FiUser } from 'react-icons/fi';
 
+import { MenuItem } from '../../Menu/MenuItem';
 import { MenuNavBar } from '../../Menu/MenuNavBar';
 import { ActionLink } from '../../Utilities/ActionLink';
 
@@ -17,32 +18,18 @@ export const PageHeader: React.FC = () => {
     <HeaderContainer>
       <Header isMenuOpen={isMenuOpen}>
         <img
-          src="logo.svg"
+          src="/logo.svg"
           alt="Perdi Meu Pet"
           title="Perdi Meu Pet"
           onClick={() => Router.push('/')}
         />
 
-        <MenuNavBar
-          items={[
-            {
-              label: 'Inicio',
-              path: '/',
-            },
-            {
-              label: 'Criar Publicação',
-              path: '/publication/new',
-            },
-            {
-              label: 'Buscar Publicação',
-              path: '/findPublications',
-            },
-            {
-              label: 'Minhas Publicações',
-              path: '/myPublications',
-            },
-          ]}
-        />
+        <MenuNavBar>
+          <MenuItem label="Inicio" path="/" />
+          <MenuItem label="Criar Publicação" path="/publication/new" />
+          <MenuItem label="Buscar Publicação" path="/publication/search" />
+          <MenuItem label="Minhas Publicações" path="/publication/me" />
+        </MenuNavBar>
 
         {isAuthenticated ? (
           <UserInfo>
