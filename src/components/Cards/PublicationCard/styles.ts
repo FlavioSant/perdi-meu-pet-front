@@ -21,26 +21,6 @@ export const PublicationCardContainer = styled.div<PublicationContainerProps>`
       background: var(--green-light);
     `}
 
-  /* a {
-    display: flex;
-    align-items: center;
-    align-self: flex-end;
-    gap: 0.5rem;
-    background-color: var(--green-light);
-    color: var(--green);
-    border: 1px solid var(--green);
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.5rem;
-    text-decoration: none;
-    transition: background 0.2s;
-
-    &:hover {
-      background-color: var(--green-medium);
-    }
-  } */
-
   @media (max-width: 720px) {
     flex-direction: column;
 
