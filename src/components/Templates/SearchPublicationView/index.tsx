@@ -5,12 +5,13 @@ import { SearchPublicationData } from '../../../types/pages/searchPublication';
 
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import { FiEye, FiSearch } from 'react-icons/fi';
+
 import {
   radioButtonOptions,
   selectOptions,
 } from '../../../utils/inputsOptions';
-import { FiSearch } from 'react-icons/fi';
-import { FormHandles } from '@unform/core';
 import { warnToast } from '../../../utils/toast';
 import { getCoords } from '../../../functions/getCoords';
 import { getAPIClient } from '../../../services/apiClient';
@@ -27,6 +28,10 @@ import { FlexItems } from '../../Utilities/FlexItems';
 import { PageContainer } from '../../Layout/PageContainer';
 import { PublicationCard } from '../../Cards/PublicationCard';
 import { ImageRadioButton } from '../../Forms/ImageRadioButton';
+import { ResolvedPublication } from '../../Cards/PublicationCard/ResolvedPublication';
+import { ActionLink } from '../../Utilities/ActionLink';
+
+import { PublicationCardContent } from './styles';
 
 export const SearchPublicationView: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -60,9 +65,17 @@ export const SearchPublicationView: React.FC = () => {
         lng,
       });
 
-      const { data } = await getAPIClient().post('search-filter', parsedData);
+      const { data: publications } = await getAPIClient().post<Publication[]>(
+        'search-filter',
+        parsedData,
+      );
 
-      setPublications(data);
+      const parsedPublications = publications.map(publication => ({
+        ...publication,
+        createdAt: new Date(publication.createdAt).toLocaleString(),
+      }));
+
+      setPublications(parsedPublications);
     } catch (err) {
       handleErrors({
         description: 'Não foi possívelbuscar publicaçãos.',
@@ -120,18 +133,20 @@ export const SearchPublicationView: React.FC = () => {
           {publications.map((publication, index) => (
             <PublicationCard
               key={index}
-              data={{
-                publicacaoId: publication.publicacaoId,
-                categoria: publication.categoria,
-                createdAt: new Date(publication.createdAt).toLocaleString(),
-                isResolvido: publication.isResolvido,
-                porte: publication.porte,
-                situacao: publication.situacao,
-                anexo: publication.anexos[0] || '',
-                nome: publication.nome || '',
-                sexo: publication.sexo,
-              }}
-            />
+              publication={publication}
+              anexoId={publication.anexos[0]}
+            >
+              <PublicationCardContent>
+                {publication.isResolvido && (
+                  <ResolvedPublication situation={publication.situacao} />
+                )}
+                <ActionLink
+                  href={`/publication/${publication.publicacaoId}`}
+                  label=" Ver Detalhes"
+                  icon={FiEye}
+                />
+              </PublicationCardContent>
+            </PublicationCard>
           ))}
         </section>
       ) : (

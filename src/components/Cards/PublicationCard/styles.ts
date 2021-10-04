@@ -6,7 +6,6 @@ interface PublicationContainerProps {
 
 export const PublicationCardContainer = styled.div<PublicationContainerProps>`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   background: var(--gray-100);
   box-shadow: 2px 6px 15px rgba(0, 0, 0, 0.15);
@@ -74,27 +73,6 @@ export const InfoContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    width: 100%;
-  }
-`;
-
-export const ResolvedPublication = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  background: var(--green-medium);
-  border-radius: 5px;
-  color: var(--green);
-  padding: 1rem;
-
-  p {
-    font-size: 1.15rem;
-    font-weight: bold;
-  }
-
-  @media (max-width: 720px) {
-    margin-top: 1rem;
     width: 100%;
   }
 `;

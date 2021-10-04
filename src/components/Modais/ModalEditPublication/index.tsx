@@ -162,13 +162,17 @@ export const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
           <Button
             type="button"
             background="red"
-            title="Cancelar"
+            title="Clique para cancelar"
             onClick={() => onRequestClose(false)}
           >
             <FiX size={22} />
             Cancelar
           </Button>
-          <Button type="submit" background="green" title="Salvar Alterações">
+          <Button
+            type="submit"
+            background="green"
+            title="Clique para salvar alterações"
+          >
             <FiCheck size={22} />
             Salvar Alterações
           </Button>

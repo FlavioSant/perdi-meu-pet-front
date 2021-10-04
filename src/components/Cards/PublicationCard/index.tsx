@@ -1,100 +1,44 @@
-import { FiEye } from 'react-icons/fi';
+import { Publication } from '../../../types/publication';
 
-import { Category, Sex, Situation, Size } from '../../../types/publication';
-
-import { CardControls } from '../CardControls';
-import { ActionLink } from '../../Utilities/ActionLink';
-
-import {
-  InfoContainer,
-  PublicationCardContainer,
-  ResolvedPublication,
-} from './styles';
-
-interface CardData {
-  publicacaoId?: string;
-  categoria: Category;
-  createdAt: string;
-  nome?: string;
-  anexo?: string;
-  isResolvido: boolean;
-  porte: Size;
-  sexo: Sex;
-  situacao: Situation;
-}
-
-interface CardControlsMethods {
-  onResolve: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
-}
+import { InfoContainer, PublicationCardContainer } from './styles';
 
 interface PublicationCardProps {
-  data: CardData;
-  controlsMethods?: CardControlsMethods;
+  publication: Publication;
+  anexoId?: string;
 }
 
 export const PublicationCard: React.FC<PublicationCardProps> = ({
-  data,
-  controlsMethods,
+  anexoId,
+  children,
+  publication,
 }) => (
-  <PublicationCardContainer isResolved={data.isResolvido}>
+  <PublicationCardContainer isResolved={publication.isResolvido}>
     <InfoContainer>
-      {data.anexo && (
+      {anexoId && (
         <img
-          src={`${process.env.API_URL}/anexos/${data.anexo}`}
-          alt={data.nome || data.categoria}
+          src={`${process.env.API_URL}/anexos/${anexoId}`}
+          alt={publication.nome || publication.categoria}
         />
       )}
       <article>
-        {data.nome && <h2>{data.nome}</h2>}
+        {publication.nome && <h2>{publication.nome}</h2>}
         <p>
-          Publicado em: <span>{data.createdAt}</span>
+          Publicado em: <span>{publication.createdAt}</span>
         </p>
         <p>
-          Situação: <span>{data.situacao}</span>
+          Situação: <span>{publication.situacao}</span>
         </p>
         <p>
-          Categoria: <span>{data.categoria}</span>
+          Categoria: <span>{publication.categoria}</span>
         </p>
         <p>
-          Porte: <span>{data.porte}</span>
+          Porte: <span>{publication.porte}</span>
         </p>
         <p>
-          Sexo do Animal: <span>{data.sexo || 'Não informado'}</span>
+          Sexo do Animal: <span>{publication.sexo || 'Não informado'}</span>
         </p>
       </article>
     </InfoContainer>
-
-    {data.publicacaoId && (
-      <ActionLink
-        href={`/publication/${data.publicacaoId}`}
-        label=" Ver Detalhes"
-        icon={FiEye}
-      />
-    )}
-
-    {data.isResolvido ? (
-      <ResolvedPublication>
-        <p>
-          {data.situacao === 'encontrado'
-            ? 'Resgatado'
-            : data.situacao === 'desaparecido'
-            ? 'Encontrado'
-            : 'Adotado'}
-        </p>
-      </ResolvedPublication>
-    ) : (
-      <>
-        {controlsMethods && (
-          <CardControls
-            situation={data.situacao}
-            onDelete={controlsMethods.onDelete}
-            onEdit={controlsMethods.onEdit}
-            onResolve={controlsMethods.onResolve}
-          />
-        )}
-      </>
-    )}
+    {children}
   </PublicationCardContainer>
 );

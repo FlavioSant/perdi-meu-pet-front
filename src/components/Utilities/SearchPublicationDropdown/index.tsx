@@ -68,15 +68,20 @@ export const SearchPublicationDropdown: React.FC<SearchPublicationDropdownProps>
           />
           <Button
             type="button"
-            title="Pesquisar"
             background="green"
+            title="Pesquisar"
             onClick={() =>
               onSubmit(formRef.current.getData() as SubmitData, formRef.current)
             }
           >
             <FiSearch size={22} />
           </Button>
-          <Button type="button" title="Limpar" onClick={handleReset}>
+          <Button
+            type="button"
+            background="red"
+            title="Limpar"
+            onClick={handleReset}
+          >
             <FiX size={22} />
           </Button>
         </Form>

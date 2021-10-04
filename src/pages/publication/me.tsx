@@ -11,12 +11,12 @@ import { PageLayout } from '../../components/Layout/PageLayout';
 import { MyPublicationView } from '../../components/Templates/MyPublicationView';
 
 interface MyPublicationProps {
-  publication: Publication[] | null;
+  publications: Publication[] | null;
 }
 
-const MyPublication: NextPage<MyPublicationProps> = ({ publication }) =>
-  publication ? (
-    <MyPublicationView publications={publication} />
+const MyPublication: NextPage<MyPublicationProps> = ({ publications }) =>
+  publications ? (
+    <MyPublicationView publications={publications} />
   ) : (
     <PageLayout>
       <NoPublication title="Nenhuma publicação encontrada." hasGoBack />
@@ -24,21 +24,26 @@ const MyPublication: NextPage<MyPublicationProps> = ({ publication }) =>
   );
 
 export const getServerSideProps = serverSideHandler(auth(), async ctx => {
-  const { data: publication } = await getAPIClient(ctx).get<Publication[]>(
+  const { data: publications } = await getAPIClient(ctx).get<Publication[]>(
     'minhas-publicacoes',
   );
 
-  if (!publication || publication.length === 0) {
+  if (!publications || publications.length === 0) {
     return {
       props: {
-        publication: null,
+        publications: null,
       },
     };
   }
 
+  const parsedPublications = publications.map(publication => ({
+    ...publication,
+    createdAt: new Date(publication.createdAt).toLocaleString(),
+  }));
+
   return {
     props: {
-      publication,
+      publications: parsedPublications,
     },
   };
 });
