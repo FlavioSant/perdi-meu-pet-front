@@ -21,7 +21,7 @@ export const PublicationCardContainer = styled.div<PublicationContainerProps>`
       background: var(--green-light);
     `}
 
-  a {
+  /* a {
     display: flex;
     align-items: center;
     align-self: flex-end;
@@ -39,10 +39,15 @@ export const PublicationCardContainer = styled.div<PublicationContainerProps>`
     &:hover {
       background-color: var(--green-medium);
     }
-  }
+  } */
 
   @media (max-width: 720px) {
     flex-direction: column;
+
+    a {
+      margin-top: 1rem;
+      width: 100%;
+    }
   }
 `;
 
@@ -74,5 +79,10 @@ export const InfoContainer = styled.div`
 
   @media (max-width: 720px) {
     width: 100%;
+  }
+
+  @media (max-width: 425px) {
+    align-items: flex-start;
+    flex-direction: column;
   }
 `;

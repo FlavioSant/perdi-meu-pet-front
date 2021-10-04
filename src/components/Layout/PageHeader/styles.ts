@@ -24,7 +24,6 @@ export const Header = styled.header<HeaderProps>`
   position: relative;
 
   figure {
-    display: none;
     cursor: pointer;
   }
 
@@ -44,10 +43,6 @@ export const Header = styled.header<HeaderProps>`
 
   @media (max-width: 768px) {
     padding: 0 0.3rem;
-
-    figure {
-      display: initial;
-    }
 
     nav {
       display: ${({ isMenuOpen }) => (isMenuOpen ? 'flex' : 'none')};

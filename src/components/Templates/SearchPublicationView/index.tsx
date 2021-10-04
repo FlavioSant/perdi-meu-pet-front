@@ -143,6 +143,7 @@ export const SearchPublicationView: React.FC = () => {
                 <ActionLink
                   href={`/publication/${publication.publicacaoId}`}
                   label=" Ver Detalhes"
+                  background="green"
                   icon={FiEye}
                 />
               </PublicationCardContent>
