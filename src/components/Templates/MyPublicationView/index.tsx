@@ -10,6 +10,8 @@ import { PageTitle } from '../../Layout/PageTitle';
 import { PageLayout } from '../../Layout/PageLayout';
 import { PublicationCard } from '../../Cards/PublicationCard';
 import { ModalEditPublication } from '../../Modais/ModalEditPublication';
+import { PublicationCardControls } from '../../Cards/PublicationCard/PublicationCardControls';
+import { ResolvedPublication } from '../../Cards/PublicationCard/ResolvedPublication';
 
 interface MyPublicationViewProps {
   publications: Publication[];
@@ -82,22 +84,20 @@ export const MyPublicationView: React.FC<MyPublicationViewProps> = ({
       {publications.map(publication => (
         <PublicationCard
           key={publication.publicacaoId}
-          data={{
-            categoria: publication.categoria,
-            createdAt: new Date(publication.createdAt).toLocaleString(),
-            isResolvido: publication.isResolvido,
-            nome: publication.nome,
-            porte: publication.porte,
-            sexo: publication.sexo,
-            situacao: publication.situacao,
-            anexo: publication.anexos[0],
-          }}
-          controlsMethods={{
-            onResolve: () => resolvePublication(publication.publicacaoId),
-            onEdit: () => handleOpenModalEditPublication(publication),
-            onDelete: () => deletePublication(publication.publicacaoId),
-          }}
-        />
+          publication={publication}
+          anexoId={publication.anexos[0]}
+        >
+          {publication.isResolvido ? (
+            <ResolvedPublication situation={publication.situacao} />
+          ) : (
+            <PublicationCardControls
+              situation={publication.situacao}
+              onResolve={() => resolvePublication(publication.publicacaoId)}
+              onEdit={() => handleOpenModalEditPublication(publication)}
+              onDelete={() => deletePublication(publication.publicacaoId)}
+            />
+          )}
+        </PublicationCard>
       ))}
     </PageLayout>
   );

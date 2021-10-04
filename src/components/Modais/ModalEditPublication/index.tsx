@@ -161,16 +161,20 @@ const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
         <FormButtons>
           <Button
             type="button"
-            styleType="red"
-            title="Cancelar"
+            background="red"
+            title="Clique para cancelar"
             onClick={() => onRequestClose(false)}
           >
             <FiX size={22} />
             Cancelar
           </Button>
-          <Button type="submit" styleType="green" title="Finalizar Cadastro">
+          <Button
+            type="submit"
+            background="green"
+            title="Clique para salvar alterações"
+          >
             <FiCheck size={22} />
-            Finalizar Cadastro
+            Salvar Alterações
           </Button>
         </FormButtons>
       </Form>
