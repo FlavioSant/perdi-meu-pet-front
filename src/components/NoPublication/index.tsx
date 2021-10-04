@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Router from 'next/router';
 
 import { Button } from '../Forms/Button';
@@ -16,18 +17,29 @@ export const NoPublication: React.FC<NoPublicationProps> = ({
   title,
 }) => (
   <NoPublicationContainer>
-    <img src="/no-publications.svg" alt="Nenhuma publicação" />
-    <h2>{title}</h2>
-    {description && <p>{description}</p>}
-    {hasGoBack && (
-      <Button
-        type="button"
-        marginTop="2rem"
-        width="200px"
-        onClick={() => Router.back()}
-      >
-        Voltar
-      </Button>
-    )}
+    <figure>
+      <Image
+        src="/no-publications.svg"
+        alt="Nenhuma publicação"
+        title="Ilustração de animais"
+        width={190}
+        height={190}
+      />
+    </figure>
+
+    <article>
+      <h2>{title}</h2>
+      {description && <p>{description}</p>}
+      {hasGoBack && (
+        <Button
+          type="button"
+          marginTop="2rem"
+          width="200px"
+          onClick={() => Router.back()}
+        >
+          Voltar
+        </Button>
+      )}
+    </article>
   </NoPublicationContainer>
 );

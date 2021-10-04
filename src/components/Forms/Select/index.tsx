@@ -1,8 +1,7 @@
-import { NextPage } from 'next';
 import { useEffect, useRef } from 'react';
-import ReactSelect, { Props, OptionTypeBase } from 'react-select';
 
 import { useField } from '@unform/core';
+import ReactSelect, { Props, OptionTypeBase } from 'react-select';
 
 import { SelectContainer } from './styles';
 
@@ -18,7 +17,7 @@ interface SelectProps extends Props<OptionTypeBase> {
   options: SelectOption[];
 }
 
-const Select: NextPage<SelectProps> = ({
+export const Select: React.FC<SelectProps> = ({
   name,
   label,
   placeholder = 'Selecione...',
@@ -106,5 +105,3 @@ const Select: NextPage<SelectProps> = ({
     </SelectContainer>
   );
 };
-
-export { Select };

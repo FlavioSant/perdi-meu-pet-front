@@ -1,10 +1,10 @@
 import Modal from 'react-modal';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiCheck, FiX } from 'react-icons/fi';
-import * as Yup from 'yup';
 
 import { Publication } from '../../../types/publication';
 import {
@@ -12,17 +12,17 @@ import {
   radioButtonOptions,
   selectOptions,
 } from '../../../utils/inputsOptions';
-import { handleErrors } from '../../../functions/handleErrors';
-import { successToast, warnToast } from '../../../utils/toast';
 import { removeKeys } from '../../../utils/removeKeys';
 import { getAPIClient } from '../../../services/apiClient';
+import { handleErrors } from '../../../functions/handleErrors';
+import { successToast, warnToast } from '../../../utils/toast';
 
-import { Button } from '../../Forms/Button';
-import { ImageRadioButton } from '../../Forms/ImageRadioButton';
-import { FlexItems } from '../../FlexItems';
-import { Select } from '../../Forms/Select';
 import { Input } from '../../Forms/Input';
+import { Button } from '../../Forms/Button';
+import { Select } from '../../Forms/Select';
 import { Textarea } from '../../Forms/Textarea';
+import { FlexItems } from '../../Utilities/FlexItems';
+import { ImageRadioButton } from '../../Forms/ImageRadioButton';
 
 import { FormButtons } from './styles';
 
@@ -42,7 +42,7 @@ interface ModalEditPublicationProps {
   onRequestClose: (isRefresh: boolean) => void;
 }
 
-const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
+export const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
   isOpen,
   publication,
   onRequestClose,
@@ -181,5 +181,3 @@ const ModalEditPublication: React.FC<ModalEditPublicationProps> = ({
     </Modal>
   );
 };
-
-export { ModalEditPublication };

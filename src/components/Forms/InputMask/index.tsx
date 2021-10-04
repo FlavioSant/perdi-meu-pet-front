@@ -1,7 +1,7 @@
-import { NextPage } from 'next';
 import { useRef, useEffect, useState, useCallback } from 'react';
-import ReactInputMask, { Props } from 'react-input-mask';
+
 import { useField } from '@unform/core';
+import ReactInputMask, { Props } from 'react-input-mask';
 
 import { Container } from './styles';
 
@@ -10,7 +10,7 @@ interface InputProps extends Props {
   label: string;
 }
 
-export const InputMask: NextPage<InputProps> = ({ name, label, ...rest }) => {
+export const InputMask: React.FC<InputProps> = ({ name, label, ...rest }) => {
   const inputRef = useRef(null);
   const { fieldName, registerField, defaultValue } = useField(name);
 

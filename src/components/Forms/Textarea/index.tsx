@@ -9,7 +9,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ name, label, ...rest }) => {
+export const Textarea: React.FC<TextareaProps> = ({ name, label, ...rest }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const { defaultValue, fieldName, registerField, error } = useField(name);
@@ -34,5 +34,3 @@ const Textarea: React.FC<TextareaProps> = ({ name, label, ...rest }) => {
     </TextareaContainer>
   );
 };
-
-export { Textarea };

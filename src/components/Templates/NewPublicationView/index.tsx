@@ -23,15 +23,15 @@ import { parseNewPublication } from '../../../functions/parsePublications';
 import { ClickableMap } from '../../Map';
 import { Input } from '../../Forms/Input';
 import { Button } from '../../Forms/Button';
-import { FlexItems } from '../../FlexItems';
 import { Select } from '../../Forms/Select';
 import { Textarea } from '../../Forms/Textarea';
 import { InputFile } from '../../Forms/InputFile';
 import { InputMask } from '../../Forms/InputMask';
 import { PageTitle } from '../../Layout/PageTitle';
-import { PreviewImages } from '../../PreviewImages';
 import { PageLayout } from '../../Layout/PageLayout';
+import { FlexItems } from '../../Utilities/FlexItems';
 import { PageContainer } from '../../Layout/PageContainer';
+import { PreviewImages } from '../../Utilities/PreviewImages';
 import { ImageRadioButton } from '../../Forms/ImageRadioButton';
 import ModalInfo, { ModalInfoHandles } from '../../Modais/ModalInfo';
 

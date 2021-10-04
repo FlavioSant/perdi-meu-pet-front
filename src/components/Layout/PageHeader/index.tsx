@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Router from 'next/router';
 import { useState } from 'react';
 
@@ -17,12 +18,16 @@ export const PageHeader: React.FC = () => {
   return (
     <HeaderContainer>
       <Header isMenuOpen={isMenuOpen}>
-        <img
-          src="/logo.svg"
-          alt="Perdi Meu Pet"
-          title="Perdi Meu Pet"
-          onClick={() => Router.push('/')}
-        />
+        <figure>
+          <Image
+            src="/logo.svg"
+            alt="Perdi Meu Pet"
+            title="Perdi Meu Pet"
+            onClick={() => Router.push('/')}
+            width={100}
+            height={70}
+          />
+        </figure>
 
         <MenuNavBar>
           <MenuItem label="Inicio" path="/" />

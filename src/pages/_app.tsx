@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { AuthProvider } from '../contexts/AuthContext';
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/Utilities/Loader';
 
 import GlobalStyle from '../styles/global';
 import 'react-toastify/dist/ReactToastify.css';

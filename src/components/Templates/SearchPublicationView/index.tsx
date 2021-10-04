@@ -20,11 +20,11 @@ import { parseFindPublications } from '../../../functions/parsePublications';
 
 import { Input } from '../../Forms/Input';
 import { Select } from '../../Forms/Select';
-import { FlexItems } from '../../FlexItems';
 import { Button } from '../../Forms/Button';
 import { PageTitle } from '../../Layout/PageTitle';
 import { NoPublication } from '../../NoPublication';
 import { PageLayout } from '../../Layout/PageLayout';
+import { FlexItems } from '../../Utilities/FlexItems';
 import { PageContainer } from '../../Layout/PageContainer';
 import { PublicationCard } from '../../Cards/PublicationCard';
 import { ImageRadioButton } from '../../Forms/ImageRadioButton';

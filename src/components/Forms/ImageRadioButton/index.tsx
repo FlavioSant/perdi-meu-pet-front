@@ -1,20 +1,23 @@
+import Image from 'next/image';
 import { InputHTMLAttributes, useEffect, useRef } from 'react';
 
 import { useField } from '@unform/core';
 
 import { ImageRadioContainer } from './styles';
 
-interface ImageRadioButtonProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
-  options: Array<{
-    id: string;
-    value: string;
-    label: string;
-    imageURL: string;
-  }>;
+interface Option {
+  id: string;
+  value: string;
+  label: string;
+  imageURL: string;
 }
 
-const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
+interface ImageRadioButtonProps extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  options: Option[];
+}
+
+export const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
   name,
   options,
   ...rest
@@ -56,7 +59,12 @@ const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
           />
           <label htmlFor={option.id} title={option.label}>
             <figure>
-              <img src={option.imageURL} alt={option.label} />
+              <Image
+                src={option.imageURL}
+                alt={option.label}
+                width={70}
+                height={70}
+              />
             </figure>
             <span>{option.label}</span>
           </label>
@@ -65,5 +73,3 @@ const ImageRadioButton: React.FC<ImageRadioButtonProps> = ({
     </ImageRadioContainer>
   );
 };
-
-export { ImageRadioButton };

@@ -4,9 +4,9 @@ import { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { api } from '../../../services/api';
 import { successToast } from '../../../utils/toast';
 import { FiLock, FiMail, FiUser } from 'react-icons/fi';
+import { getAPIClient } from '../../../services/apiClient';
 import { handleErrors } from '../../../functions/handleErrors';
 
 import { Input } from '../../Forms/Input';
@@ -46,7 +46,7 @@ export const SignUpView: React.FC = () => {
         abortEarly: false,
       });
 
-      await api.post('sign-up', formData);
+      await getAPIClient().post('sign-up', formData);
 
       successToast({
         message: 'Cadastro realizado com sucesso.',

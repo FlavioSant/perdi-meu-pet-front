@@ -7,17 +7,18 @@ export const NoPublicationContainer = styled.div`
   flex-direction: column;
   margin-top: 4rem;
 
-  img {
-    width: 12rem;
-    height: 12.25rem;
-  }
+  article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-  h2 {
-    color: var(--text-primary);
-    margin-top: 1rem;
-  }
+    h2 {
+      color: var(--text-primary);
+      margin-top: 1rem;
+    }
 
-  p {
-    color: var(--text-secondary-dark);
+    p {
+      color: var(--text-secondary-dark);
+    }
   }
 `;
