@@ -47,7 +47,7 @@ export const selectOptions = {
       value: 'macho',
     },
     {
-      label: 'Outros',
+      label: 'Não Sei',
       value: 'outros',
     },
   ],

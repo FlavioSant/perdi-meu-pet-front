@@ -4,6 +4,7 @@ import { LeafletMouseEvent } from 'leaflet';
 import { Position } from '../../types/position';
 import { MapMarker } from './MapMarker';
 import { MapCircleRadius } from './MapCircleRadius';
+import { dogMarker } from '../../utils/mapMarker';
 
 import { MapContainer } from './styles';
 
@@ -33,7 +34,7 @@ const ClickableMap: React.FC<ClickableMapProps> = ({
       <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
       {position.lat !== 0 && (
-        <MapMarker position={position}>
+        <MapMarker position={position} mapMarker={dogMarker}>
           <MapCircleRadius center={position} />
         </MapMarker>
       )}

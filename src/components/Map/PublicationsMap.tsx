@@ -7,6 +7,7 @@ import { Position } from '../../types/position';
 import { MapMarker } from './MapMarker';
 import { MapPopup } from './MapPopup';
 import { MapCircleRadius } from './MapCircleRadius';
+import { catMarker, dogMarker, otherMarker } from '../../utils/mapMarker';
 
 import { MapContainer } from './styles';
 
@@ -43,6 +44,13 @@ const PublicationsMap: React.FC<PublicationsMapProps> = ({
         publications.map(publication => (
           <MapMarker
             key={publication.publicacaoId}
+            mapMarker={
+              publication.categoria === 'cachorro'
+                ? dogMarker
+                : publication.categoria === 'gato'
+                ? catMarker
+                : otherMarker
+            }
             position={{
               lat: publication.latitude,
               lng: publication.longitude,
